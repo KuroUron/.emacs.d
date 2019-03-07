@@ -11,15 +11,38 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ theme
 
+(use-package hemisu-theme
+  :ensure t
+  :config
+  (use-package gruvbox-theme
+    :ensure t
+    :config (load-theme 'gruvbox-dark-hard t))
+  (load-theme 'hemisu-dark t))
+
+;; (use-package ir-black-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'ir-black t))
+
+;; (use-package gruvbox-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'gruvbox-dark-hard t))
+
+;; (use-package klere-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'klere t))
+
 ;; (use-package hemisu-theme
 ;;   :ensure t
 ;;   :config
-;;   (load-theme 'hemisu-dark t))
+;;   (load-theme 'hemisu-light t))
 
-(use-package doom-themes 
-  :ensure t
-  :config
-  (load-theme 'doom-dracula t))
+;; (use-package doom-themes 
+;;   :ensure t
+;;   :config
+;;   (load-theme 'doom-dracula t))
 
 ;; (use-package doom-themes 
 ;;   :ensure t
@@ -224,6 +247,12 @@ _~_: modified
   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ write-root
+
+(use-package writeroom-mode
+  :ensure t)
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ bkup
 
 ;; TODO
@@ -241,9 +270,18 @@ _~_: modified
 (set-frame-parameter nil 'alpha 98)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
+(toggle-scroll-bar 0)
 (line-number-mode t)
 (column-number-mode t)
 (show-paren-mode t)
+;; (setq frame-title-format "")
+;; (set-frame-parameter nil 'undecorated t)
+;; (ns-use-proxy-icon nil)
+
+;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+;; (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
+;; (setq ns-use-proxy-icon nil)
+;; (setq frame-title-format nil)
 
 ;; Insert closing parenthesis automatically
 (electric-pair-mode 1)
@@ -270,7 +308,11 @@ _~_: modified
  ;; If there is more than one, they won't work right.
  '(doom-themes-enable-bold t)
  '(doom-themes-enable-italic t)
- '(package-selected-packages (quote (hemisu-theme hemisu-dark use-package))))
+ '(ivy-count-format "(%d/%d) ")
+ '(ivy-use-virtual-buffers t)
+ '(package-selected-packages
+   (quote
+    (writeroom-mode gruvbox-theme klere-theme ir-black-theme cyberpunk-theme hemisu-theme hemisu-dark use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
