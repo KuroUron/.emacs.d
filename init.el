@@ -79,6 +79,7 @@
   (evil-mode 1)
 
   (define-key evil-normal-state-map (kbd "s") 'swiper)
+  ;; (define-key evil-normal-state-map (kbd "i") 'evil-emacs-state)
   (define-key evil-normal-state-map (kbd "m")
     '(lambda ()
        "Mark a word around the cursor."
@@ -96,6 +97,26 @@
 	 (backward-char 1)
 	 (message word)
 	 (activate-mark))))
+
+  (defun my-get-file-path ()
+    (interactive)
+    (let* ((file-name (buffer-file-name))
+           (file-path (file-name-directory file-name)))
+      (message (concat "Get file path: " file-path))
+      (kill-new file-path)))
+  (define-key evil-normal-state-map (kbd "@") 'my-get-file-path)
+  ;; (defun my-cd-current-file-directory ()
+  ;;   (interactive)
+  ;;   (let* ((file-path (my-get-file-path))
+  ;;          (command (concat "cd " file-path)))
+  ;;     ;; (split-window-below)
+  ;;     ;; (other-window 1)
+  ;;     (shell)
+  ;;     (end-of-buffer)
+  ;;     (kill-new command)
+  ;;     (yank)
+  ;;     (comint-send-input)))
+  ;; (define-key evil-normal-state-map (kbd "S-@") 'my-cd-current-file-directory)
   
   ;; my-space-map
   (define-prefix-command 'my-space-map)
@@ -103,20 +124,27 @@
   (define-key my-space-map (kbd "SPC") 'counsel-M-x)
   (define-key my-space-map (kbd "f") 'counsel-find-file)
   (define-key my-space-map (kbd "b") 'ivy-switch-buffer)
-  (define-key my-space-map (kbd "d") '(lambda () (interactive)
-  					(kill-buffer (current-buffer))))
   (define-key my-space-map (kbd "l") 'recenter-top-bottom)
   (define-key my-space-map (kbd "g") 'evil-force-normal-state)
   (define-key my-space-map (kbd "/") 'swiper)
   (define-key my-space-map (kbd "r") 'counsel-recentf)
+  (define-key my-space-map (kbd "d") '(lambda ()
+					(interactive)
+  					(kill-buffer (current-buffer))))
+  (define-key my-space-map (kbd "o") '(lambda ()
+					(interactive)
+					(other-window 1)
+					(evil-normal-state)))
+
+    ;; other-window
 
   ;; my-window-map
   (define-prefix-command 'my-window-map)
   (define-key evil-normal-state-map (kbd "u") 'my-window-map)
   (define-key my-window-map (kbd "j") 'split-window-below)
   (define-key my-window-map (kbd "l") 'split-window-right)
-  (define-key my-window-map (kbd "o") 'other-window)
-  (define-key my-window-map (kbd "0") 'delete-other-windows)
+  ;; (define-key my-window-map (kbd "o") 'other-window)
+  (define-key my-window-map (kbd "o") 'delete-other-windows)
 
   ;; hydra
   (use-package hydra
@@ -238,12 +266,77 @@ _~_: modified
   :hook (after-init . which-key-mode))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ yasnippet
+
+(use-package yasnippet
+  :ensure t
+  :config
+  (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand))
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ cc-mode, cpp
 
 (use-package cc-mode
   :defer t
   :mode (("\\.smp" . c++-mode))
   ;; :config
+  )
+
+(use-package clang-format
+  :ensure t
+  :after cc-mode
+  :config
+  (define-key evil-normal-state-map (kbd "f")
+    '(lambda (start end)
+       (interactive
+        (if (use-region-p)
+            (list (region-beginning) (region-end))
+          (list (point) (point))))
+       (clang-format-region start end))))
+  
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ python
+
+(use-package python
+  :defer t
+  :config
+
+  (defun my-python-run ()
+    (interactive)
+    (let ((command (concat "python " (file-name-base) ".py")))
+      (save-buffer)
+      (async-shell-command command)))
+  
+  (defun my-python-async-shell-command
+      (command &optional output-buffer error-buffer)
+    (interactive
+     (list (read-shell-command "Async shell command: "
+                               (concat "python " (file-name-base) ".py ")
+                               nil
+                               (let ((filename
+                                      (cond
+                                       (buffer-file-name)
+                                       ((eq major-mode 'dired-mode)
+					(dired-get-filename nil t)))))
+				 (and filename (file-relative-name filename))))
+	   current-prefix-arg
+	   shell-command-default-error-buffer))
+    (save-buffer)
+    (unless (string-match "&[ \t]*\\'" command)
+      (setq command (concat command " &")))
+    (shell-command command output-buffer error-buffer))
+
+  (evil-define-key 'normal python-mode-map (kbd "C-j") 'my-python-run)
+  (evil-define-key 'normal python-mode-map (kbd "C-S-j") 'my-python-async-shell-command)
+  )
+
+(use-package blacken
+  :ensure t
+  :after python
+  :init
+  (add-hook 'python-mode-hook 'blacken-mode)
+  ;; :hook (python-mode-hook . blacken-mode)
   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -283,6 +376,9 @@ _~_: modified
 ;; (setq ns-use-proxy-icon nil)
 ;; (setq frame-title-format nil)
 
+;; Dabbrev
+(define-key global-map (kbd "C-<tab>") 'dabbrev-expand)
+
 ;; Insert closing parenthesis automatically
 (electric-pair-mode 1)
 
@@ -312,7 +408,7 @@ _~_: modified
  '(ivy-use-virtual-buffers t)
  '(package-selected-packages
    (quote
-    (writeroom-mode gruvbox-theme klere-theme ir-black-theme cyberpunk-theme hemisu-theme hemisu-dark use-package))))
+    (clang-format blacken yasnippet writeroom-mode gruvbox-theme klere-theme ir-black-theme cyberpunk-theme hemisu-theme hemisu-dark use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
