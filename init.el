@@ -50,9 +50,28 @@
   (message ":config doom-modeline")
   )
 
-;; (use-package hide-mode-line
-;;   :hook
-;;   ((neotree-mode imenu-list-minor-mode minimap-mode) . hide-mode-line-mode))
+(use-package hide-mode-line
+  :ensure t
+  :hook
+  (neotree-mode
+   ;; (neotree-mode
+   ;;  ;; imenu-list-minor-mode
+   ;;  ;; minimap-mode
+   ;;  )
+   . hide-mode-line-mode))
+
+;; (use-package nyan-mode
+;;   :ensure t
+;;   :defer
+;;   :hook (after-init . nyan-mode)
+;;   :config
+;;   (message ":config nyan-mode"))
+
+;; (use-package dashboard
+;;   :ensure t
+;;   :config
+;;   (message ":config dashboard")
+;;   (dashboard-setup-startup-hook))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Interface
@@ -106,13 +125,14 @@
   ;; my-space-map
   (define-prefix-command 'my-space-map)
   (define-key evil-normal-state-map (kbd "SPC") 'my-space-map)
+  (define-key my-space-map (kbd "b") 'ivy-switch-buffer)
   (define-key my-space-map (kbd "SPC") 'counsel-M-x)
   (define-key my-space-map (kbd "f") 'counsel-find-file)
-  (define-key my-space-map (kbd "b") 'counsel-switch-buffer)
   (define-key my-space-map (kbd "r") 'counsel-recentf)
   (define-key my-space-map (kbd "/") 'swiper)
   ;; (define-key my-space-map (kbd "l") 'recenter-top-bottom)
   (define-key my-space-map (kbd "g") 'evil-force-normal-state)
+  (define-key my-space-map (kbd "i") 'imenu-list-smart-toggle) ; TODO 
   (define-key my-space-map (kbd "d") '(lambda ()
 					(interactive)
   					(kill-buffer (current-buffer))
@@ -140,6 +160,8 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (ivy-mode 1)
+
+
   )
 
 (use-package ivy-rich
@@ -147,8 +169,14 @@
   :after ivy
   :config
   (message ":config ivy-rich")
-  (setq ivy-format-function #'ivy-format-function-line)
   (ivy-rich-mode 1)
+  (setq ivy-format-function #'ivy-format-function-line)
+
+  (use-package all-the-icons-ivy
+    :ensure t
+    :config
+    (message ":config all-the-icons-ivy")
+    (all-the-icons-ivy-setup))
   )
 
 (use-package counsel
@@ -173,6 +201,12 @@
   :after ivy
   :config
   (message ":config company")
+  (use-package company-box
+    :ensure t
+    :hook (company-mode . company-box-mode)
+    :config
+    (message ":config company-box")
+    )
   (global-company-mode t)
   (setq company-idle-delay 0) 
   (setq company-minimum-prefix-length 2)
@@ -198,6 +232,20 @@
   :hook (after-init . which-key-mode)
   :config
   (message ":config which-key")
+  ;; (use-package amx
+  ;;   :ensure t)
+  )
+
+(use-package neotree
+  :ensure t
+  ;; :after
+  ;; projectile
+  :hook (find-file . neotree-refresh)
+  ;; :commands
+  ;; (neotree-show neotree-hide neotree-dir neotree-find)
+  :config
+  (message ":config neotree")
+  ;; (neo-theme 'nerd2)
   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -218,8 +266,19 @@
 
 (use-package magit
   :ensure t
+  :defer t
   :config
   (message ":config magit"))
+
+(use-package imenu-list
+  :ensure t
+  :defer t
+  ;; :bind
+  ;; ("<f10>" . imenu-list-smart-toggle)
+  ;; TODO Consider bind
+  :config
+  (message ":config imenu-list")
+  )
 
 (use-package cc-mode
   :mode (("\\.cpp" . c++-mode)
@@ -296,6 +355,7 @@
     (tool-bar-mode 0)
     (toggle-scroll-bar 0)
     (column-number-mode t)
+    (setq inhibit-startup-message t)
     (setq frame-title-format
 	  '("emacs " emacs-version (buffer-file-name " - %f")))
     (set-frame-parameter nil 'alpha 98)
@@ -323,10 +383,10 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit which-key use-package-hydra ivy-rich hydra hemisu-theme gruvbox-theme evil doom-modeline counsel company clang-format blacken))))
+    (imenu-list company-box all-the-icons-ivy amx magit which-key use-package-hydra ivy-rich hydra hemisu-theme gruvbox-theme evil doom-modeline counsel company clang-format blacken))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(imenu-list-entry-face-1 ((t (:foreground "white")))))
