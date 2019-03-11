@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: call
+# key: call
+# --
+res = subprocess.call($0, shell=True)

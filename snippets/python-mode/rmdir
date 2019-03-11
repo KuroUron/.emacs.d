@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: rmdir
+# key: rmdir
+# --
+if os.path.exists($1):
+   shutil.rmtree($2)$0

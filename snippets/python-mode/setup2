@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: setup2
+# key: setup2
+# --
+from distutils.core import setup
+from Cython.Build import cythonize
+
+setup(ext_modules = cythonize($1))$0

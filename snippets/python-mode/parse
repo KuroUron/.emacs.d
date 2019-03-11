@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: parse
+# key: parse
+# --
+def parse_command():
+    desc = 'Cleanse data made by data_maker.py.'
+    parser = argparse.ArgumentParser(description=desc)
+    parser.add_argument('-fr', '--fr', type=str, action='store',
+                        default=None, help='set ORIGINAL_DATA_FOLDER')
+    parser.add_argument('-to', '--to', type=str, action='store',
+                        default=None, help='set CLEANSED_DATA_FOLDER')
+    args = parser.parse_args()
+    if args.fr != None:
+        global ORIGINAL_DATA_FOLDER
+        ORIGINAL_DATA_FOLDER = args.fr
+    if args.to != None:
+        global CLEANSED_DATA_FOLDER
+        CLEANSED_DATA_FOLDER = args.to$0

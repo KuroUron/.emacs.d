@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: popen
+# key: popen
+# --
+proc = subprocess.Popen(${1:args}, stdout=subprocess.PIPE)
+res, err = proc.communicate() # res == (stdout, stderr)
+print res$0

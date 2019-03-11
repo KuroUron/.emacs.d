@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: flu
+# key: flu
+# --
+sys.stdout.flush()$0

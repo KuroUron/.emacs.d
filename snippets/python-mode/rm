@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: rm
+# key: rm
+# --
+if os.path.isfile($1):
+   os.remove($2)$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: getitem
+# key: getitem
+# --
+def __getitem__(self, ${1:number}):
+    return self.data[${2:number}]$0

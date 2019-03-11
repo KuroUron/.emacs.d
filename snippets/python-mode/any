@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: any
+# key: any
+# --
+wx.ID_ANY$0

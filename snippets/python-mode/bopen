@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: bopen
+# key: bopen
+# --
+book = xlrd.open_workbook('$1.xls')$0

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: fin
+# key: fin
+# --
+fin = codecs.open(${1:Path}, u'r', sys.getfilesystemencoding())
+$0
+fin.close()

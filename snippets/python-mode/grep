@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: grep
+# key: grep
+# --
+lines = fin.readlines()
+for line in lines:
+    if line.find($1) >= 0:
+       line = line.rstrip(u'\r\n')
+       print line$0

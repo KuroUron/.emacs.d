@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: isd
+# key: isd
+# --
+os.path.isdir($0)

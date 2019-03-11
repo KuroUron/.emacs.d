@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: setup
+# key: setup
+# --
+from distutils.core import setup
+from distutils.extension import Extension
+from Cython.Distutils import build_ext
+
+setup(cmdclass = {'build_ext': build_ext},
+      ext_modules = [Extension("${1:file-name}", ["${2:file-name}.pyx"])])$0

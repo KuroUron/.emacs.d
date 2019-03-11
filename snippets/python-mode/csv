@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: csv
+# key: csv
+# --
+reader = csv.reader(${1:fin})
+${2:header = next(reader)}
+for row in reader:
+    $0

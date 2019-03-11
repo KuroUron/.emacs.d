@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: subprocess
+# key: subprocess
+# --
+import subprocess$0

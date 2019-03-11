@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: enc
+# key: enc
+# --
+def enc(u):
+    return u.encode(sys.getfilesystemencoding())$0

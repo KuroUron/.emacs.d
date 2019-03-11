@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: iter
+# key: iter
+# --
+def __iter__(self):
+    return self.${1:data}.__iter__()$0

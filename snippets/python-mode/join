@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: join
+# key: join
+# --
+os.path.join($1, $2)$0

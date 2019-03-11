@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: super
+# key: super
+# --
+super(${1:className}, self).__init__($0)

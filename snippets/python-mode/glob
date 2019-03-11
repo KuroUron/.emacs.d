@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: glob
+# key: glob
+# --
+glob.glob(${1:u'./*.txt'})$0

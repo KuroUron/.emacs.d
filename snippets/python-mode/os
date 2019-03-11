@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: os
+# key: os
+# --
+import os$0

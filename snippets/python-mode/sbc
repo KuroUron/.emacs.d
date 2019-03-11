@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sbc
+# key: sbc
+# --
+SetBackgroundColour("#${1:AFAFAF}")$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: dec
+# key: dec
+# --
+def dec(s):
+    return s.decode(sys.getfilesystemencoding())$0

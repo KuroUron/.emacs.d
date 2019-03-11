@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: shutil
+# key: shutil
+# --
+import shutil$0

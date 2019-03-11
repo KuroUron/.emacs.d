@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bp
+# key: bp
+# --
+if debug != None:
+    pdb.set_trace() # ブレークポイント$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: getenc
+# key: getenc
+# --
+sys.getfilesystemencoding()$0

@@ -1,0 +1,28 @@
+# -*- mode: snippet -*-
+# name: dao
+# key: dao
+# --
+class DataObject:
+    u"""
+    データオブジェクト．
+    """
+    def __init__(self):
+        # オブジェクト
+
+        # パス
+        
+        # 定数
+
+        
+    def extract(self):
+        u"""
+        各種データを展開する．
+        """
+        
+        return self
+
+    
+
+if __name__ == '__main__':
+
+    data = DataObject().extract()$0

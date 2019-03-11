@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: isfile
+# key: isfile
+# --
+os.path.isfile($0)

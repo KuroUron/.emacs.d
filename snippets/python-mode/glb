@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: glb
+# key: glb
+# --
+glob.glob($0)

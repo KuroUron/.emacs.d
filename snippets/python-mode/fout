@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: fout
+# key: fout
+# --
+fout = codecs.open(${1:path}, u'w', sys.getfilesystemencoding())
+$0
+fout.close()

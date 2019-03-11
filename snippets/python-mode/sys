@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sys
+# key: sys
+# --
+import sys$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mkdir
+# key: mkdir
+# --
+os.mkdir($0)

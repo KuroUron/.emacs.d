@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: isf
+# key: isf
+# --
+os.path.isfile($0)
