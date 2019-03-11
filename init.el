@@ -376,6 +376,7 @@
 (use-package magit
   :ensure t
   ;; :defer t                                ; TODO
+  :commands (magit magit-status)
   :config
   (message ":config magit"))
 
