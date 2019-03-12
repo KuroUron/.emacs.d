@@ -93,11 +93,10 @@
 (use-package hide-mode-line
   :ensure t
   :hook
-  (neotree-mode
-   ;; (neotree-mode
-   ;;  ;; imenu-list-minor-mode
-   ;;  ;; minimap-mode
-   ;;  )
+  ((neotree-mode
+    ;; imenu-list-minor-mode
+    ;; minimap-mode
+    )
    . hide-mode-line-mode))
 
 ;; (use-package nyan-mode
@@ -115,6 +114,8 @@
 
 (use-package volatile-highlights
   :ensure t
+  ;; :custom-face
+  ;; (vhl/default-face ((nil (:foreground "#FF3333" :background "#FFCDCD"))))
   :config
   (message ":config volatile-highlights")
   (volatile-highlights-mode t)
@@ -153,6 +154,23 @@
   (set-face-underline  'whitespace-tab t)
   (set-face-background 'whitespace-tab nil)
   )
+
+(use-package beacon
+  :ensure t
+  :custom
+  (beacon-color "yellow")
+  :config
+  (message ":config beacon")
+  (beacon-mode 1))
+
+(use-package highlight-indent-guides
+  :ensure t
+  :hook
+  ((python-mode cc-mode lisp-mode yaml-mode) . highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-auto-enabled t)
+  (highlight-indent-guides-responsive t)
+  (highlight-indent-guides-method 'character)) ; column
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Interface
@@ -370,6 +388,32 @@
   ;; (neo-theme 'nerd2)
   )
 
+(use-package minimap
+  :ensure t
+  :commands
+  (minimap-bufname minimap-create minimap-kill)
+  :custom
+  (minimap-major-modes '(prog-mode))
+  (minimap-window-location 'right)
+  (minimap-update-delay 0)
+  ;; (minimap-update-delay 0.2)
+  (minimap-minimum-width 10)
+  ;; :bind
+  ;; ("M-t m" . ladicle/toggle-minimap)
+  ;; :preface
+  ;; (defun ladicle/toggle-minimap ()
+  ;;   "Toggle minimap for current buffer."
+  ;;   (interactive)
+  ;;   (if (null minimap-bufname)
+  ;;       (minimap-create)
+  ;;     (minimap-kill)))
+  :config
+  (custom-set-faces
+   '(minimap-active-region-background
+     ((((background dark)) (:background "#555555555555"))
+      (t (:background "#C847D8FEFFFF"))) :group 'minimap))
+  )
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
 
@@ -470,6 +514,21 @@
   (yas-reload-all)
   (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand))
 
+(use-package git-gutter
+  :ensure t
+  :custom
+  (git-gutter:modified-sign "~")
+  (git-gutter:added-sign    "+")
+  (git-gutter:deleted-sign  "-")
+  :custom-face
+  (git-gutter:modified ((t (:background "#f1fa8c"))))
+  (git-gutter:added    ((t (:background "#50fa7b"))))
+  (git-gutter:deleted  ((t (:background "#ff79c6"))))
+  :config
+  (message ":config git-gutter")
+  (global-git-gutter-mode +1)
+  )
+
 ;; (use-package writeroom-mode
 ;;   :ensure t)
 
@@ -510,15 +569,3 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(mode-line ((t (:background "gray50" :foreground "#000000" :box nil)))))
