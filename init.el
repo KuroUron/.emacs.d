@@ -35,6 +35,18 @@
                       )
   )
 
+;; (use-package powerline
+;;   :ensure t
+;;   :config
+;;   (message ":config powerline")
+;;   )
+
+;; (use-package atom-dark-theme
+;;   :ensure t
+;;   :config
+;;   (message ":config atom-dark-thme")
+;;   (load-theme 'atom-dark t))
+
 ;; (use-package doom-themes
 ;;   :ensure t
 ;;   ;; :custom
@@ -82,6 +94,9 @@
   :hook (after-init . doom-modeline-mode)
   :config
   (message ":config doom-modeline")
+  (setq doom-modeline-height 30)
+  (setq doom-modeline-bar-width 6)
+  ;; (setq doom-modeline-major-mode-color-icon t)
   (set-face-attribute 'error nil
                       :foreground "dark red"
                       )
@@ -515,7 +530,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages
+   (quote
+    (powerline atom-dark-theme atom-dark amx yasnippet fill-column-indicator volatile-highlights which-key use-package neotree magit ivy-rich imenu-list hydra hide-mode-line hemisu-theme gruvbox-theme evil doom-modeline counsel company-box clang-format all-the-icons-ivy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
