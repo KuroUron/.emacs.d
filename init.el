@@ -35,6 +35,18 @@
                       )
   )
 
+;; (use-package powerline
+;;   :ensure t
+;;   :config
+;;   (message ":config powerline")
+;;   )
+
+;; (use-package atom-dark-theme
+;;   :ensure t
+;;   :config
+;;   (message ":config atom-dark-thme")
+;;   (load-theme 'atom-dark t))
+
 ;; (use-package doom-themes
 ;;   :ensure t
 ;;   ;; :custom
@@ -82,6 +94,9 @@
   :hook (after-init . doom-modeline-mode)
   :config
   (message ":config doom-modeline")
+  (setq doom-modeline-height 30)
+  (setq doom-modeline-bar-width 6)
+  ;; (setq doom-modeline-major-mode-color-icon t)
   (set-face-attribute 'error nil
                       :foreground "dark red"
                       )
