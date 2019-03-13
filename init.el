@@ -163,14 +163,14 @@
   (message ":config beacon")
   (beacon-mode 1))
 
-(use-package highlight-indent-guides
-  :ensure t
-  :hook
-  ((python-mode cc-mode lisp-mode yaml-mode) . highlight-indent-guides-mode)
-  :custom
-  (highlight-indent-guides-auto-enabled t)
-  (highlight-indent-guides-responsive t)
-  (highlight-indent-guides-method 'character)) ; column
+;; (use-package highlight-indent-guides
+;;   :ensure t
+;;   :hook
+;;   ((python-mode c++-mode lisp-mode yaml-mode) . highlight-indent-guides-mode)
+;;   :custom
+;;   (highlight-indent-guides-auto-enabled t)
+;;   (highlight-indent-guides-responsive t)
+;;   (highlight-indent-guides-method 'character)) ; column
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Interface
@@ -397,7 +397,8 @@
   (minimap-window-location 'right)
   (minimap-update-delay 0)
   ;; (minimap-update-delay 0.2)
-  (minimap-minimum-width 10)
+  (minimap-minimum-width 4)
+  ;; (minimap-minimum-width 10)
   ;; :bind
   ;; ("M-t m" . ladicle/toggle-minimap)
   ;; :preface
@@ -502,8 +503,30 @@
     'my-python-async-shell-command)
   )
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown")
+  :config
+  (message ":config: markdown-mode"))
+
+(use-package realgud
+  :ensure t
+  :defer t
+  :config
+  (message ":config realgud"))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Edit
+
+;; Windows IME
+(setq default-input-method "W32-IME")
+(setq-default w32-ime-mode-line-state-indicator "[--]")
+(setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
+(w32-ime-initialize)
 
 (use-package yasnippet
   :ensure t
@@ -569,3 +592,19 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (realgud markdown-mode nyan-mode yasnippet writeroom-mode which-key volatile-highlights use-package neotree minimap magit ivy-rich imenu-list hydra highlight-indent-guides hide-mode-line hemisu-theme gruvbox-theme git-gutter fill-column-indicator evil doom-themes doom-modeline counsel company-box clang-format blacken beacon all-the-icons-ivy))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(git-gutter:added ((t (:background "#50fa7b"))))
+ '(git-gutter:deleted ((t (:background "#ff79c6"))))
+ '(git-gutter:modified ((t (:background "#f1fa8c")))))
