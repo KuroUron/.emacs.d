@@ -34,6 +34,25 @@
 ;;                       )
 ;;   )
 
+(use-package doom-themes
+  :ensure t
+  :config
+  (message ":config doom-themes")
+
+  (load-theme 'doom-one t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (doom-themes-treemacs-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config)
+  )
+
 ;; (use-package powerline
 ;;   :ensure t
 ;;   :config
@@ -46,23 +65,23 @@
 ;;   (message ":config atom-dark-thme")
 ;;   (load-theme 'atom-dark t))
 
-(use-package doom-themes
-  :ensure t
-  ;; :custom
-  ;; (doom-themes-enable-italic t)
-  ;; (doom-themes-enable-bold t)
-  ;; :custom-face
-  ;; (doom-modeline-bar ((t (
-  ;;                         ;; :background "red"
-  ;;                         :background "#6272a4"
-  ;;                         ))))
-  :config
-  (message ":config doom-themes")
-  (load-theme 'doom-one t)
-  ;; (load-theme 'doom-dracula t)
-  ;; (doom-themes-neotree-config)
-  ;; (doom-themes-org-config)
-  )
+;; (use-package doom-themes
+;;   :ensure t
+;;   ;; :custom
+;;   ;; (doom-themes-enable-italic t)
+;;   ;; (doom-themes-enable-bold t)
+;;   ;; :custom-face
+;;   ;; (doom-modeline-bar ((t (
+;;   ;;                         ;; :background "red"
+;;   ;;                         :background "#6272a4"
+;;   ;;                         ))))
+;;   :config
+;;   (message ":config doom-themes")
+;;   (load-theme 'doom-one t)
+;;   ;; (load-theme 'doom-dracula t)
+;;   ;; (doom-themes-neotree-config)
+;;   ;; (doom-themes-org-config)
+;;   )
 
 (add-hook 'ivy-mode-hook
           ;; 'after-init-hook
@@ -96,9 +115,8 @@
   :config
   (message ":config doom-modeline")
   (setq doom-modeline-height 30)
-  (setq doom-modeline-bar-width 6)
+  (setq doom-modeline-bar-width 8)
   ;; (setq doom-modeline-major-mode-color-icon t)
-
   ;; (set-face-attribute 'error nil
   ;;                     :foreground "dark red"
   ;;                     )
@@ -178,26 +196,27 @@
   :ensure t
   :custom
   ;; (beacon-color "yellow")
-  ;; (beacon-color "blue")
-  (beacon-color "orange")
+  (beacon-color "#00bfff")
   :config
   (message ":config beacon")
   (beacon-mode 1))
 
-(use-package highlight-indent-guides
-  :ensure t
-  :hook
-  ((python-mode cc-mode lisp-mode yaml-mode) . highlight-indent-guides-mode)
-  :custom
-  (highlight-indent-guides-auto-enabled t)
-  (highlight-indent-guides-responsive t)
-  (highlight-indent-guides-method 'character)) ; column
+;; (use-package highlight-indent-guides
+;;   :ensure t
+;;   :hook
+;;   ((python-mode c++-mode lisp-mode yaml-mode) . highlight-indent-guides-mode)
+;;   :custom
+;;   (highlight-indent-guides-auto-enabled t)
+;;   (highlight-indent-guides-responsive t)
+;;   (highlight-indent-guides-method 'character)) ; column
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Interface
 
 (use-package evil
   :ensure t
+  :init
+  (setq evil-want-keybinding nil)       ; for evil-collection
   :config
   (message ":config evil")
   (evil-mode t)
@@ -245,6 +264,22 @@
       ))
   (define-key evil-normal-state-map (kbd "`") 'my-cd-current-file-directory)
 
+  ;; Inactivation SPC key for my-space-map
+  (add-hook 'compilation-mode-hook
+            '(lambda ()
+               (define-key compilation-mode-map (kbd "SPC") nil))
+            )
+  (add-hook 'dired-mode-hook
+            '(lambda ()
+               (define-key dired-mode-map (kbd "SPC") nil))
+            )
+  ;; (add-hook 'custom-mode-hook
+  ;;           '(lambda ()
+  ;;              (define-key compilation-mode-map (kbd "SPC") nil))
+  ;;           )
+  ;; (define-key undo-tree-visualizer-mode-map (kbd "SPC") 'my-space-map)
+  (define-key evil-motion-state-map (kbd "SPC") 'my-space-map)
+
   ;; my-space-map
   (define-prefix-command 'my-space-map)
   (define-key evil-normal-state-map (kbd "SPC") 'my-space-map)
@@ -269,6 +304,7 @@
   (define-key my-space-map (kbd "nh") 'neotree-hide)
   (define-key my-space-map (kbd "nt") 'neotree-toggle)
   (define-key my-space-map (kbd "nr") 'neotree-refresh)
+  (define-key my-space-map (kbd "cm") 'helm-make)
 
   ;; my-window-map
   (define-prefix-command 'my-window-map)
@@ -276,8 +312,17 @@
   (define-key my-window-map (kbd "j") 'split-window-below)
   (define-key my-window-map (kbd "l") 'split-window-right)
   (define-key my-window-map (kbd "o") 'delete-other-windows)
-
+  (define-key my-window-map (kbd "uo") 'split-window-below)
+  (define-key my-window-map (kbd "uuo") 'split-window-right)
+  (define-key my-window-map (kbd "0") 'delete-window)
   )
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (message ":config evil-collection")
+  (evil-collection-init))
 
 (use-package ivy
   :ensure t
@@ -416,7 +461,8 @@
   (minimap-window-location 'right)
   (minimap-update-delay 0)
   ;; (minimap-update-delay 0.2)
-  (minimap-minimum-width 10)
+  (minimap-minimum-width 4)
+  ;; (minimap-minimum-width 10)
   ;; :bind
   ;; ("M-t m" . ladicle/toggle-minimap)
   ;; :preface
@@ -521,8 +567,58 @@
     'my-python-async-shell-command)
   )
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown")
+  :config
+  (message ":config: markdown-mode"))
+
+(use-package realgud
+  :ensure t
+  ;; :defer t
+  :commands (realgud:pdb realgud:gdb)
+  :config
+  (message ":config realgud")
+
+  ;; (set-face-attribute 'realgud-bp-line-enabled-face nil
+  ;;                     ::underline "red"
+  ;;                     )
+
+  (defun my-gdb-print ()
+    (interactive)
+    (let* ((word (find-tag-default))
+           (cmnd (concat "print( " word " )")))
+      (save-excursion
+        ;; (switch-to-buffer-other-window "*gdb a.exe shell*")
+        ;; (set-buffer "*gdb a.exe shell*")
+        (other-window 1)
+        (insert cmnd)
+        (realgud:send-input)
+        (other-window 1))))
+
+  (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
+  )
+
+(use-package helm-make
+  :ensure t
+  :commands (helm-make)
+  :config
+  (message ":config helm-make")
+ ;; '(helm-make-completion-method (quote ivy))
+  (setq helm-make-completion-method 'ivy))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Edit
+
+;; Windows IME
+(setq default-input-method "W32-IME")
+(setq-default w32-ime-mode-line-state-indicator "[--]")
+(setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
+(w32-ime-initialize)
 
 (use-package yasnippet
   :ensure t
@@ -548,12 +644,15 @@
   (global-git-gutter-mode +1)
   )
 
-(use-package projectile
-  :ensure t
-  :defer t
-  :config
-  (message ":config projectile")
-  )
+;; (use-package smooth-scroll
+;;   :ensure t
+;;   :config
+;;   (message ":config smooth-scroll")
+;;   (smooth-scroll-mode t)
+;;   )
+
+(use-package pt
+  :ensure t)
 
 ;; (use-package writeroom-mode
 ;;   :ensure t)
@@ -604,29 +703,3 @@
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
 ;;  ;; Your init file should contain only one such instance.
 ;;  ;; If there is more than one, they won't work right.
-;;  )
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(git-gutter:added ((t (:background "#50fa7b"))))
-;;  '(git-gutter:deleted ((t (:background "#ff79c6"))))
-;;  '(git-gutter:modified ((t (:background "#f1fa8c"))))
-;;  '(ivy-current-match ((t (:foreground "deep sky blue" :underline t :weight bold)))))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (doom-themes yasnippet which-key volatile-highlights use-package projectile powerline nyan-mode neotree minimap magit ivy-rich imenu-list hydra highlight-indent-guides hide-mode-line hemisu-theme gruvbox-theme git-gutter fill-column-indicator evil doom-modeline dashboard counsel company-box clang-format beacon atom-dark-theme amx all-the-icons-ivy))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(git-gutter:added ((t (:background "#50fa7b"))))
- '(git-gutter:deleted ((t (:background "#ff79c6"))))
- '(git-gutter:modified ((t (:background "#f1fa8c")))))
