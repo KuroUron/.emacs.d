@@ -88,16 +88,16 @@
           '(lambda ()
              (message ":hook global-display-line-numbers-mode")
              (global-display-line-numbers-mode 1)
-             (set-face-attribute 'line-number nil
-                                 :background "#3c3836"
-                                 :foreground "gray"
-                                 :height 0.75
-                                 )
-             (set-face-attribute 'line-number-current-line nil
-                                 :background "#504945"
-                                 :foreground "#fe8019"
-                                 :height 0.75
-                                 )
+             ;; (set-face-attribute 'line-number nil
+             ;;                     :background "#3c3836"
+             ;;                     :foreground "gray"
+             ;;                     :height 0.75
+             ;;                     )
+             ;; (set-face-attribute 'line-number-current-line nil
+             ;;                     :background "#504945"
+             ;;                     :foreground "#fe8019"
+             ;;                     :height 0.75
+             ;;                     )
              ))
 
 (use-package all-the-icons
@@ -402,7 +402,12 @@
   (global-company-mode t)
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2)
-  (setq company-selection-wrap-around t)
+  ;; (setq company-selection-wrap-around t)
+
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (define-key company-search-map (kbd "C-n") 'company-select-next)
+  (define-key company-search-map (kbd "C-p") 'company-select-previous)
   )
 
 (use-package hydra
@@ -517,6 +522,8 @@
             (list (point) (point))))
          (clang-format-region start end)
          )))
+  ;; (use-package modern-cpp-font-lock
+  ;;   :ensure t)
   )
 
 (use-package python
@@ -608,8 +615,18 @@
   :commands (helm-make)
   :config
   (message ":config helm-make")
- ;; '(helm-make-completion-method (quote ivy))
+  ;; '(helm-make-completion-method (quote ivy))
   (setq helm-make-completion-method 'ivy))
+
+(use-package highlight-indent-guides
+  :ensure t
+  :defer t
+  :hook
+  (prog-mode . highlight-indent-guides-mode)
+  :config
+  (message ":config highlight-indent-guides")
+  (setq highlight-indent-guides-method 'character)
+  )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Edit
@@ -657,6 +674,59 @@
 ;; (use-package writeroom-mode
 ;;   :ensure t)
 
+(use-package rainbow-delimiters
+  :ensure t
+  :defer t
+  :hook
+  ((emacs-lisp-mode c-mode c++-mode) . rainbow-delimiters-mode)
+  :config
+  (message ":config rainbow-delimiters")
+  (rainbow-delimiters-mode t)
+
+  ;; (set-face-foreground 'rainbow-delimiters-depth-1-face "#9a4040")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-2-face "#ff5e5e")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-3-face "#ffaa77")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-4-face "#dddd77")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-5-face "#80ee80")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-6-face "#66bbff")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-7-face "#da6bda")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-8-face "#afafaf")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-9-face "#f0f0f0")
+  )
+
+(use-package hl-todo
+  :ensure t
+  :custom-face
+  (hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold))))
+  :config
+  (message ":config hl-todo")
+  (global-hl-todo-mode t)
+  )
+
+(use-package flycheck
+  :ensure t
+  :hook
+  (after-init . global-flycheck-mode)
+  :config
+  (message ":config flycheck")
+  )
+
+(use-package flycheck-posframe
+  :ensure t
+  :after flycheck
+  :config
+  (message ":config flycheck-posframe")
+  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
+  )
+
+(use-package anzu
+  :ensure t
+  :config
+  (message ":config anzu")
+  (global-anzu-mode t)
+  (setq anzu-search-threshold 1000)
+  )
+
 ;; TODO bkup
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -698,8 +768,20 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (anzu flycheck yasnippet which-key volatile-highlights use-package realgud rainbow-delimiters pt powerline nyan-mode neotree minimap markdown-mode magit ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter fill-column-indicator evil-collection doom-themes doom-modeline dashboard counsel company-box clang-format blacken beacon atom-dark-theme amx all-the-icons-ivy))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(git-gutter:added ((t (:background "#50fa7b"))))
+ '(git-gutter:deleted ((t (:background "#ff79c6"))))
+ '(git-gutter:modified ((t (:background "#f1fa8c"))))
+ '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold)))))
