@@ -1,4 +1,3 @@
-
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
 
@@ -15,25 +14,25 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Appearance
 
-(use-package hemisu-theme
-  :ensure t
-  :init
-  (use-package gruvbox-theme
-    :ensure t
-    :config
-    (message ":config gruvbox-theme")
-    (load-theme 'gruvbox-dark-hard t))
-  :config
-  (message ":config hemisu-theme")
-  (load-theme 'hemisu-dark t)
+;; (use-package hemisu-theme
+;;   :ensure t
+;;   :init
+;;   (use-package gruvbox-theme
+;;     :ensure t
+;;     :config
+;;     (message ":config gruvbox-theme")
+;;     (load-theme 'gruvbox-dark-hard t))
+;;   :config
+;;   (message ":config hemisu-theme")
+;;   (load-theme 'hemisu-dark t)
 
-  (set-face-attribute 'mode-line nil
-                      ;; :background "dark slate gray"
-                      :background "gray50"
-                      :foreground "#000000"
-                      :box nil
-                      )
-  )
+;;   (set-face-attribute 'mode-line nil
+;;                       ;; :background "dark slate gray"
+;;                       :background "gray50"
+;;                       :foreground "#000000"
+;;                       :box nil
+;;                       )
+;;   )
 
 ;; (use-package powerline
 ;;   :ensure t
@@ -47,24 +46,26 @@
 ;;   (message ":config atom-dark-thme")
 ;;   (load-theme 'atom-dark t))
 
-;; (use-package doom-themes
-;;   :ensure t
-;;   ;; :custom
-;;   ;; (doom-themes-enable-italic t)
-;;   ;; (doom-themes-enable-bold t)
-;;   :custom-face
-;;   (doom-modeline-bar ((t (
-;;                           ;; :background "red"
-;;                           :background "#6272a4"
-;;                                       ))))
-;;   :config
-;;   (message ":config doom-themes")
-;;   (load-theme 'doom-dracula t)
-;;   ;; (doom-themes-neotree-config)
-;;   ;; (doom-themes-org-config)
-;;   )
+(use-package doom-themes
+  :ensure t
+  ;; :custom
+  ;; (doom-themes-enable-italic t)
+  ;; (doom-themes-enable-bold t)
+  ;; :custom-face
+  ;; (doom-modeline-bar ((t (
+  ;;                         ;; :background "red"
+  ;;                         :background "#6272a4"
+  ;;                         ))))
+  :config
+  (message ":config doom-themes")
+  (load-theme 'doom-one t)
+  ;; (load-theme 'doom-dracula t)
+  ;; (doom-themes-neotree-config)
+  ;; (doom-themes-org-config)
+  )
 
-(add-hook 'after-init-hook
+(add-hook 'ivy-mode-hook
+          ;; 'after-init-hook
           '(lambda ()
              (message ":hook global-display-line-numbers-mode")
              (global-display-line-numbers-mode 1)
@@ -97,12 +98,13 @@
   (setq doom-modeline-height 30)
   (setq doom-modeline-bar-width 6)
   ;; (setq doom-modeline-major-mode-color-icon t)
-  (set-face-attribute 'error nil
-                      :foreground "dark red"
-                      )
-  (set-face-attribute 'success nil
-                      :foreground "dark green"
-                      )
+
+  ;; (set-face-attribute 'error nil
+  ;;                     :foreground "dark red"
+  ;;                     )
+  ;; (set-face-attribute 'success nil
+  ;;                     :foreground "dark green"
+  ;;                     )
   )
 
 (use-package hide-mode-line
@@ -141,6 +143,8 @@
 
 (use-package fill-column-indicator
   :ensure t
+  :defer t
+  :after ivy
   :config
   (message ":config fill-column-indicator")
   (define-globalized-minor-mode global-fci-mode
@@ -173,7 +177,9 @@
 (use-package beacon
   :ensure t
   :custom
-  (beacon-color "yellow")
+  ;; (beacon-color "yellow")
+  ;; (beacon-color "blue")
+  (beacon-color "orange")
   :config
   (message ":config beacon")
   (beacon-mode 1))
@@ -281,8 +287,6 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (ivy-mode 1)
-
-
   )
 
 (use-package ivy-rich
@@ -544,6 +548,13 @@
   (global-git-gutter-mode +1)
   )
 
+(use-package projectile
+  :ensure t
+  :defer t
+  :config
+  (message ":config projectile")
+  )
+
 ;; (use-package writeroom-mode
 ;;   :ensure t)
 
@@ -566,7 +577,9 @@
     (show-paren-mode t)
     (electric-pair-mode 1)
     (fset 'yes-or-no-p 'y-or-n-p)
-    (set-frame-font "Migu 1M-12:antialias=standard")
+    ;; (set-frame-font "Migu 1M-12:antialias=standard")
+    (set-frame-font "Consolas-11.5")
+    (set-face-attribute 'default nil :height 110)
 
     ;; Key binding
     (define-key global-map (kbd "C-h") (kbd "DEL"))
@@ -579,8 +592,41 @@
     (setq-default tab-width 8)
     (add-hook 'before-save-hook 'delete-trailing-whitespace)
     (setq set-mark-command-repeat-pop t)
-    ))
 
+    ;; Suppress warning: ad-handle-definition: ‘~’ got redefined
+    (setq ad-redefinition-action 'accept)
+    ))
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(git-gutter:added ((t (:background "#50fa7b"))))
+;;  '(git-gutter:deleted ((t (:background "#ff79c6"))))
+;;  '(git-gutter:modified ((t (:background "#f1fa8c"))))
+;;  '(ivy-current-match ((t (:foreground "deep sky blue" :underline t :weight bold)))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (doom-themes yasnippet which-key volatile-highlights use-package projectile powerline nyan-mode neotree minimap magit ivy-rich imenu-list hydra highlight-indent-guides hide-mode-line hemisu-theme gruvbox-theme git-gutter fill-column-indicator evil doom-modeline dashboard counsel company-box clang-format beacon atom-dark-theme amx all-the-icons-ivy))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(git-gutter:added ((t (:background "#50fa7b"))))
+ '(git-gutter:deleted ((t (:background "#ff79c6"))))
+ '(git-gutter:modified ((t (:background "#f1fa8c")))))
