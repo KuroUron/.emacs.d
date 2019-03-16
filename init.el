@@ -11,6 +11,10 @@
   (package-install 'use-package)
   )
 
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(toggle-scroll-bar 0)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Appearance
 
@@ -88,16 +92,16 @@
           '(lambda ()
              (message ":hook global-display-line-numbers-mode")
              (global-display-line-numbers-mode 1)
-             ;; (set-face-attribute 'line-number nil
-             ;;                     :background "#3c3836"
-             ;;                     :foreground "gray"
-             ;;                     :height 0.75
-             ;;                     )
-             ;; (set-face-attribute 'line-number-current-line nil
-             ;;                     :background "#504945"
-             ;;                     :foreground "#fe8019"
-             ;;                     :height 0.75
-             ;;                     )
+             (set-face-attribute 'line-number nil
+                                 ;; :background "#3c3836"
+                                 ;; :foreground "gray"
+                                 :height 0.8
+                                 )
+             (set-face-attribute 'line-number-current-line nil
+                                 :background "#504945"
+                                 :foreground "#fe8019"
+                                 :height 0.8
+                                 )
              ))
 
 (use-package all-the-icons
@@ -161,7 +165,7 @@
 
 (use-package fill-column-indicator
   :ensure t
-  :defer t
+  ;; :defer t
   :after ivy
   :config
   (message ":config fill-column-indicator")
@@ -169,7 +173,9 @@
     fci-mode (lambda () (fci-mode 1)))
   (global-fci-mode 1)
   ;; (fci-mode 1)
-  (setq fci-rule-color "#1C1C1C")
+  ;; (setq fci-rule-color "#1C1C1C")
+  ;; (setq fci-rule-color "#3f444a")       ; same as line number color
+  (setq fci-rule-color "#373B47")       ; same as doom modeline color
   (setq fci-rule-column 88)
   ;; (setq fci-rule-column 80)
   )
@@ -196,7 +202,9 @@
   :ensure t
   :custom
   ;; (beacon-color "yellow")
-  (beacon-color "#00bfff")
+  ;; (beacon-color "#00bfff")
+  (beacon-color "#51afef")              ; cursor blue
+
   :config
   (message ":config beacon")
   (beacon-mode 1))
@@ -324,6 +332,12 @@
   (message ":config evil-collection")
   (evil-collection-init))
 
+(use-package evil-magit
+  :after evil
+  :ensure t
+  :config
+  (message ":config evil-magit"))
+
 (use-package ivy
   :ensure t
   :defer t
@@ -393,16 +407,16 @@
   :after ivy
   :config
   (message ":config company")
-  (use-package company-box
-    :ensure t
-    :hook (company-mode . company-box-mode)
-    :config
-    (message ":config company-box")
-    )
+  ;; (use-package company-box
+  ;;   :ensure t
+  ;;   :hook (company-mode . company-box-mode)
+  ;;   :config
+  ;;   (message ":config company-box")
+  ;;   )
   (global-company-mode t)
-  (setq company-idle-delay 0)
+  (setq company-idle-delay 0.1)
   (setq company-minimum-prefix-length 2)
-  ;; (setq company-selection-wrap-around t)
+  (setq company-selection-wrap-around t)
 
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
@@ -610,6 +624,24 @@
   (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
   )
 
+(use-package lsp-mode
+  :ensure t
+  :hook
+  (c++-mode . lsp)
+  :config
+  (message ":config lsp-mode")
+  ;; (require 'lsp-clients)
+  ;; (setq lsp-auto-guess-root t)
+  ;; (setq lsp-prefer-flymake 'flymake)
+  ;; (lsp-prefer-flymake 'flymake)
+
+  (use-package lsp-ui
+    :ensure t
+    :config
+    (message ":config lsp-ui")
+    )
+  )
+
 (use-package helm-make
   :ensure t
   :commands (helm-make)
@@ -703,21 +735,34 @@
   (global-hl-todo-mode t)
   )
 
+;; (use-package flymake
+;;   :ensure t
+;;   :config
+;;   (message ":config flymake"))
+
+;; (use-package flymake-diagnostic-at-point
+;;   :ensure t
+;;   :after flymake
+;;   :config
+;;   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode)
+;;   )
+
 (use-package flycheck
   :ensure t
   :hook
-  (after-init . global-flycheck-mode)
+  ;; (after-init . global-flycheck-mode)
+  (c++-mode . flycheck-mode)
   :config
   (message ":config flycheck")
   )
 
-(use-package flycheck-posframe
-  :ensure t
-  :after flycheck
-  :config
-  (message ":config flycheck-posframe")
-  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
-  )
+;; (use-package flycheck-posframe
+;;   :ensure t
+;;   :after flycheck
+;;   :config
+;;   (message ":config flycheck-posframe")
+;;   (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
+;;   )
 
 (use-package anzu
   :ensure t
@@ -732,19 +777,27 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Other
 
+
 (add-hook
  'after-init-hook
+ ;; 'emacs-startup-hook
  '(lambda ()
-    (menu-bar-mode 0)
-    (tool-bar-mode 0)
-    (toggle-scroll-bar 0)
     (column-number-mode t)
     (setq inhibit-startup-message t)
-    (setq frame-title-format
-          '("emacs " emacs-version (buffer-file-name " - %f")))
+    ;; (setq frame-title-format
+    ;;       '("emacs " emacs-version (buffer-file-name " - %f")))
+    (setq frame-title-format '("emacs " emacs-version))
+    ;; NOTE Doom modeline background color is `#373B47`. So if you want to set
+    ;; up title bar like doom modeline, you should set by mannually outside
+    ;; emacs.
+
+    ;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+    ;; (add-to-list 'default-frame-alist '(ns-appearance . red))
+
     (set-frame-parameter nil 'alpha 99)
     (show-paren-mode t)
     (electric-pair-mode 1)
+    (setq require-final-newline t)
     (fset 'yes-or-no-p 'y-or-n-p)
     ;; (set-frame-font "Migu 1M-12:antialias=standard")
     (set-frame-font "Consolas-11.5")
@@ -773,9 +826,40 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#1B2229" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#DFDFDF"])
+ '(custom-safe-themes
+   (quote
+    ("6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" default)))
+ '(fci-rule-color "#5B6268")
+ '(jdee-db-active-breakpoint-face-colors (cons "#1B2229" "#51afef"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#1B2229" "#98be65"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#3f444a"))
  '(package-selected-packages
    (quote
-    (anzu flycheck yasnippet which-key volatile-highlights use-package realgud rainbow-delimiters pt powerline nyan-mode neotree minimap markdown-mode magit ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter fill-column-indicator evil-collection doom-themes doom-modeline dashboard counsel company-box clang-format blacken beacon atom-dark-theme amx all-the-icons-ivy))))
+    (flymake-diagnostic-at-point lsp-ui anzu flycheck yasnippet which-key volatile-highlights use-package realgud rainbow-delimiters pt powerline nyan-mode neotree minimap markdown-mode magit ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter fill-column-indicator evil-collection doom-themes doom-modeline dashboard counsel company-box clang-format blacken beacon atom-dark-theme amx all-the-icons-ivy)))
+ '(vc-annotate-background "#282c34")
+ '(vc-annotate-color-map
+   (list
+    (cons 20 "#98be65")
+    (cons 40 "#b4be6c")
+    (cons 60 "#d0be73")
+    (cons 80 "#ECBE7B")
+    (cons 100 "#e6ab6a")
+    (cons 120 "#e09859")
+    (cons 140 "#da8548")
+    (cons 160 "#d38079")
+    (cons 180 "#cc7cab")
+    (cons 200 "#c678dd")
+    (cons 220 "#d974b7")
+    (cons 240 "#ec7091")
+    (cons 260 "#ff6c6b")
+    (cons 280 "#cf6162")
+    (cons 300 "#9f585a")
+    (cons 320 "#6f4e52")
+    (cons 340 "#5B6268")
+    (cons 360 "#5B6268")))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
