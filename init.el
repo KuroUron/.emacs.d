@@ -108,7 +108,8 @@
   ;; NOTE For a new environment, call `M-x all-the-icons-install-fonts` and
   ;; download fonts. Then intall those fonts **manually**.
   :ensure t
-  :defer t
+  ;; :defer t
+  :after ivy
   :config
   (message ":config all-the-icons"))
 
@@ -151,17 +152,17 @@
 ;;   (message ":config dashboard")
 ;;   (dashboard-setup-startup-hook))
 
-(use-package volatile-highlights
-  :ensure t
-  ;; :custom-face
-  ;; (vhl/default-face ((nil (:foreground "#FF3333" :background "#FFCDCD"))))
-  :config
-  (message ":config volatile-highlights")
-  (volatile-highlights-mode t)
-  (vhl/define-extension 'evil 'evil-paste-after 'evil-paste-before
-                        'evil-paste-pop 'evil-move)
-  (vhl/install-extension 'evil)
-  )
+;; (use-package volatile-highlights
+;;   :ensure t
+;;   ;; :custom-face
+;;   ;; (vhl/default-face ((nil (:foreground "#FF3333" :background "#FFCDCD"))))
+;;   :config
+;;   (message ":config volatile-highlights")
+;;   (volatile-highlights-mode t)
+;;   (vhl/define-extension 'evil 'evil-paste-after 'evil-paste-before
+;;                         'evil-paste-pop 'evil-move)
+;;   (vhl/install-extension 'evil)
+;;   )
 
 ;; (use-package fill-column-indicator
 ;;   :ensure t
@@ -182,6 +183,7 @@
 
 (use-package whitespace
   :ensure t
+  :after ivy
   :config
   (message ":config whitespace")
   (setq whitespace-style '(face
@@ -464,9 +466,11 @@
 
 (use-package which-key
   :ensure t
-  :hook (after-init . which-key-mode)
+  ;; :hook (after-init . which-key-mode)
+  :after ivy
   :config
   (message ":config which-key")
+  (which-key-mode t)
   ;; (use-package amx
   ;;   :ensure t)
   )
@@ -863,6 +867,12 @@
 
     ;; Suppress warning: ad-handle-definition: ‘~’ got redefined
     (setq ad-redefinition-action 'accept)
+    ))
+
+(add-hook
+ 'emacs-startup-hook
+ '(lambda ()
+    (toggle-frame-fullscreen)
     ))
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
