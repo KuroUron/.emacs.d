@@ -331,14 +331,15 @@
   )
 
 (use-package evil-collection
-  :after evil
   :ensure t
+  ;; :after evil
+  :after ivy
   :config
   (message ":config evil-collection")
   (evil-collection-init))
 
 (use-package evil-magit
-  :after evil
+  :after magit
   :ensure t
   :config
   (message ":config evil-magit"))
@@ -621,6 +622,18 @@
   :config
   (message ":config: markdown-mode"))
 
+;; (use-package flymd
+;;   :ensure t
+;;   :config
+;;   (message ":config flymd")
+;;   )
+
+;; (use-package livedown
+;;   :ensure t
+;;   :config
+;;   (message ":config livedown")
+;;   )
+
 (use-package realgud
   :ensure t
   ;; :defer t
@@ -675,9 +688,10 @@
 
 (use-package highlight-indent-guides
   :ensure t
-  :defer t
-  :hook
-  (prog-mode . highlight-indent-guides-mode)
+  :after ivy
+  ;; :defer t
+  ;; :hook
+  ;; (prog-mode . highlight-indent-guides-mode)
   :config
   (message ":config highlight-indent-guides")
   (setq highlight-indent-guides-method 'character)
@@ -703,6 +717,7 @@
 
 (use-package git-gutter
   :ensure t
+  :after ivy
   :custom
   (git-gutter:modified-sign "~")
   (git-gutter:added-sign    "+")
@@ -731,13 +746,13 @@
 
 (use-package rainbow-delimiters
   :ensure t
-  :defer t
-  :hook
-  ((emacs-lisp-mode c-mode c++-mode) . rainbow-delimiters-mode)
+  :after ivy
+  ;; :defer t
+  ;; :hook
+  ;; ((emacs-lisp-mode c-mode c++-mode) . rainbow-delimiters-mode)
   :config
   (message ":config rainbow-delimiters")
   (rainbow-delimiters-mode t)
-
   ;; (set-face-foreground 'rainbow-delimiters-depth-1-face "#9a4040")
   ;; (set-face-foreground 'rainbow-delimiters-depth-2-face "#ff5e5e")
   ;; (set-face-foreground 'rainbow-delimiters-depth-3-face "#ffaa77")
@@ -751,6 +766,7 @@
 
 (use-package hl-todo
   :ensure t
+  :after ivy
   :custom-face
   (hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold))))
   :config
@@ -789,17 +805,18 @@
 
 (use-package anzu
   :ensure t
+  :after ivy
   :config
   (message ":config anzu")
   (global-anzu-mode t)
   (setq anzu-search-threshold 1000)
   )
 
-(use-package origami
-  :ensure t
-  :config
-  (message ":config origami")
-  )
+;; (use-package origami
+;;   :ensure t
+;;   :config
+;;   (message ":config origami")
+;;   )
 
 ;; TODO bkup
 
@@ -866,7 +883,7 @@
  '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#3f444a"))
  '(package-selected-packages
    (quote
-    (flymake-diagnostic-at-point lsp-ui anzu flycheck yasnippet which-key volatile-highlights use-package realgud rainbow-delimiters pt powerline nyan-mode neotree minimap markdown-mode magit ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter fill-column-indicator evil-collection doom-themes doom-modeline dashboard counsel company-box clang-format blacken beacon atom-dark-theme amx all-the-icons-ivy)))
+    (flymd flymake-diagnostic-at-point lsp-ui anzu flycheck yasnippet which-key volatile-highlights use-package realgud rainbow-delimiters pt powerline nyan-mode neotree minimap markdown-mode magit ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter fill-column-indicator evil-collection doom-themes doom-modeline dashboard counsel company-box clang-format blacken beacon atom-dark-theme amx all-the-icons-ivy)))
  '(vc-annotate-background "#282c34")
  '(vc-annotate-color-map
    (list
