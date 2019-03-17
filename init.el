@@ -204,8 +204,9 @@
   :ensure t
   :custom
   ;; (beacon-color "yellow")
-  ;; (beacon-color "#00bfff")
-  (beacon-color "#51afef")              ; cursor blue
+  ;; (beacon-color "orange")
+  (beacon-color "#00bfff")
+  ;; (beacon-color "#51afef")              ; cursor blue
 
   :config
   (message ":config beacon")
@@ -790,14 +791,14 @@
 ;;   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode)
 ;;   )
 
-(use-package flycheck
-  :ensure t
-  :hook
-  ;; (after-init . global-flycheck-mode)
-  (c++-mode . flycheck-mode)
-  :config
-  (message ":config flycheck")
-  )
+;; (use-package flycheck
+;;   :ensure t
+;;   :hook
+;;   ;; (after-init . global-flycheck-mode)
+;;   (c++-mode . flycheck-mode)
+;;   :config
+;;   (message ":config flycheck")
+;;   )
 
 ;; (use-package flycheck-posframe
 ;;   :ensure t
@@ -877,51 +878,3 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#1B2229" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#DFDFDF"])
- '(custom-safe-themes
-   (quote
-    ("6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" default)))
- '(fci-rule-color "#5B6268")
- '(jdee-db-active-breakpoint-face-colors (cons "#1B2229" "#51afef"))
- '(jdee-db-requested-breakpoint-face-colors (cons "#1B2229" "#98be65"))
- '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#3f444a"))
- '(package-selected-packages
-   (quote
-    (flymd flymake-diagnostic-at-point lsp-ui anzu flycheck yasnippet which-key volatile-highlights use-package realgud rainbow-delimiters pt powerline nyan-mode neotree minimap markdown-mode magit ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter fill-column-indicator evil-collection doom-themes doom-modeline dashboard counsel company-box clang-format blacken beacon atom-dark-theme amx all-the-icons-ivy)))
- '(vc-annotate-background "#282c34")
- '(vc-annotate-color-map
-   (list
-    (cons 20 "#98be65")
-    (cons 40 "#b4be6c")
-    (cons 60 "#d0be73")
-    (cons 80 "#ECBE7B")
-    (cons 100 "#e6ab6a")
-    (cons 120 "#e09859")
-    (cons 140 "#da8548")
-    (cons 160 "#d38079")
-    (cons 180 "#cc7cab")
-    (cons 200 "#c678dd")
-    (cons 220 "#d974b7")
-    (cons 240 "#ec7091")
-    (cons 260 "#ff6c6b")
-    (cons 280 "#cf6162")
-    (cons 300 "#9f585a")
-    (cons 320 "#6f4e52")
-    (cons 340 "#5B6268")
-    (cons 360 "#5B6268")))
- '(vc-annotate-very-old-color nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(git-gutter:added ((t (:background "#50fa7b"))))
- '(git-gutter:deleted ((t (:background "#ff79c6"))))
- '(git-gutter:modified ((t (:background "#f1fa8c"))))
- '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold)))))
