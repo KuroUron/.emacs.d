@@ -339,13 +339,15 @@
   :after ivy
   :config
   (message ":config evil-collection")
-  (evil-collection-init))
+  (evil-collection-init)
+  )
 
 (use-package evil-magit
   :after magit
   :ensure t
   :config
-  (message ":config evil-magit"))
+  (message ":config evil-magit")
+  )
 
 ;; (use-package modalka
 ;;   :ensure t
@@ -373,6 +375,8 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (ivy-mode 1)
+
+  ;; (define-key ivy-minibuffer-map (kbd "SPC") )
   )
 
 (use-package ivy-rich
@@ -625,7 +629,8 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown")
   :config
-  (message ":config: markdown-mode"))
+  (message ":config: markdown-mode")
+  )
 
 ;; (use-package flymd
 ;;   :ensure t
@@ -751,10 +756,10 @@
 
 (use-package rainbow-delimiters
   :ensure t
-  :after ivy
-  ;; :defer t
-  ;; :hook
-  ;; ((emacs-lisp-mode c-mode c++-mode) . rainbow-delimiters-mode)
+  ;; :after ivy
+  :defer t
+  :hook
+  ((emacs-lisp-mode c-mode c++-mode) . rainbow-delimiters-mode)
   :config
   (message ":config rainbow-delimiters")
   (rainbow-delimiters-mode t)
@@ -781,6 +786,7 @@
 
 ;; (use-package flymake
 ;;   :ensure t
+;;   :defer t
 ;;   :config
 ;;   (message ":config flymake"))
 
