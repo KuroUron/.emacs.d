@@ -163,22 +163,22 @@
   (vhl/install-extension 'evil)
   )
 
-(use-package fill-column-indicator
-  :ensure t
-  ;; :defer t
-  :after ivy
-  :config
-  (message ":config fill-column-indicator")
-  (define-globalized-minor-mode global-fci-mode
-    fci-mode (lambda () (fci-mode 1)))
-  (global-fci-mode 1)
-  ;; (fci-mode 1)
-  ;; (setq fci-rule-color "#1C1C1C")
-  ;; (setq fci-rule-color "#3f444a")       ; same as line number color
-  (setq fci-rule-color "#373B47")       ; same as doom modeline color
-  (setq fci-rule-column 88)
-  ;; (setq fci-rule-column 80)
-  )
+;; (use-package fill-column-indicator
+;;   :ensure t
+;;   ;; :defer t
+;;   :after ivy
+;;   :config
+;;   (message ":config fill-column-indicator")
+;;   (define-globalized-minor-mode global-fci-mode
+;;     fci-mode (lambda () (fci-mode 1)))
+;;   (global-fci-mode 1)
+;;   ;; (fci-mode 1)
+;;   ;; (setq fci-rule-color "#1C1C1C")
+;;   ;; (setq fci-rule-color "#3f444a")       ; same as line number color
+;;   (setq fci-rule-color "#373B47")       ; same as doom modeline color
+;;   (setq fci-rule-column 88)
+;;   ;; (setq fci-rule-column 80)
+;;   )
 
 (use-package whitespace
   :ensure t
@@ -275,12 +275,16 @@
   ;; Inactivation SPC key for my-space-map
   (add-hook 'compilation-mode-hook
             '(lambda ()
-               (define-key compilation-mode-map (kbd "SPC") nil))
-            )
+               (define-key compilation-mode-map (kbd "SPC") nil)
+               ))
   (add-hook 'dired-mode-hook
             '(lambda ()
-               (define-key dired-mode-map (kbd "SPC") nil))
-            )
+               (define-key dired-mode-map (kbd "SPC") nil)
+               ))
+  ;; (add-hook 'compilation-mode-hook
+  ;;           '(lambda ()
+  ;;              (define-key compilation-mode-map (kbd "SPC") nil)
+  ;;              ))
   ;; (add-hook 'custom-mode-hook
   ;;           '(lambda ()
   ;;              (define-key compilation-mode-map (kbd "SPC") nil))
@@ -313,6 +317,7 @@
   (define-key my-space-map (kbd "nt") 'neotree-toggle)
   (define-key my-space-map (kbd "nr") 'neotree-refresh)
   (define-key my-space-map (kbd "cm") 'helm-make)
+  (define-key my-space-map (kbd "@") 'my-cd-current-file-directory)
 
   ;; my-window-map
   (define-prefix-command 'my-window-map)
@@ -337,6 +342,24 @@
   :ensure t
   :config
   (message ":config evil-magit"))
+
+;; (use-package modalka
+;;   :ensure t
+;;   :config
+;;   (message ":config modalka")
+;;   (modalka-define-kbd "W" "M-w")
+;;   (modalka-define-kbd "Y" "M-y")
+;;   (modalka-define-kbd "a" "C-a")
+;;   (modalka-define-kbd "b" "C-b")
+;;   (modalka-define-kbd "e" "C-e")
+;;   (modalka-define-kbd "f" "C-f")
+;;   (modalka-define-kbd "g" "C-g")
+;;   (modalka-define-kbd "n" "C-n")
+;;   (modalka-define-kbd "p" "C-p")
+;;   (modalka-define-kbd "w" "C-w")
+;;   (modalka-define-kbd "y" "C-y")
+;;   (modalka-define-kbd "SPC" "C-SPC")
+;;   )
 
 (use-package ivy
   :ensure t
@@ -770,6 +793,12 @@
   (message ":config anzu")
   (global-anzu-mode t)
   (setq anzu-search-threshold 1000)
+  )
+
+(use-package origami
+  :ensure t
+  :config
+  (message ":config origami")
   )
 
 ;; TODO bkup
