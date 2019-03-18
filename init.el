@@ -865,7 +865,7 @@
     (show-paren-mode t)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
-    (setq scroll-conservatively 10)
+    (setq scroll-conservatively 8)
     (setq require-final-newline t)
     (fset 'yes-or-no-p 'y-or-n-p)
     ;; (set-frame-font "Migu 1M-12:antialias=standard")
@@ -893,13 +893,13 @@
     (setq ad-redefinition-action 'accept)
     ))
 
-(add-hook
- 'emacs-startup-hook
- '(lambda ()
-    (when (eq system-type 'windows-nt)
-      (toggle-frame-fullscreen)
-      )
-    ))
+;; (add-hook
+;;  'emacs-startup-hook
+;;  '(lambda ()
+;;     (when (eq system-type 'windows-nt)
+;;       (toggle-frame-fullscreen)
+;;       )
+;;     ))
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
