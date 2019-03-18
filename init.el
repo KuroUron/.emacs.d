@@ -864,9 +864,10 @@
     (setq require-final-newline t)
     (fset 'yes-or-no-p 'y-or-n-p)
     ;; (set-frame-font "Migu 1M-12:antialias=standard")
-    (set-frame-font "Consolas-11.5")
-    (set-face-attribute 'default nil :height 110)
-
+    (when (eq system-type 'windows-nt)
+      (set-frame-font "Consolas-11.5")
+      (set-face-attribute 'default nil :height 110)
+      )
     ;; Key binding
     (define-key global-map (kbd "C-h") (kbd "DEL"))
     (define-key global-map (kbd "C-<tab>") 'dabbrev-expand)
