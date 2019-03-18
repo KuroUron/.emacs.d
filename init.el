@@ -868,6 +868,10 @@
       (set-frame-font "Consolas-11.5")
       (set-face-attribute 'default nil :height 110)
       )
+    (message "%s" system-type)
+    (when (eq system-type 'gnu/linux)
+      (set-frame-font "Migu 1M-12:antialias=standard")
+      )
     ;; Key binding
     (define-key global-map (kbd "C-h") (kbd "DEL"))
     (define-key global-map (kbd "C-<tab>") 'dabbrev-expand)
@@ -887,7 +891,9 @@
 (add-hook
  'emacs-startup-hook
  '(lambda ()
-    (toggle-frame-fullscreen)
+    (when (eq system-type 'windows-nt)
+      (toggle-frame-fullscreen)
+      )
     ))
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
