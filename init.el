@@ -326,6 +326,7 @@
   (define-key my-space-map (kbd "nr") 'neotree-refresh)
   (define-key my-space-map (kbd "cm") 'helm-make)
   (define-key my-space-map (kbd "@") 'my-cd-current-file-directory)
+  (define-key my-space-map (kbd "tf") 'toggle-frame-fullscreen)
 
   ;; my-window-map
   (define-prefix-command 'my-window-map)
@@ -336,6 +337,7 @@
   (define-key my-window-map (kbd "uo") 'split-window-below)
   (define-key my-window-map (kbd "uuo") 'split-window-right)
   (define-key my-window-map (kbd "0") 'delete-window)
+  (define-key my-window-map (kbd "k") 'toggle-frame-fullscreen)
   )
 
 (use-package evil-collection
@@ -477,8 +479,8 @@
 
 (use-package which-key
   :ensure t
-  ;; :hook (after-init . which-key-mode)
-  :after ivy
+  :hook (after-init . which-key-mode)
+  ;; :after ivy
   :config
   (message ":config which-key")
   (which-key-mode t)
