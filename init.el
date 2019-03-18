@@ -716,10 +716,12 @@
 ;; @ Edit
 
 ;; Windows IME
-(setq default-input-method "W32-IME")
-(setq-default w32-ime-mode-line-state-indicator "[--]")
-(setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
-(w32-ime-initialize)
+(when (eq system-type 'windows-nt)
+  (setq default-input-method "W32-IME")
+  (setq-default w32-ime-mode-line-state-indicator "[--]")
+  (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
+  (w32-ime-initialize)
+  )
 
 (use-package yasnippet
   :ensure t
@@ -889,3 +891,17 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (lsp-mode evil-magit yasnippet writeroom-mode which-key volatile-highlights use-package smooth-scroll realgud rainbow-delimiters pt nyan-mode neotree minimap markdown-mode magit ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter flycheck-posframe fill-column-indicator evil-collection doom-themes doom-modeline counsel company-box clang-format blacken beacon anzu all-the-icons-ivy))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
