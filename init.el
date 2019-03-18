@@ -236,6 +236,7 @@
   ;; (setq evil-insert-state-cursor ("dark red" . 2))
 
   ;; evil-normal-state-map
+  ;; (define-key evil-motion-state-map (kbd "<tab>") nil)  ; TODO
   (define-key evil-normal-state-map (kbd "s") 'swiper)
   (define-key evil-normal-state-map (kbd "m")
     '(lambda ()
@@ -288,6 +289,10 @@
   ;;           '(lambda ()
   ;;              (define-key compilation-mode-map (kbd "SPC") nil)
   ;;              ))
+  ;; (add-hook 'help-mode-hook
+  ;;           '(lambda ()
+  ;;              (define-key help-mode-map (kbd "SPC") nil)
+  ;;              ))                       ; TODO
   ;; (add-hook 'custom-mode-hook
   ;;           '(lambda ()
   ;;              (define-key compilation-mode-map (kbd "SPC") nil))
