@@ -466,6 +466,7 @@
   :config
   (message ":config hydra")
   (defhydra hydra-space (evil-normal-state-map "SPC")
+    ;; ("j" (lambda () (interactive) (evil-next-line 5)))
     ("j" (lambda () (interactive) (evil-next-line 5)))
     ("k" (lambda () (interactive) (evil-previous-line 5)))
     ("h" (lambda () (interactive) (evil-backward-char 5)))
@@ -861,6 +862,8 @@
     (set-frame-parameter nil 'alpha 99)
     (show-paren-mode t)
     (electric-pair-mode 1)
+    ;; (setq scroll-step 1)
+    (setq scroll-conservatively 10)
     (setq require-final-newline t)
     (fset 'yes-or-no-p 'y-or-n-p)
     ;; (set-frame-font "Migu 1M-12:antialias=standard")
