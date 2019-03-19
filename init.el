@@ -1,3 +1,6 @@
+
+;; TODO bat-mode を実行すると ivy-switch-buffer が実行できなくなる不具合を直す．
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
 
@@ -336,10 +339,11 @@
   (define-key my-window-map (kbd "j") 'split-window-below)
   (define-key my-window-map (kbd "l") 'split-window-right)
   (define-key my-window-map (kbd "o") 'delete-other-windows)
-  (define-key my-window-map (kbd "uo") 'split-window-below)
-  (define-key my-window-map (kbd "uuo") 'split-window-right)
+  ;; (define-key my-window-map (kbd "uo") 'split-window-below)
+  ;; (define-key my-window-map (kbd "uuo") 'split-window-right)
   (define-key my-window-map (kbd "0") 'delete-window)
   (define-key my-window-map (kbd "k") 'toggle-frame-fullscreen)
+  (define-key my-window-map (kbd "uuo") 'toggle-frame-fullscreen)
   )
 
 (use-package evil-collection
@@ -850,7 +854,40 @@
 ;;   (message ":config origami")
 ;;   )
 
-;; TODO bkup
+(add-hook
+ 'after-init-hook
+ '(lambda ()
+
+    ;; NOTE There are 3 type of backup files for a editing file `aaa.txt`.
+    ;; 1. `aaa.txt~`: backup file (for before editing state)
+    ;; 2. `#aaa.txt#`: auto-save file (for emacs abnormally termination)
+    ;; 3. `.#aaa.txt`: lock file (for prohibition of simultaneous editing)
+
+    ;; 1. backup file: aaa.txt~
+    (setq version-control t)      ;; version number for backup files
+    (setq kept-new-versions 3)    ;; number of retention for new versions
+    (setq kept-old-versions 1)    ;; number of retention for old versions
+    (setq delete-old-versions t)  ;; delete out-of-range backup files
+    (setq backup-directory-alist
+          (cons
+           (cons ".*" (concat (file-name-directory user-init-file) "bkup/bkup"))
+           backup-directory-alist))
+
+    ;; 2. auto-save file: #aaa.txt#
+    (setq backup-inhibited nil)
+    (setq delete-auto-save-files nil)
+    (setq auto-save-timeout 3)     ;; sec
+    (setq auto-save-interval 100)  ;; keystroke
+    (let ((autosave-dir (concat (file-name-directory user-init-file) "bkup/autosave/")))
+      (unless (file-exists-p autosave-dir)
+        (make-directory autosave-dir :parents)
+        ))
+    (setq auto-save-file-name-transforms
+          `((".*" ,(concat (file-name-directory user-init-file) "bkup/autosave/") t)))
+
+    ;; 3. lock file: .#aaa.txt
+    (setq create-lockfiles nil)
+    ))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Other
@@ -876,9 +913,11 @@
     (show-paren-mode t)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
-    (setq scroll-conservatively 6)
+    (setq scroll-conservatively 10000)
     (setq scroll-margin 6)
     (setq require-final-newline t)
+    (setq scroll-preserve-screen-position t)
+    (setq redisplay-dont-pause t)
     (fset 'yes-or-no-p 'y-or-n-p)
     ;; (set-frame-font "Migu 1M-12:antialias=standard")
     (when (eq system-type 'windows-nt)
