@@ -327,6 +327,8 @@
   (define-key my-space-map (kbd "cm") 'helm-make)
   (define-key my-space-map (kbd "@") 'my-cd-current-file-directory)
   (define-key my-space-map (kbd "tf") 'toggle-frame-fullscreen)
+  (define-key my-space-map (kbd "uo") 'toggle-frame-fullscreen)
+  (define-key my-space-map (kbd "J") 'smooth-scroll/scroll-up)
 
   ;; my-window-map
   (define-prefix-command 'my-window-map)
@@ -475,6 +477,15 @@
     ("l" (lambda () (interactive) (evil-forward-char 5)))
     ("g" nil "leave")
     )
+  (defhydra hydra-scroll (my-window-map "u")
+    ("n" (lambda () (interactive) (scroll-up)))
+    ("p" (lambda () (interactive) (scroll-down)))
+    ("g" nil "leave")
+    )
+  ;; (defhydra hydra-ivy (ivy-mode-map "SPC")
+  ;;   ("n" (lambda () (interactive) (next-line)))
+  ;;   ("g" nil "leave")
+  ;;   )
   )
 
 (use-package which-key
@@ -865,7 +876,8 @@
     (show-paren-mode t)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
-    (setq scroll-conservatively 8)
+    (setq scroll-conservatively 6)
+    (setq scroll-margin 6)
     (setq require-final-newline t)
     (fset 'yes-or-no-p 'y-or-n-p)
     ;; (set-frame-font "Migu 1M-12:antialias=standard")
@@ -873,7 +885,6 @@
       (set-frame-font "Consolas-11.5")
       (set-face-attribute 'default nil :height 110)
       )
-    (message "%s" system-type)
     (when (eq system-type 'gnu/linux)
       (set-frame-font "Migu 1M-12:antialias=standard")
       )
