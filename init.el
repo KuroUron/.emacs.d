@@ -499,6 +499,10 @@
     ("l" (lambda () (interactive) (evil-forward-char 5)))
     ("g" nil "leave")
     )
+
+  ;; (defhydra hydra-u (evil-normal-state-map "u")
+  ;;   ("SPC" (lambda () (interactive) (my-mark-move)))
+  ;;   )
   (defhydra hydra-scroll (my-window-map "u")
     ("n" (lambda () (interactive) (scroll-up)))
     ("p" (lambda () (interactive) (scroll-down)))
@@ -800,7 +804,7 @@
 (use-package rainbow-delimiters
   :ensure t
   ;; :after ivy
-  :defer t
+  ;; :defer t
   :hook
   ((emacs-lisp-mode c-mode c++-mode) . rainbow-delimiters-mode)
   :config
@@ -933,7 +937,7 @@
     ;; (setq scroll-step 1)
     (save-place-mode 1)
     (setq scroll-conservatively 10000)
-    (setq scroll-margin 6)
+    (setq scroll-margin 2)
     (setq require-final-newline t)
     (setq scroll-preserve-screen-position t)
     (setq redisplay-dont-pause t)
