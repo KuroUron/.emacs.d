@@ -343,7 +343,8 @@
   ;; (define-key my-window-map (kbd "uuo") 'split-window-right)
   (define-key my-window-map (kbd "0") 'delete-window)
   (define-key my-window-map (kbd "k") 'toggle-frame-fullscreen)
-  (define-key my-window-map (kbd "uuo") 'toggle-frame-fullscreen)
+  ;; (define-key my-window-map (kbd "uuo") 'toggle-frame-fullscreen)
+  (define-key my-window-map (kbd "uo") 'toggle-frame-fullscreen)
   )
 
 (use-package evil-collection
