@@ -1,5 +1,4 @@
-
-;; TODO bat-mode を実行すると ivy-switch-buffer が実行できなくなる不具合を直す．
+;; TODO set-mark-command-repeat-pop の振る舞いを変更 (my-space-map ?)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
@@ -114,7 +113,8 @@
   ;; :defer t
   :after ivy
   :config
-  (message ":config all-the-icons"))
+  (message ":config all-the-icons")
+  )
 
 (use-package doom-modeline
   :ensure t
@@ -388,8 +388,6 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (ivy-mode 1)
-
-  ;; (define-key ivy-minibuffer-map (kbd "SPC") )
   )
 
 (use-package ivy-rich
@@ -398,35 +396,55 @@
   :config
   (message ":config ivy-rich")
 
-  (use-package all-the-icons-ivy
-    :ensure t
-    :config
-    (message ":config all-the-icons-ivy")
-    (all-the-icons-ivy-setup))
-
   (defun ivy-rich-switch-buffer-icon (candidate)
     (with-current-buffer
-        (get-buffer candidate)
-      (all-the-icons-icon-for-mode major-mode)))
+   	(get-buffer candidate)
+      (let ((icon (all-the-icons-icon-for-mode major-mode)))
+        (if (symbolp icon)
+            (all-the-icons-icon-for-mode 'fundamental-mode)
+          icon))))
   (setq ivy-rich--display-transformers-list
         '(ivy-switch-buffer
           (:columns
            ((ivy-rich-switch-buffer-icon :width 2)
             (ivy-rich-candidate (:width 30))
             (ivy-rich-switch-buffer-size (:width 7))
-            (ivy-rich-switch-buffer-indicators
-             (:width 4 :face error :align right))
+            (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
             (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
             (ivy-rich-switch-buffer-project (:width 15 :face success))
             (ivy-rich-switch-buffer-path
-             (:width (lambda (x)
-                       (ivy-rich-switch-buffer-shorten-path
-                        x (ivy-rich-minibuffer-width 0.3))))))
+             (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path
+                                  x (ivy-rich-minibuffer-width 0.3))))))
            :predicate
            (lambda (cand) (get-buffer cand)))))
 
-  (ivy-rich-mode 1)
   (setq ivy-format-function #'ivy-format-function-line)
+  (ivy-rich-mode t)
+  ;; (use-package all-the-icons-ivy
+  ;;   :ensure t
+  ;;   :config
+  ;;   (message ":config all-the-icons-ivy")
+  ;;   (all-the-icons-ivy-setup)
+  ;;   (defun ivy-rich-switch-buffer-icon (candidate)
+  ;;     (with-current-buffer
+  ;;         (get-buffer candidate)
+  ;;       (all-the-icons-icon-for-mode major-mode)))
+  ;;   (setq ivy-rich--display-transformers-list
+  ;;         '(ivy-switch-buffer
+  ;;           (:columns
+  ;;            ((ivy-rich-switch-buffer-icon :width 2)
+  ;;             (ivy-rich-candidate (:width 30))
+  ;;             (ivy-rich-switch-buffer-size (:width 7))
+  ;;             (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+  ;;             (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
+  ;;             (ivy-rich-switch-buffer-project (:width 15 :face success))
+  ;;             (ivy-rich-switch-buffer-path
+  ;;              (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path
+  ;;                                   x (ivy-rich-minibuffer-width 0.3))))))
+  ;;            :predicate
+  ;;            (lambda (cand) (get-buffer cand)))))
+  ;;   (ivy-rich-mode t)
+  ;;   )
   )
 
 (use-package counsel
@@ -913,6 +931,7 @@
     (show-paren-mode t)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
+    (save-place-mode 1)
     (setq scroll-conservatively 10000)
     (setq scroll-margin 6)
     (setq require-final-newline t)
