@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lib
+# key: lib
+# --
+#include <stdlib.h>$0

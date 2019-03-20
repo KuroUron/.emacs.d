@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: tempinc
+# key: tempinc
+# --
+#ifndef PRJ_FOO_BAR_H_
+#define PRJ_FOO_BAR_H_
+$0
+#endif  // PRJ_FOO_BAR_H_

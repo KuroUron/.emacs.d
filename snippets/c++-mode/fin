@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: fin
+# key: fin
+# --
+ifstream fin(${1:file_name});
+if (!fin) { cout << "Cannot open input file"; return 1; }$0
+
+fin.close();

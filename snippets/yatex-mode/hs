@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: hs
+# key: hs
+# --
+\hspace{${1:4mm}}$0

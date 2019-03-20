@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ffl
+# key: ffl
+# --
+fflush(stdout);$0

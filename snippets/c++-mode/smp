@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: smp
+# key: smp
+# --
+$0// @ Set
+
+// @ Parameter
+
+// @ Variable and Expression
+
+// @ Constraint
+
+// @ Objective
+
+// @ Solve and Output

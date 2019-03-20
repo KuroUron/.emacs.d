@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: flu
+# key: flu
+# --
+fflush(stdout);$0

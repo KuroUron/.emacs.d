@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: udl
+# key: udl
+# --
+\underline{$0}

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: fout
+# key: fout
+# --
+ofstream fout(${1:path});
+if (!fout) {
+  cout << "Cannot open output file" << endl;
+  return 1;
+}
+$0
+fout.close();

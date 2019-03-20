@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: temp
+# key: temp
+# --
+#+TITLE: $0
+#+AUTHOR: ShimizuShoji
+#+LATEX_CLASS: my_class
+#+OPTIONS: toc:nil

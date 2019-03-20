@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: fig
+# key: fig
+# --
+\begin{figure}[htbp]
+ \begin{center}
+  \includegraphics[width=70mm]{fig01.eps}
+ \end{center}
+ \caption{図の説明}
+ \label{fig01} 
+\end{figure}$0

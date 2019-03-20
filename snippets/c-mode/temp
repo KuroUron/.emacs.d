@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: temp
+# key: temp
+# --
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+  $0
+
+  return 0;
+}

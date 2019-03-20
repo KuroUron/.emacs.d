@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: utf8
+# key: utf8
+# --
+# 標準出力を utf-8 に変換するラッパー
+function utf8() {
+    CMD=\$1			# 第一引数
+    shift			# 引数を一つ落とす
+    ARG=$*        		# 残りの引数
+    $CMD $ARG 2>&1 | iconv -f cp932 -t utf-8
+    # - iconv: 文字コードを変換して出力する:
+    #   $ iconv -from ENCODING -to ENCODING INPUTFILE
+    # - iconv は標準入力から文字列を引き取ることも出来る
+    # - パイプ | は標準出力を標準入力に接続する
+    # - 2>&1 は標準エラー出力(2)を標準出力(0)に混ぜて(&)出力
+}$0

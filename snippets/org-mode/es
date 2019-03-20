@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: es
+# key: es
+# --
+#+BEGIN_LATEX
+$0
+#+END_LATEX

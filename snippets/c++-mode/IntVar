@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: IntVar
+# key: IntVar
+# --
+IntegerVariable$0

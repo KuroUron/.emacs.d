@@ -1,0 +1,93 @@
+# -*- mode: snippet -*-
+# name: temp
+# key: temp
+# --
+%% 設定
+\documentclass[11pt, a4paper]{jsarticle}
+% 10pt, 11pt, 12pt
+% a4paper, b4paper, etc.
+% jsarticle: 和文横書き; 論文，レポート
+% tarticle : 和文縦書き; 論文，レポート
+% jreport  : 和文横書き; 長いレポート
+% jsbook   : 和文横書き; 本
+
+\usepackage{amsmath}     % 数式に関する各種のコマンド・環境
+\usepackage{amssymb}      % 記号拡張, e.g. mathbb
+\usepackage{amsthm}     % 定理環境
+\usepackage{ascmac}     % 囲み環境, e.g. screen
+\usepackage{bm}             % 太文字ベクトル
+\usepackage{graphicx}     % 図の出力
+\usepackage{color}     % 色付け
+\usepackage{ulem}     % 下線拡張, e.g. uwave, sout
+\usepackage{wrapfig}     % 文章中に図を挿入
+\usepackage{eclbkbox}  % 囲み環境, e.g. breakbox
+\usepackage{framed}    % 囲み環境, e.g. oframed
+\usepackage{algorithm}   % アルゴリズム環境
+\usepackage{algorithmic} % アルゴリズム環境
+
+\usepackage[
+top    = 30truemm, % 上余白 (mm)
+bottom = 30truemm, % 下余白 (mm)
+left   = 25truemm, % 左余白 (mm)
+right  = 25truemm  % 右余白 (mm)
+]{geometry} % default: 30, 30, 25, 25
+
+\definecolor{shadecolor}{gray}{0.80} % 色定義
+
+\newtheorem{theo}{Theorem}
+\newtheorem{defi}{Definition}[section]
+\newtheorem{clai}[defi]{Claim}
+\newtheorem{lemm}[defi]{Lemma}
+\newtheorem{coro}[defi]{Corollary}
+\newtheorem{rema}[defi]{Remark}
+\newtheorem{resu}[defi]{Result}
+\newtheorem{exce}[defi]{Excercise}
+\newtheorem{exam}[defi]{Example}
+\newtheorem{fact}[defi]{Fact}
+\newtheorem{prop}[defi]{Proposition}
+\newtheorem{form}[defi]{Formula}
+% 作り方:
+% (1)\newtheorem{環境名}{表示名}
+% (2)\newtheorem{環境名}{表示名}[section]
+% (3)\newtheorem{環境名}[共有環境名]{表示名}
+% (1)のとき, 番号は次のように振られる: 1, 2, 3, ...
+% (2)のとき, 番号は次のように振られる: 1.1, 1.2, 2.1, ...
+% (3)のとき, 番号は共有環境によって連続的に用いられる
+
+% 数式番号に節番号を付加
+\makeatletter
+\renewcommand{\theequation}{
+\thesection.\arabic{equation}}
+\@addtoreset{equation}{section}
+\makeatother
+
+% 環境に左バーを付加
+\definecolor{lightgray}{rgb}{0.75,0.75,0.75}
+\newenvironment{lightgrayleftbar}{
+% \def\FrameCommand{\textcolor{lightgray}{\vrule width 1zw} \hspace{10pt}}
+\def\FrameCommand{\textcolor{lightgray}{\vrule width 4pt} \hspace{2pt}}
+\MakeFramed {\advance\hsize-\width \FrameRestore}}
+{\endMakeFramed}
+
+% 末尾に三角
+\def\fin{\hfill $\lhd$}
+
+% hrulefill を下線ではなく中心線にする
+\newcommand{\myhrulefill}{\leavevmode
+\leaders\hrule depth-2.1pt height 2.5pt\hfill\kern0pt
+}
+
+%% 注意
+
+% セクション番号を k から始める場合次のように書く:
+% \setcounter{section}{k-1}
+% \section{hoge}
+
+%% タイトル
+\author{SHIMIZU Shoji}
+\date{\today}
+\title{${1:タイトル}}
+\begin{document}
+\maketitle
+\section{$0}
+\end{document}

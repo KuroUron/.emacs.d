@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: col
+# key: col
+# --
+\\textcolor{${1:red}}{$0}

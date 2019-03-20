@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: exi
+# key: exi
+# --
+\exists$0

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: esc
+# key: esc
+# --
+#+BEGIN_LATEX
+$0
+#+END_LATEX

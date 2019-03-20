@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: temp
+# key: temp
+# --
+#!/bin/sh -x$0 
