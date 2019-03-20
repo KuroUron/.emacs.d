@@ -220,9 +220,9 @@
   (when (eq system-type 'windows-nt)
     (setq beacon-color "#00bfff"))
   (when (eq system-type 'gnu/linux)
-    ;; (setq beacon-color "#bd93f9")
+    (setq beacon-color "#bd93f8")
     ;; (setq beacon-color "#9400d3")
-    (setq beacon-color "#a020f0")
+    ;; (setq beacon-color "#a020f0")
   )
 
   (beacon-mode 1))
