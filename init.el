@@ -210,14 +210,21 @@
 
 (use-package beacon
   :ensure t
-  :custom
+  ;; :custom
   ;; (beacon-color "yellow")
   ;; (beacon-color "orange")
-  (beacon-color "#00bfff")
-  ;; (beacon-color "#51afef")              ; cursor blue
-
+  ;; (beacon-color "#00bfff")
+  ;; (beacon-color "#51afef")
   :config
   (message ":config beacon")
+  (when (eq system-type 'windows-nt)
+    (setq beacon-color "#00bfff"))
+  (when (eq system-type 'gnu/linux)
+    ;; (setq beacon-color "#bd93f9")
+    ;; (setq beacon-color "#9400d3")
+    (setq beacon-color "#a020f0")
+  )
+
   (beacon-mode 1))
 
 ;; (use-package highlight-indent-guides
@@ -328,10 +335,10 @@
   ;; (define-key my-space-map (kbd "g") 'evil-force-normal-state)
   (define-key my-space-map (kbd "g") 'magit-status)
   (define-key my-space-map (kbd "i") 'imenu-list-smart-toggle) ; TODO
-  ;; (define-key my-space-map (kbd "d") '(lambda ()
-  ;;                                       (interactive)
-  ;;                                       (kill-buffer (current-buffer))
-  ;;                                       ))
+  (define-key my-space-map (kbd "dd") '(lambda ()
+                                        (interactive)
+                                        (kill-buffer (current-buffer))
+                                        ))
   (define-key my-space-map (kbd "o") '(lambda ()
                                         (interactive)
                                         (other-window 1)
@@ -342,6 +349,8 @@
   (define-key my-space-map (kbd "nt") 'neotree-toggle)
   (define-key my-space-map (kbd "nr") 'neotree-refresh)
   (define-key my-space-map (kbd "cm") 'helm-make)
+  (define-key my-space-map (kbd "cg") 'realgud:gdb)
+  (define-key my-space-map (kbd "cp") 'realgud:pdb)
   (define-key my-space-map (kbd "@") 'my-cd-current-file-directory)
   (define-key my-space-map (kbd "tf") 'toggle-frame-fullscreen)
   (define-key my-space-map (kbd "uo") 'toggle-frame-fullscreen)
@@ -349,6 +358,7 @@
   (define-key my-space-map (kbd "dk") 'describe-key)
   (define-key my-space-map (kbd "dv") 'describe-variable)
   (define-key my-space-map (kbd "df") 'describe-function)
+  (define-key my-space-map (kbd "dF") 'describe-face)
   (define-key my-space-map (kbd "dm") 'describe-mode)
   (define-key my-space-map (kbd "dt") 'describe-theme)
   ;; (define-key my-sapce-map (kbd "crg") 'realgud:gdb)
