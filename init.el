@@ -952,7 +952,7 @@
     ;; (setq scroll-step 1)
     (save-place-mode 1)
     (setq scroll-conservatively 10000)
-    (setq scroll-margin 2)
+    (setq scroll-margin 3)
     (setq require-final-newline t)
     (setq scroll-preserve-screen-position t)
     (setq redisplay-dont-pause t)
