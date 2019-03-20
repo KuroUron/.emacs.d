@@ -668,7 +668,12 @@
     'my-python-async-shell-command)
   )
 
-
+(use-package elisp-format
+  :ensure t
+  :commands (elisp-format-region)
+  :config
+  (message ":config elisp-format")
+  )
 
 (use-package markdown-mode
   :ensure t
@@ -947,7 +952,7 @@
     ;; (setq scroll-step 1)
     (save-place-mode 1)
     (setq scroll-conservatively 10000)
-    (setq scroll-margin 2)
+    (setq scroll-margin 3)
     (setq require-final-newline t)
     (setq scroll-preserve-screen-position t)
     (setq redisplay-dont-pause t)
