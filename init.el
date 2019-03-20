@@ -328,10 +328,10 @@
   ;; (define-key my-space-map (kbd "g") 'evil-force-normal-state)
   (define-key my-space-map (kbd "g") 'magit-status)
   (define-key my-space-map (kbd "i") 'imenu-list-smart-toggle) ; TODO
-  (define-key my-space-map (kbd "d") '(lambda ()
-                                        (interactive)
-                                        (kill-buffer (current-buffer))
-                                        ))
+  ;; (define-key my-space-map (kbd "d") '(lambda ()
+  ;;                                       (interactive)
+  ;;                                       (kill-buffer (current-buffer))
+  ;;                                       ))
   (define-key my-space-map (kbd "o") '(lambda ()
                                         (interactive)
                                         (other-window 1)
@@ -346,6 +346,11 @@
   (define-key my-space-map (kbd "tf") 'toggle-frame-fullscreen)
   (define-key my-space-map (kbd "uo") 'toggle-frame-fullscreen)
   (define-key my-space-map (kbd "J") 'smooth-scroll/scroll-up)
+  (define-key my-space-map (kbd "dk") 'describe-key)
+  (define-key my-space-map (kbd "dv") 'describe-variable)
+  (define-key my-space-map (kbd "df") 'describe-function)
+  (define-key my-space-map (kbd "dm") 'describe-mode)
+  (define-key my-space-map (kbd "dt") 'describe-theme)
 
   ;; my-window-map
   (define-prefix-command 'my-window-map)
@@ -721,12 +726,10 @@
   :ensure t
   ;; :defer t
   :commands (realgud:pdb realgud:gdb)
+  :custom-face
+  (realgud-bp-line-enabled-face ((t (:underline "red"))))
   :config
   (message ":config realgud")
-
-  ;; (set-face-attribute 'realgud-bp-line-enabled-face nil
-  ;;                     ::underline "red"
-  ;;                     )
 
   (defun my-gdb-print ()
     (interactive)
@@ -738,7 +741,8 @@
         (other-window 1)
         (insert cmnd)
         (realgud:send-input)
-        (other-window 1))))
+        (other-window 1)
+        )))
 
   (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
   )
@@ -794,7 +798,7 @@
 (use-package yasnippet
   :ensure t
   :hook
-  (python-mode . yas-minor-mode)
+  ((python-mode c++-mode c-mode) . yas-minor-mode)
   :config
   (message ":config yasnippet")
   (yas-reload-all)
