@@ -531,8 +531,9 @@
     ;; ("j" (lambda () (interactive) (evil-next-line 5)))
     ("j" (lambda () (interactive) (evil-next-line 5)))
     ("k" (lambda () (interactive) (evil-previous-line 5)))
-    ("h" (lambda () (interactive) (evil-backward-char 5)))
-    ("l" (lambda () (interactive) (evil-forward-char 5)))
+    ;; ("h" (lambda () (interactive) (evil-backward-char 5)))
+    ;; ("l" (lambda () (interactive) (evil-forward-char 5)))
+    ("l" (lambda () (interactive) (recenter-top-bottom)))
     ("g" nil "leave")
     )
 
@@ -749,7 +750,6 @@
 
 (use-package realgud
   :ensure t
-  ;; :defer t
   :commands (realgud:pdb realgud:gdb)
   :custom-face
   (realgud-bp-line-enabled-face ((t (:underline "red"))))
@@ -769,7 +769,8 @@
         (other-window 1)
         )))
 
-  (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
+  ;; (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
+  (define-key realgud:shortkey-mode-map (kbd "<normal-state> p") 'my-gdb-print)
   )
 
 (use-package lsp-mode
