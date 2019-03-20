@@ -641,6 +641,7 @@
       (save-buffer)
       (async-shell-command command)
       ))
+  (evil-define-key 'normal python-mode-map (kbd "C-j") 'my-python-run)
 
   (defun my-python-async-shell-command
       (command &optional output-buffer error-buffer)
@@ -663,7 +664,6 @@
       (setq command (concat command " &")))
     (shell-command command output-buffer error-buffer))
 
-  (evil-define-key 'normal python-mode-map (kbd "C-j") 'my-python-run)
   (evil-define-key 'normal python-mode-map (kbd "C-S-j")
     'my-python-async-shell-command)
   )
