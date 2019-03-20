@@ -312,7 +312,8 @@
   (define-key my-space-map (kbd "r") 'counsel-recentf)
   (define-key my-space-map (kbd "/") 'swiper)
   ;; (define-key my-space-map (kbd "l") 'recenter-top-bottom)
-  (define-key my-space-map (kbd "g") 'evil-force-normal-state)
+  ;; (define-key my-space-map (kbd "g") 'evil-force-normal-state)
+  (define-key my-space-map (kbd "g") 'magit-status)
   (define-key my-space-map (kbd "i") 'imenu-list-smart-toggle) ; TODO
   (define-key my-space-map (kbd "d") '(lambda ()
                                         (interactive)
