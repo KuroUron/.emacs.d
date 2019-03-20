@@ -351,6 +351,8 @@
   (define-key my-space-map (kbd "df") 'describe-function)
   (define-key my-space-map (kbd "dm") 'describe-mode)
   (define-key my-space-map (kbd "dt") 'describe-theme)
+  ;; (define-key my-sapce-map (kbd "crg") 'realgud:gdb)
+  ;; (define-key my-sapce-map (kbd "crp") 'realgud:pdb)
 
   ;; my-window-map
   (define-prefix-command 'my-window-map)
@@ -853,6 +855,15 @@
   ;; (set-face-foreground 'rainbow-delimiters-depth-9-face "#f0f0f0")
   )
 
+(use-package rainbow-mode
+  :ensure t
+  :hook
+  (((emacs-lisp-mode python-mode c++-mode c-mode) . rainbow-mode))
+  :config
+  (message ":config rainbow-mode")
+  ;; (rainbow-mode t)
+  )
+
 (use-package hl-todo
   :ensure t
   :after ivy
@@ -1018,7 +1029,7 @@
     ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
  '(package-selected-packages
    (quote
-    (elisp-format yasnippet which-key use-package realgud rainbow-delimiters pt neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line helm-make git-gutter evil-magit evil-collection doom-themes doom-modeline counsel company clang-format blacken beacon anzu all-the-icons-ivy))))
+    (rainbow-mode elisp-format yasnippet which-key use-package realgud rainbow-delimiters pt neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line helm-make git-gutter evil-magit evil-collection doom-themes doom-modeline counsel company clang-format blacken beacon anzu all-the-icons-ivy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -1027,4 +1038,5 @@
  '(git-gutter:added ((t (:background "#50fa7b"))))
  '(git-gutter:deleted ((t (:background "#ff79c6"))))
  '(git-gutter:modified ((t (:background "#f1fa8c"))))
- '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold)))))
+ '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold))))
+ '(realgud-bp-line-enabled-face ((t (:underline "red")))))
