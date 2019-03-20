@@ -45,7 +45,12 @@
   :config
   (message ":config doom-themes")
 
-  (load-theme 'doom-one t)
+  (when (eq system-type 'windows-nt)
+    (load-theme 'doom-one t)
+    )
+  (when (eq system-type 'gnu/linux)
+    (load-theme 'doom-dracula t)
+    )
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -278,6 +283,14 @@
       (comint-send-input)
       ))
   (define-key evil-normal-state-map (kbd "`") 'my-cd-current-file-directory)
+
+  ;; ;; evil-insert-state-map
+  (define-key evil-insert-state-map (kbd "M-h") 'backward-kill-word)
+  (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
+  (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
+  (define-key evil-insert-state-map (kbd "C-p") 'previous-line)
+  (define-key evil-insert-state-map (kbd "C-n") 'next-line)
+  (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
 
   ;; Inactivation SPC key for my-space-map
   (add-hook 'compilation-mode-hook
@@ -952,7 +965,7 @@
     ;; (setq scroll-step 1)
     (save-place-mode 1)
     (setq scroll-conservatively 10000)
-    (setq scroll-margin 3)
+    (setq scroll-margin 1)
     (setq require-final-newline t)
     (setq scroll-preserve-screen-position t)
     (setq redisplay-dont-pause t)
@@ -991,3 +1004,23 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
+ '(package-selected-packages
+   (quote
+    (elisp-format yasnippet which-key use-package realgud rainbow-delimiters pt neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line helm-make git-gutter evil-magit evil-collection doom-themes doom-modeline counsel company clang-format blacken beacon anzu all-the-icons-ivy))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(git-gutter:added ((t (:background "#50fa7b"))))
+ '(git-gutter:deleted ((t (:background "#ff79c6"))))
+ '(git-gutter:modified ((t (:background "#f1fa8c"))))
+ '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold)))))
