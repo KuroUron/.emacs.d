@@ -668,6 +668,13 @@
     'my-python-async-shell-command)
   )
 
+(use-package elisp-format
+  :ensure t
+  :commands (elisp-format-region)
+  :config
+  (message ":config elisp-format")
+  )
+
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
