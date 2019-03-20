@@ -348,6 +348,7 @@
   (define-key my-space-map (kbd "nh") 'neotree-hide)
   (define-key my-space-map (kbd "nt") 'neotree-toggle)
   (define-key my-space-map (kbd "nr") 'neotree-refresh)
+  (define-key my-space-map (kbd "cc") 'compile)
   (define-key my-space-map (kbd "cm") 'helm-make)
   (define-key my-space-map (kbd "cg") 'realgud:gdb)
   (define-key my-space-map (kbd "cp") 'realgud:pdb)
@@ -634,6 +635,15 @@
          ("\\.smp" . c++-mode))
   :config
   (message ":config cc-mode")
+
+  (add-hook
+   'c++-mode-hook
+   (lambda ()
+     (set (make-local-variable 'compile-command)
+          (format "g++ -Wall -Wextra -std=c++11 %s"
+                  (file-name-nondirectory buffer-file-name)))))
+
+
   (use-package clang-format
     :ensure t
     :config
