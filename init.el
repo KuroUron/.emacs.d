@@ -332,7 +332,7 @@
   (define-key my-space-map (kbd "b") 'ivy-switch-buffer)
   (define-key my-space-map (kbd "SPC") 'counsel-M-x)
   (define-key my-space-map (kbd "f") 'counsel-find-file)
-  (define-key my-space-map (kbd "r") 'counsel-recentf)
+  (define-key my-space-map (kbd "rr") 'counsel-recentf)
   (define-key my-space-map (kbd "/") 'swiper)
   ;; (define-key my-space-map (kbd "l") 'recenter-top-bottom)
   ;; (define-key my-space-map (kbd "g") 'evil-force-normal-state)
@@ -353,8 +353,8 @@
   (define-key my-space-map (kbd "nr") 'neotree-refresh)
   (define-key my-space-map (kbd "cc") 'compile)
   (define-key my-space-map (kbd "cm") 'helm-make)
-  (define-key my-space-map (kbd "cg") 'realgud:gdb)
-  (define-key my-space-map (kbd "cp") 'realgud:pdb)
+  (define-key my-space-map (kbd "rg") 'realgud:gdb)
+  (define-key my-space-map (kbd "rp") 'realgud:pdb)
   (define-key my-space-map (kbd "@") 'my-cd-current-file-directory)
   (define-key my-space-map (kbd "tf") 'toggle-frame-fullscreen)
   (define-key my-space-map (kbd "uo") 'toggle-frame-fullscreen)
@@ -770,7 +770,8 @@
         )))
 
   ;; (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
-  (define-key realgud:shortkey-mode-map (kbd "<normal-state> p") 'my-gdb-print)
+  ;; (evil-define-key 'normal realgud:shortkey-mode-map (kbd "p") nil)
+  (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
   )
 
 (use-package lsp-mode
