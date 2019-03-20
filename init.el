@@ -218,12 +218,15 @@
   :config
   (message ":config beacon")
   (when (eq system-type 'windows-nt)
-    (setq beacon-color "#00bfff"))
+    ;; (setq beacon-color "#00bfff"))
+    (setq beacon-color "#51afee")
+    )
+
   (when (eq system-type 'gnu/linux)
     (setq beacon-color "#bd93f8")
     ;; (setq beacon-color "#9400d3")
     ;; (setq beacon-color "#a020f0")
-  )
+    )
 
   (beacon-mode 1))
 
@@ -1007,8 +1010,9 @@
     (fset 'yes-or-no-p 'y-or-n-p)
     ;; (set-frame-font "Migu 1M-12:antialias=standard")
     (when (eq system-type 'windows-nt)
-      (set-frame-font "Consolas-11.5")
-      (set-face-attribute 'default nil :height 110)
+      ;; (set-frame-font "Consolas-11.5")
+      ;; (set-face-attribute 'default nil :height 110)
+      (set-frame-font "Migu 1M-12:antialias=standard")
       )
     (when (eq system-type 'gnu/linux)
       (set-frame-font "Migu 1M-12:antialias=standard")
