@@ -255,6 +255,10 @@
 
   ;; evil-normal-state-map
   ;; (define-key evil-motion-state-map (kbd "<tab>") nil)  ; TODO
+  (define-key evil-normal-state-map (kbd "M-p")
+    '(lambda () (interactive) (evil-scroll-line-down 5)))
+  (define-key evil-normal-state-map (kbd "M-n")
+    '(lambda () (interactive) (evil-scroll-line-up 5)))
   (define-key evil-normal-state-map (kbd "s") 'swiper)
   (define-key evil-normal-state-map (kbd "m")
     '(lambda ()
@@ -301,6 +305,18 @@
   (define-key evil-insert-state-map (kbd "C-p") 'previous-line)
   (define-key evil-insert-state-map (kbd "C-n") 'next-line)
   (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
+  (define-key evil-insert-state-map (kbd "C-S-p")
+    '(lambda () (interactive) (previous-line 5)))
+  (define-key evil-insert-state-map (kbd "C-S-n")
+    '(lambda () (interactive) (next-line 5)))
+  (define-key evil-insert-state-map (kbd "C-S-b")
+    '(lambda () (interactive) (backward-char 5)))
+  (define-key evil-insert-state-map (kbd "C-S-f")
+    '(lambda () (interactive) (forward-char 5)))
+  (define-key evil-insert-state-map (kbd "M-p")
+    '(lambda () (interactive) (evil-scroll-line-down 5)))
+  (define-key evil-insert-state-map (kbd "M-n")
+    '(lambda () (interactive) (evil-scroll-line-up 5)))
 
   ;; Inactivation SPC key for my-space-map
   (add-hook 'compilation-mode-hook
@@ -382,14 +398,14 @@
   (define-key my-window-map (kbd "uo") 'toggle-frame-fullscreen)
   )
 
-(use-package evil-collection
-  :ensure t
-  ;; :after evil
-  :after ivy
-  :config
-  (message ":config evil-collection")
-  (evil-collection-init)
-  )
+;; (use-package evil-collection
+;;   :ensure t
+;;   ;; :after evil
+;;   :after ivy
+;;   :config
+;;   (message ":config evil-collection")
+;;   (evil-collection-init)
+;;   )
 
 (use-package evil-magit
   :after magit
@@ -755,8 +771,9 @@
   (realgud-bp-line-enabled-face ((t (:underline "red"))))
   :config
   (message ":config realgud")
+  (setq realgud-safe-mode nil)
 
-  (defun my-gdb-print ()
+  (defun my-realgud-print ()
     (interactive)
     (let* ((word (find-tag-default))
            (cmnd (concat "print( " word " )")))
@@ -769,10 +786,7 @@
         (other-window 1)
         )))
 
-  ;; (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
-  ;; (evil-define-key 'normal realgud:shortkey-mode-map (kbd "p") nil)
-  (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
-  ;; (evil-define-key 'normal realgud:)
+  (define-key realgud:shortkey-mode-map (kbd "p") 'my-realgud-print)
   )
 
 (use-package lsp-mode
@@ -848,12 +862,12 @@
   (global-git-gutter-mode +1)
   )
 
-;; (use-package smooth-scroll
-;;   :ensure t
-;;   :config
-;;   (message ":config smooth-scroll")
-;;   (smooth-scroll-mode t)
-;;   )
+(use-package smooth-scroll
+  :ensure t
+  :config
+  (message ":config smooth-scroll")
+  (smooth-scroll-mode t)
+  )
 
 (use-package pt
   :ensure t)
