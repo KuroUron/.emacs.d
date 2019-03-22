@@ -239,6 +239,16 @@
 ;;   (highlight-indent-guides-responsive t)
 ;;   (highlight-indent-guides-method 'character)) ; column
 
+(use-package yascroll
+  :ensure t
+  :after ivy
+  :custom-face
+  (yascroll:thumb-fringe ((t (:background "#565761" :foreground "#565761"))))
+  :config
+  (message ":config yascroll")
+  (global-yascroll-bar-mode t)
+  )
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Interface
 
@@ -354,7 +364,8 @@
   (define-key my-space-map (kbd "/") 'swiper)
   ;; (define-key my-space-map (kbd "l") 'recenter-top-bottom)
   ;; (define-key my-space-map (kbd "g") 'evil-force-normal-state)
-  (define-key my-space-map (kbd "gg") 'magit-status)
+  (define-key my-space-map (kbd "gm") 'magit-status)
+  (define-key my-space-map (kbd "gg") 'git-gutter)
   (define-key my-space-map (kbd "i") 'imenu-list-smart-toggle) ; TODO
   (define-key my-space-map (kbd "dd") '(lambda ()
                                         (interactive)
@@ -1062,24 +1073,3 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
- '(package-selected-packages
-   (quote
-    (rainbow-mode elisp-format yasnippet which-key use-package realgud rainbow-delimiters pt neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line helm-make git-gutter evil-magit evil-collection doom-themes doom-modeline counsel company clang-format blacken beacon anzu all-the-icons-ivy))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(git-gutter:added ((t (:background "#50fa7b"))))
- '(git-gutter:deleted ((t (:background "#ff79c6"))))
- '(git-gutter:modified ((t (:background "#f1fa8c"))))
- '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold))))
- '(realgud-bp-line-enabled-face ((t (:underline "red")))))
