@@ -306,6 +306,7 @@
   (define-key evil-insert-state-map (kbd "C-p") 'previous-line)
   (define-key evil-insert-state-map (kbd "C-n") 'next-line)
   (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
+  (define-key evil-insert-state-map (kbd "C-y") 'yank)
   (define-key evil-insert-state-map (kbd "C-S-p")
     '(lambda () (interactive) (previous-line 5)))
   (define-key evil-insert-state-map (kbd "C-S-n")
@@ -855,9 +856,9 @@
   (git-gutter:added-sign    "+")
   (git-gutter:deleted-sign  "-")
   :custom-face
-  (git-gutter:modified ((t (:background "#f1fa8c"))))
-  (git-gutter:added    ((t (:background "#50fa7b"))))
-  (git-gutter:deleted  ((t (:background "#ff79c6"))))
+  (git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
+  (git-gutter:added    ((t (:background "#50fa7b" :foreground "black"))))
+  (git-gutter:deleted  ((t (:background "#ff79c6" :foreground "black"))))
   :config
   (message ":config git-gutter")
   (global-git-gutter-mode +1)
