@@ -911,7 +911,7 @@
 (use-package rainbow-mode
   :ensure t
   :hook
-  (((emacs-lisp-mode python-mode c++-mode c-mode) . rainbow-mode))
+  ((emacs-lisp-mode . rainbow-mode))
   :config
   (message ":config rainbow-mode")
   ;; (rainbow-mode t)
