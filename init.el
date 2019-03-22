@@ -772,6 +772,7 @@
   ;; (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
   ;; (evil-define-key 'normal realgud:shortkey-mode-map (kbd "p") nil)
   (define-key realgud:shortkey-mode-map (kbd "p") 'my-gdb-print)
+  ;; (evil-define-key 'normal realgud:)
   )
 
 (use-package lsp-mode
