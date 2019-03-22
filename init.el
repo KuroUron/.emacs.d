@@ -295,6 +295,7 @@
       (kill-new command)
       (yank)
       (comint-send-input)
+      (evil-force-normal-state)
       ))
   (define-key evil-normal-state-map (kbd "`") 'my-cd-current-file-directory)
 
@@ -361,7 +362,7 @@
   (define-key my-space-map (kbd "o") '(lambda ()
                                         (interactive)
                                         (other-window 1)
-                                        (evil-normal-state)
+                                        (evil-force-normal-state)
                                         ))
   (define-key my-space-map (kbd "ns") 'neotree-show)
   (define-key my-space-map (kbd "nh") 'neotree-hide)
