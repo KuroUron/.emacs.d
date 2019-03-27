@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: int_inf
+# key: int_inf
+# --
+static const int INF = 1 << 30;$0

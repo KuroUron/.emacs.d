@@ -1,0 +1,4 @@
+# key: long_inf
+# name: long_inf
+# --
+static const long long INF = 1LL << 60;$0

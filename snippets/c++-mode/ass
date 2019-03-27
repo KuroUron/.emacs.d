@@ -1,0 +1,4 @@
+# key: ass
+# name: ass
+# --
+assert($0);
