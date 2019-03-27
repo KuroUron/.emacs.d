@@ -673,7 +673,7 @@
    'c++-mode-hook
    (lambda ()
      (set (make-local-variable 'compile-command)
-          (format "g++ -Wall -Wextra -std=c++11 %s"
+          (format "g++ -Wall -Wextra -std=c++14 %s"
                   (file-name-nondirectory buffer-file-name)))))
 
 
