@@ -809,23 +809,23 @@
   (define-key realgud:shortkey-mode-map (kbd "p") 'my-realgud-print)
   )
 
-(use-package lsp-mode
-  :ensure t
-  :hook
-  (c++-mode . lsp)
-  :config
-  (message ":config lsp-mode")
-  ;; (require 'lsp-clients)
-  ;; (setq lsp-auto-guess-root t)
-  ;; (setq lsp-prefer-flymake 'flymake)
-  ;; (lsp-prefer-flymake 'flymake)
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :hook
+;;   (c++-mode . lsp)
+;;   :config
+;;   (message ":config lsp-mode")
+;;   ;; (require 'lsp-clients)
+;;   ;; (setq lsp-auto-guess-root t)
+;;   ;; (setq lsp-prefer-flymake 'flymake)
+;;   ;; (lsp-prefer-flymake 'flymake)
 
-  (use-package lsp-ui
-    :ensure t
-    :config
-    (message ":config lsp-ui")
-    )
-  )
+;;   (use-package lsp-ui
+;;     :ensure t
+;;     :config
+;;     (message ":config lsp-ui")
+;;     )
+;;   )
 
 (use-package helm-make
   :ensure t
