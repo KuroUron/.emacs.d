@@ -693,6 +693,13 @@
   ;;   :ensure t)
   )
 
+(use-package cmake-mode
+  :ensure t
+  :mode (("CMakeLists.txt" . cmake-mode))
+  :config
+  (message ":config cmake-mode")
+  )
+
 (use-package python
   :defer t
   :mode (("\\.py" . python-mode))
@@ -858,6 +865,7 @@
     :bind (("C-\\" . skk-mode))
     :init
     (message ":init ddskk")
+    (setq skk-kutouten-type 'en)
     (define-key evil-insert-state-map (kbd "<escape>")
       '(lambda ()
          (interactive)
@@ -1103,7 +1111,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ddskk yascroll yasnippet writeroom-mode which-key volatile-highlights use-package smooth-scroll realgud rainbow-mode rainbow-delimiters pt nyan-mode neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline counsel company-box clang-format blacken beacon anzu all-the-icons-ivy))))
+    (cmake-mode ddskk yascroll yasnippet writeroom-mode which-key volatile-highlights use-package smooth-scroll realgud rainbow-mode rainbow-delimiters pt nyan-mode neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline counsel company-box clang-format blacken beacon anzu all-the-icons-ivy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
