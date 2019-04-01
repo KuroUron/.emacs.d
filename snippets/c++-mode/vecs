@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: vecs
+# key: vecs
+# --
+template <typename T> std::vector<T> vectors(std::size_t n, T val) {
+  return std::vector<T>(n, val);
+}
+
+template <typename T, typename... Args>
+auto vectors(std::size_t n, Args... args) {
+  return std::vector<decltype(vectors<T>(args...))>(n, vectors<T>(args...));
+}$0

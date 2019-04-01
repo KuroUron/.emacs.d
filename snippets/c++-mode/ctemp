@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: ctemp
+# key: ctemp
+# --
+#include <iostream>
+#include <cassert>
+#include <vector>
+#include <map>
+#include <algorithm>
+
+int main()
+{
+  // Input
+
+  // Main
+
+  // Output
+
+  return 0;
+}$0
