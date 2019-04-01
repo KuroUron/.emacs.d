@@ -850,6 +850,28 @@
   (w32-ime-initialize)
   )
 
+
+(when (eq system-type 'gnu/linux)
+  (use-package ddskk
+    :ensure t
+    :defer t
+    :bind (("C-\\" . skk-mode))
+    :init
+    (message ":init ddskk")
+    (define-key evil-insert-state-map (kbd "<escape>")
+      '(lambda ()
+         (interactive)
+         (skk-mode -1)
+         (evil-force-normal-state)
+         ))
+    (define-key evil-normal-state-map (kbd "<escape>")
+      '(lambda ()
+         (interactive)
+         (skk-mode -1)
+         (evil-force-normal-state)
+         ))
+    ))
+
 (use-package yasnippet
   :ensure t
   :hook
@@ -857,7 +879,8 @@
   :config
   (message ":config yasnippet")
   (yas-reload-all)
-  (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand))
+  (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+  )
 
 (use-package git-gutter
   :ensure t
@@ -1080,10 +1103,14 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yascroll yasnippet writeroom-mode which-key volatile-highlights use-package smooth-scroll realgud rainbow-mode rainbow-delimiters pt nyan-mode neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline counsel company-box clang-format blacken beacon anzu all-the-icons-ivy))))
+    (ddskk yascroll yasnippet writeroom-mode which-key volatile-highlights use-package smooth-scroll realgud rainbow-mode rainbow-delimiters pt nyan-mode neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline counsel company-box clang-format blacken beacon anzu all-the-icons-ivy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(git-gutter:added ((t (:background "#50fa7b" :foreground "black"))))
+ '(git-gutter:deleted ((t (:background "#ff79c6" :foreground "black"))))
+ '(git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
+ '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold))))
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
