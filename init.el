@@ -693,6 +693,13 @@
   ;;   :ensure t)
   )
 
+(use-package cmake-mode
+  :ensure t
+  :mode (("CMakeLists.txt" . cmake-mode))
+  :config
+  (message ":config cmake-mode")
+  )
+
 (use-package python
   :defer t
   :mode (("\\.py" . python-mode))
@@ -850,6 +857,29 @@
   (w32-ime-initialize)
   )
 
+
+(when (eq system-type 'gnu/linux)
+  (use-package ddskk
+    :ensure t
+    :defer t
+    :bind (("C-\\" . skk-mode))
+    :init
+    (message ":init ddskk")
+    (setq skk-kutouten-type 'en)
+    (define-key evil-insert-state-map (kbd "<escape>")
+      '(lambda ()
+         (interactive)
+         (skk-mode -1)
+         (evil-force-normal-state)
+         ))
+    (define-key evil-normal-state-map (kbd "<escape>")
+      '(lambda ()
+         (interactive)
+         (skk-mode -1)
+         (evil-force-normal-state)
+         ))
+    ))
+
 (use-package yasnippet
   :ensure t
   :hook
@@ -857,7 +887,8 @@
   :config
   (message ":config yasnippet")
   (yas-reload-all)
-  (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand))
+  (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+  )
 
 (use-package git-gutter
   :ensure t
@@ -1073,17 +1104,3 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (yascroll yasnippet writeroom-mode which-key volatile-highlights use-package smooth-scroll realgud rainbow-mode rainbow-delimiters pt nyan-mode neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline counsel company-box clang-format blacken beacon anzu all-the-icons-ivy))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(realgud-bp-line-enabled-face ((t (:underline "red")))))
