@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: chrono
+# key: chrono
+# --
+const auto start = std::chrono::system_clock::now();
+const auto end = std::chrono::system_clock::now();
+const auto elapsed =
+    std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+std::cout << "millisec = " << elapsed.count() << endl;$0
