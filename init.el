@@ -4,6 +4,8 @@
 ;; @ Init
 
 (prefer-coding-system 'utf-8-unix)
+(setq default-process-coding-system '(utf-8-unix . cp932))
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
