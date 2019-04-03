@@ -232,14 +232,25 @@
 
   (beacon-mode 1))
 
-;; (use-package highlight-indent-guides
-;;   :ensure t
-;;   :hook
-;;   ((python-mode c++-mode lisp-mode yaml-mode) . highlight-indent-guides-mode)
-;;   :custom
-;;   (highlight-indent-guides-auto-enabled t)
-;;   (highlight-indent-guides-responsive t)
-;;   (highlight-indent-guides-method 'character)) ; column
+(use-package highlight-indent-guides
+  :ensure t
+  :hook
+  (prog-mode . highlight-indent-guides-mode)
+  ;; :hook
+  ;; ((python-mode c++-mode lisp-mode emacs-lisp-mode yaml-mode) . highlight-indent-guides-mode)
+  :custom
+  ;; (highlight-indent-guides-method 'fill)
+  (highlight-indent-guides-method 'column)
+  (highlight-indent-guides-auto-enabled t)
+  ;; (highlight-indent-guides-responsive t)
+  ;; (highlight-indent-guides-method 'character)
+  :config
+  (message ":config highlight-indent-guides")
+  (setq highlight-indent-guides-auto-odd-face-perc 3)
+  (setq highlight-indent-guides-auto-even-face-perc 3)
+  ;; (setq highlight-indent-guides-method 'fill)
+  ;; (highlight-indent-guides-mode t)
+  )
 
 ;; (use-package yascroll
 ;;   :ensure t
@@ -450,6 +461,8 @@
 (use-package ivy
   :ensure t
   :defer t
+  ;; :custom
+  ;; (ivy-format-function 'ivy-format-function-arrow)
   :config
   (message ":config ivy")
   (setq ivy-use-virtual-buffers t)
@@ -837,16 +850,16 @@
   ;; '(helm-make-completion-method (quote ivy))
   (setq helm-make-completion-method 'ivy))
 
-(use-package highlight-indent-guides
-  :ensure t
-  :after ivy
-  ;; :defer t
-  ;; :hook
-  ;; (prog-mode . highlight-indent-guides-mode)
-  :config
-  (message ":config highlight-indent-guides")
-  (setq highlight-indent-guides-method 'character)
-  )
+;; (use-package highlight-indent-guides
+;;   :ensure t
+;;   :after ivy
+;;   ;; :defer t
+;;   ;; :hook
+;;   ;; (prog-mode . highlight-indent-guides-mode)
+;;   :config
+;;   (message ":config highlight-indent-guides")
+;;   (setq highlight-indent-guides-method 'character)
+;;   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Edit
