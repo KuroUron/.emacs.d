@@ -8,6 +8,41 @@
 #include <map>
 #include <algorithm>
 
+using llong = long long;
+
+static const int IINF = 1 << 30;
+static const long long LINF = 1LL << 60;
+
+template <typename T> std::vector<T> vectors(std::size_t n, T val) {
+  return std::vector<T>(n, val);
+}
+
+template <typename T, typename... Args>
+auto vectors(std::size_t n, Args... args) {
+  return std::vector<decltype(vectors<T>(args...))>(n, vectors<T>(args...));
+}
+
+template <class T> inline bool chmax(T &a, const T &b) {
+  if (a < b) {
+    a = b;
+    return true;
+  }
+  return false;
+}
+
+template <class T> inline bool chmin(T &a, const T &b) {
+  if (a > b) {
+    a = b;
+    return true;
+  }
+  return false;
+}
+
+template <class T> inline void chadd(T &a, const T &b) {
+  a += b;
+  a &= MOD;
+}
+
 int main()
 {
   // Input
