@@ -3,7 +3,9 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
 
-(prefer-coding-system 'utf-8)
+(prefer-coding-system 'utf-8-unix)
+(setq default-process-coding-system '(utf-8-unix . cp932))
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -809,23 +811,23 @@
   (define-key realgud:shortkey-mode-map (kbd "p") 'my-realgud-print)
   )
 
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :hook
-;;   (c++-mode . lsp)
-;;   :config
-;;   (message ":config lsp-mode")
-;;   ;; (require 'lsp-clients)
-;;   ;; (setq lsp-auto-guess-root t)
-;;   ;; (setq lsp-prefer-flymake 'flymake)
-;;   ;; (lsp-prefer-flymake 'flymake)
+(use-package lsp-mode
+  :ensure t
+  :hook
+  (c++-mode . lsp)
+  :config
+  (message ":config lsp-mode")
+  ;; (require 'lsp-clients)
+  ;; (setq lsp-auto-guess-root t)
+  ;; (setq lsp-prefer-flymake 'flymake)
+  ;; (lsp-prefer-flymake 'flymake)
 
-;;   (use-package lsp-ui
-;;     :ensure t
-;;     :config
-;;     (message ":config lsp-ui")
-;;     )
-;;   )
+  (use-package lsp-ui
+    :ensure t
+    :config
+    (message ":config lsp-ui")
+    )
+  )
 
 (use-package helm-make
   :ensure t
@@ -1104,21 +1106,3 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (cmake-mode ddskk yascroll yasnippet writeroom-mode which-key volatile-highlights use-package smooth-scroll realgud rainbow-mode rainbow-delimiters pt nyan-mode neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline counsel company-box clang-format blacken beacon anzu all-the-icons-ivy))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(git-gutter:added ((t (:background "#50fa7b" :foreground "black"))))
- '(git-gutter:deleted ((t (:background "#ff79c6" :foreground "black"))))
- '(git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
- '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold))))
- '(realgud-bp-line-enabled-face ((t (:underline "red")))))
