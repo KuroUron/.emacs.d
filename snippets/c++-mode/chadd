@@ -2,7 +2,4 @@
 # name: chadd
 # key: chadd
 # --
-template <class T> inline void chadd(T &a, const T &b) {
-  a += b;
-  a &= MOD;
-}$0
+template <class T> inline void chadd(T &a, const T &b) { a += b, a &= MOD; }$0
