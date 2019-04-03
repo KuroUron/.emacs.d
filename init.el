@@ -174,22 +174,22 @@
 ;;   (vhl/install-extension 'evil)
 ;;   )
 
-;; (use-package fill-column-indicator
-;;   :ensure t
-;;   ;; :defer t
-;;   :after ivy
-;;   :config
-;;   (message ":config fill-column-indicator")
-;;   (define-globalized-minor-mode global-fci-mode
-;;     fci-mode (lambda () (fci-mode 1)))
-;;   (global-fci-mode 1)
-;;   ;; (fci-mode 1)
-;;   ;; (setq fci-rule-color "#1C1C1C")
-;;   ;; (setq fci-rule-color "#3f444a")       ; same as line number color
-;;   (setq fci-rule-color "#373B47")       ; same as doom modeline color
-;;   (setq fci-rule-column 88)
-;;   ;; (setq fci-rule-column 80)
-;;   )
+(use-package fill-column-indicator
+  :ensure t
+  ;; :defer t
+  :after ivy
+  :config
+  (message ":config fill-column-indicator")
+  (define-globalized-minor-mode global-fci-mode
+    fci-mode (lambda () (fci-mode 1)))
+  (global-fci-mode 1)
+  ;; (fci-mode 1)
+  ;; (setq fci-rule-color "#1C1C1C")
+  ;; (setq fci-rule-color "#3f444a")       ; same as line number color
+  (setq fci-rule-color "#373B47")       ; same as doom modeline color
+  (setq fci-rule-column 88)
+  ;; (setq fci-rule-column 80)
+  )
 
 (use-package whitespace
   :ensure t
