@@ -174,22 +174,22 @@
 ;;   (vhl/install-extension 'evil)
 ;;   )
 
-(use-package fill-column-indicator
-  :ensure t
-  ;; :defer t
-  :after ivy
-  :config
-  (message ":config fill-column-indicator")
-  (define-globalized-minor-mode global-fci-mode
-    fci-mode (lambda () (fci-mode 1)))
-  (global-fci-mode 1)
-  ;; (fci-mode 1)
-  ;; (setq fci-rule-color "#1C1C1C")
-  ;; (setq fci-rule-color "#3f444a")       ; same as line number color
-  (setq fci-rule-color "#373B47")       ; same as doom modeline color
-  (setq fci-rule-column 88)
-  ;; (setq fci-rule-column 80)
-  )
+;; (use-package fill-column-indicator
+;;   :ensure t
+;;   ;; :defer t
+;;   :after ivy
+;;   :config
+;;   (message ":config fill-column-indicator")
+;;   (define-globalized-minor-mode global-fci-mode
+;;     fci-mode (lambda () (fci-mode 1)))
+;;   (global-fci-mode 1)
+;;   ;; (fci-mode 1)
+;;   ;; (setq fci-rule-color "#1C1C1C")
+;;   ;; (setq fci-rule-color "#3f444a")       ; same as line number color
+;;   (setq fci-rule-color "#373B47")       ; same as doom modeline color
+;;   (setq fci-rule-column 88)
+;;   ;; (setq fci-rule-column 80)
+;;   )
 
 (use-package whitespace
   :ensure t
@@ -665,7 +665,17 @@
   ;; :defer t                                ; TODO
   :commands (magit magit-status)
   :config
-  (message ":config magit"))
+  (message ":config magit")
+  )
+
+;; (use-package magithub
+;;   :ensure t
+;;   :after magit
+;;   :config
+;;   (message ":config magithub")
+;;   (magithub-feature-autoinject t)
+;;   (setq magithub-clone-default-directory "~/github")
+;;   )
 
 (use-package imenu-list
   :ensure t
@@ -929,7 +939,17 @@
   )
 
 (use-package pt
-  :ensure t)
+  :ensure t
+  :config
+  (message ":config pt")
+  (define-key evil-normal-state-map (kbd "C-S-g") 'pt-regexp)
+  )
+
+(use-package ag
+  :ensure t
+  :config
+  (message ":config ag")
+  )
 
 ;; (use-package writeroom-mode
 ;;   :ensure t)
