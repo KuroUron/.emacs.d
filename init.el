@@ -918,7 +918,8 @@
 (use-package yasnippet
   :ensure t
   :hook
-  ((python-mode c++-mode c-mode) . yas-minor-mode)
+  ;; ((python-mode c++-mode c-mode) . yas-minor-mode)
+  (prog-mode . yas-minor-mode)
   :config
   (message ":config yasnippet")
   (yas-reload-all)
@@ -1149,3 +1150,17 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ag yasnippet yascroll writeroom-mode which-key volatile-highlights use-package smooth-scroll realgud rainbow-mode rainbow-delimiters pt nyan-mode neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline counsel company-box cmake-mode clang-format blacken beacon anzu all-the-icons-ivy))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(realgud-bp-line-enabled-face ((t (:underline "red")))))
