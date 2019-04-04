@@ -232,14 +232,25 @@
 
   (beacon-mode 1))
 
-;; (use-package highlight-indent-guides
-;;   :ensure t
-;;   :hook
-;;   ((python-mode c++-mode lisp-mode yaml-mode) . highlight-indent-guides-mode)
-;;   :custom
-;;   (highlight-indent-guides-auto-enabled t)
-;;   (highlight-indent-guides-responsive t)
-;;   (highlight-indent-guides-method 'character)) ; column
+(use-package highlight-indent-guides
+  :ensure t
+  :hook
+  (prog-mode . highlight-indent-guides-mode)
+  ;; :hook
+  ;; ((python-mode c++-mode lisp-mode emacs-lisp-mode yaml-mode) . highlight-indent-guides-mode)
+  :custom
+  ;; (highlight-indent-guides-method 'fill)
+  (highlight-indent-guides-method 'column)
+  (highlight-indent-guides-auto-enabled t)
+  (highlight-indent-guides-responsive t)
+  ;; (highlight-indent-guides-method 'character)
+  :config
+  (message ":config highlight-indent-guides")
+  (setq highlight-indent-guides-auto-odd-face-perc 3)
+  (setq highlight-indent-guides-auto-even-face-perc 3)
+  ;; (setq highlight-indent-guides-method 'fill)
+  ;; (highlight-indent-guides-mode t)
+  )
 
 ;; (use-package yascroll
 ;;   :ensure t
@@ -450,6 +461,8 @@
 (use-package ivy
   :ensure t
   :defer t
+  ;; :custom
+  ;; (ivy-format-function 'ivy-format-function-arrow)
   :config
   (message ":config ivy")
   (setq ivy-use-virtual-buffers t)
@@ -652,7 +665,17 @@
   ;; :defer t                                ; TODO
   :commands (magit magit-status)
   :config
-  (message ":config magit"))
+  (message ":config magit")
+  )
+
+;; (use-package magithub
+;;   :ensure t
+;;   :after magit
+;;   :config
+;;   (message ":config magithub")
+;;   (magithub-feature-autoinject t)
+;;   (setq magithub-clone-default-directory "~/github")
+;;   )
 
 (use-package imenu-list
   :ensure t
@@ -811,23 +834,23 @@
   (define-key realgud:shortkey-mode-map (kbd "p") 'my-realgud-print)
   )
 
-(use-package lsp-mode
-  :ensure t
-  :hook
-  (c++-mode . lsp)
-  :config
-  (message ":config lsp-mode")
-  ;; (require 'lsp-clients)
-  ;; (setq lsp-auto-guess-root t)
-  ;; (setq lsp-prefer-flymake 'flymake)
-  ;; (lsp-prefer-flymake 'flymake)
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :hook
+;;   (c++-mode . lsp)
+;;   :config
+;;   (message ":config lsp-mode")
+;;   ;; (require 'lsp-clients)
+;;   ;; (setq lsp-auto-guess-root t)
+;;   ;; (setq lsp-prefer-flymake 'flymake)
+;;   ;; (lsp-prefer-flymake 'flymake)
 
-  (use-package lsp-ui
-    :ensure t
-    :config
-    (message ":config lsp-ui")
-    )
-  )
+;;   (use-package lsp-ui
+;;     :ensure t
+;;     :config
+;;     (message ":config lsp-ui")
+;;     )
+;;   )
 
 (use-package helm-make
   :ensure t
@@ -837,16 +860,16 @@
   ;; '(helm-make-completion-method (quote ivy))
   (setq helm-make-completion-method 'ivy))
 
-(use-package highlight-indent-guides
-  :ensure t
-  :after ivy
-  ;; :defer t
-  ;; :hook
-  ;; (prog-mode . highlight-indent-guides-mode)
-  :config
-  (message ":config highlight-indent-guides")
-  (setq highlight-indent-guides-method 'character)
-  )
+;; (use-package highlight-indent-guides
+;;   :ensure t
+;;   :after ivy
+;;   ;; :defer t
+;;   ;; :hook
+;;   ;; (prog-mode . highlight-indent-guides-mode)
+;;   :config
+;;   (message ":config highlight-indent-guides")
+;;   (setq highlight-indent-guides-method 'character)
+;;   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Edit
@@ -916,7 +939,17 @@
   )
 
 (use-package pt
-  :ensure t)
+  :ensure t
+  :config
+  (message ":config pt")
+  (define-key evil-normal-state-map (kbd "C-S-g") 'pt-regexp)
+  )
+
+(use-package ag
+  :ensure t
+  :config
+  (message ":config ag")
+  )
 
 ;; (use-package writeroom-mode
 ;;   :ensure t)

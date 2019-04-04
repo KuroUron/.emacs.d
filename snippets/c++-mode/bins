@@ -1,0 +1,16 @@
+# key: bins
+# name: bins
+# --
+// Compute max-ok or min-ok by binary search
+// ng = -1 or N
+// ok = -1 or N
+int ng;
+int ok;
+while (abs(ok - ng) > 1) {
+  int mid = (ok + ng) / 2;
+  if (isOK(mid))
+    ok = mid;
+  else
+    ng = mid;
+}
+assert(abs(ok - ng) == 1);$0

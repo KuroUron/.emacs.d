@@ -1,5 +1,6 @@
-# key: vectors
-# name: vectors
+# -*- mode: snippet -*-
+# name: vecs
+# key: vecs
 # --
 template <typename T> std::vector<T> vectors(std::size_t n, T val) {
   return std::vector<T>(n, val);

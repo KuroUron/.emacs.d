@@ -2,7 +2,6 @@
 # name: chmax
 # key: chmax
 # --
-template <class T> inline void chmax(T &a, const T &b) {
-  if (a < b)
-    a = b;
+template <class T> inline bool chmax(T &a, const T &b) {
+  return (a < b) ? a = b, true : false;
 }$0
