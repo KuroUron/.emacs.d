@@ -6,12 +6,12 @@
 #
 # Debug build
 # \`\`\`
-# $ cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++ -G "MSYS Makefiles" ..
+# cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++ -G "MSYS Makefiles" ..
 # \`\`\`
 #
 # Release build
 # \`\`\`
-# $ cmake -DCMAKE_CXX_COMPILER=g++ -G "MSYS Makefiles" ..
+# cmake -DCMAKE_CXX_COMPILER=g++ -G "MSYS Makefiles" ..
 # \`\`\`
 
 cmake_minimum_required(VERSION 3.2)
