@@ -476,7 +476,9 @@
   :config
   (message ":config ivy")
   (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-height 30)
   (ivy-mode 1)
   )
 
@@ -552,6 +554,7 @@
   (message ":config swiper")
   ;; :bind (("C-s" . swiper)
   ;;        ("C-r" . swiper))
+  ;; (defvar swiper-include-line-number-in-search t) ;; line-number search
   )
 
 (use-package company
