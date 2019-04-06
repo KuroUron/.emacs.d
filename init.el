@@ -15,6 +15,7 @@
   (package-install 'use-package)
   )
 
+
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (toggle-scroll-bar 0)
