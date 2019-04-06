@@ -2,11 +2,11 @@
 # name: ctemp
 # key: ctemp
 # --
-#include <iostream>
-#include <cassert>
-#include <vector>
-#include <map>
 #include <algorithm>
+#include <cassert>
+#include <iostream>
+#include <map>
+#include <vector>
 
 static const int IINF = 1 << 30;
 static const long long LINF = 1LL << 60;
@@ -33,8 +33,7 @@ template <class T> inline bool chmax(T &a, const T &b) {
 
 template <class T> inline void chadd(T &a, const T &b) { a += b, a &= MOD; }
 
-int main()
-{
+int main() {
   // Input
 
   // Main
