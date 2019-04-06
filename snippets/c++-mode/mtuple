@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mtuple
+# key: mtuple
+# --
+std::make_tuple($0)
