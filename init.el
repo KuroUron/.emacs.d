@@ -679,6 +679,8 @@
   :commands (magit magit-status)
   :config
   (message ":config magit")
+  (define-key magit-status-mode-map (kbd "SPC") nil)
+  (define-key magit-log-mode-map (kbd "SPC") nil)
   )
 
 ;; (use-package magithub
