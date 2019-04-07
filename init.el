@@ -817,6 +817,22 @@
   (message ":config: markdown-mode")
   )
 
+(use-package graphviz-dot-mode
+  :ensure t
+  :mode (("\\.dot" . graphviz-dot-mode))
+  :config
+  (message ":config graphviz-dot-mode")
+
+  (add-hook
+   'graphviz-dot-mode-hook
+   '(lambda ()
+      (set (make-local-variable 'compile-command)
+           (format "dot -Tsvg %s -o %s.svg"
+                   (file-name-nondirectory buffer-file-name)
+                   (file-name-base)
+                   ))))
+  )
+
 ;; (use-package flymd
 ;;   :ensure t
 ;;   :config
