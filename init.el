@@ -702,6 +702,18 @@
   (message ":config imenu-list")
   )
 
+(use-package f90
+  :mode (("\\.f90" . f90-mode))
+  :config
+  (message ":config f90")
+
+  (add-hook
+   'f90-mode-hook
+   '(lambda ()
+      (set (make-local-variable 'compile-command)
+           (format "gfortran %s" (file-name-nondirectory buffer-file-name)))))
+  )
+
 (use-package cc-mode
   :mode (("\\.cpp" . c++-mode)
          ("\\.cc" . c++-mode)
@@ -715,7 +727,6 @@
      (set (make-local-variable 'compile-command)
           (format "g++ -Wall -Wextra -std=c++14 %s"
                   (file-name-nondirectory buffer-file-name)))))
-
 
   (use-package clang-format
     :ensure t
