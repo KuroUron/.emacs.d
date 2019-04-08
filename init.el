@@ -4,7 +4,8 @@
 ;; @ Init
 
 (prefer-coding-system 'utf-8-unix)
-(setq default-process-coding-system '(utf-8-unix . cp932))
+;; (setq default-process-coding-system '(utf-8-unix . cp932))
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -478,7 +479,17 @@
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-height 30)
+  ;; (setq ivy-height 60)
+
+  ;; (add-to-list 'ivy-height-alist
+  ;;              (cons 'counsel-find-file
+  ;;                    (lambda (_caller)
+  ;;                      (/ (frame-height) 2))))
+
+  (setq ivy-height-alist
+        '((t lambda (_caller)
+             (/ (frame-height) 2))))
+
   (ivy-mode 1)
   )
 
@@ -495,6 +506,7 @@
         (if (symbolp icon)
             (all-the-icons-icon-for-mode 'fundamental-mode)
           icon))))
+
   (setq ivy-rich--display-transformers-list
         '(ivy-switch-buffer
           (:columns
