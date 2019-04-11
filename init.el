@@ -1,4 +1,5 @@
 ;; TODO set-mark-command-repeat-pop の振る舞いを変更 (my-space-map ?)
+;; TODO ivy から helm に戻したので遅延評価が修正する
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
@@ -279,11 +280,13 @@
 
   ;; evil-normal-state-map
   ;; (define-key evil-motion-state-map (kbd "<tab>") nil)  ; TODO
+  (define-key evil-normal-state-map (kbd "M-x") 'helm-M-x)
   (define-key evil-normal-state-map (kbd "M-p")
     '(lambda () (interactive) (evil-scroll-line-down 5)))
   (define-key evil-normal-state-map (kbd "M-n")
     '(lambda () (interactive) (evil-scroll-line-up 5)))
-  (define-key evil-normal-state-map (kbd "s") 'swiper)
+  (define-key evil-normal-state-map (kbd "s") 'swiper-helm)
+  ;; (define-key evil-normal-state-map (kbd "s") 'swiper)
   (define-key evil-normal-state-map (kbd "m")
     '(lambda ()
        "Mark a word around the cursor."
@@ -333,6 +336,7 @@
   (define-key evil-normal-state-map (kbd "`") 'my-cd-current-file-directory)
 
   ;; ;; evil-insert-state-map
+  (define-key evil-insert-state-map (kbd "M-x") 'helm-M-x)
   (define-key evil-insert-state-map (kbd "M-h") 'backward-kill-word)
   (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
   (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
@@ -341,6 +345,7 @@
   (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
   (define-key evil-insert-state-map (kbd "C-w") 'kill-region)
   (define-key evil-insert-state-map (kbd "C-y") 'yank)
+  (define-key evil-insert-state-map (kbd "M-y") 'helm-show-kill-ring)
   (define-key evil-insert-state-map (kbd "C-S-p")
     '(lambda () (interactive) (previous-line 5)))
   (define-key evil-insert-state-map (kbd "C-S-n")
@@ -381,9 +386,12 @@
   ;; my-space-map
   (define-prefix-command 'my-space-map)
   (define-key evil-normal-state-map (kbd "SPC") 'my-space-map)
-  (define-key my-space-map (kbd "b") 'ivy-switch-buffer)
-  (define-key my-space-map (kbd "SPC") 'counsel-M-x)
-  (define-key my-space-map (kbd "f") 'counsel-find-file)
+  ;; (define-key my-space-map (kbd "b") 'ivy-switch-buffer)
+  (define-key my-space-map (kbd "b") 'helm-mini)
+  ;; (define-key my-space-map (kbd "SPC") 'counsel-M-x)
+  (define-key my-space-map (kbd "SPC") 'helm-M-x)
+  ;; (define-key my-space-map (kbd "f") 'counsel-find-file)
+  (define-key my-space-map (kbd "f") 'helm-find-files)
   (define-key my-space-map (kbd "rr") 'counsel-recentf)
   (define-key my-space-map (kbd "/") 'swiper)
   ;; (define-key my-space-map (kbd "l") 'recenter-top-bottom)
@@ -469,105 +477,127 @@
 ;;   (modalka-define-kbd "SPC" "C-SPC")
 ;;   )
 
-(use-package ivy
+(use-package helm
   :ensure t
-  :defer t
-  ;; :custom
-  ;; (ivy-format-function 'ivy-format-function-arrow)
   :config
-  (message ":config ivy")
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  ;; (setq ivy-height 60)
+  (message ":config helm")
 
-  ;; (add-to-list 'ivy-height-alist
-  ;;              (cons 'counsel-find-file
-  ;;                    (lambda (_caller)
-  ;;                      (/ (frame-height) 2))))
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 
-  (setq ivy-height-alist
-        '((t lambda (_caller)
-             (/ (frame-height) 2))))
+  (define-key helm-map (kbd "C-h") 'delete-backward-char)
+  ;; TODO M-h
 
-  (ivy-mode 1)
+  ;; (setq helm-split-window-in-side-p t)
+  (add-to-list 'display-buffer-alist
+               `(,(rx bos "*helm" (* not-newline) "*" eos)
+                 (display-buffer-in-side-window)
+                 (inhibit-same-window . t)
+                 (window-height . 0.5)))
+
+
+
   )
 
-(use-package ivy-rich
+(use-package swiper-helm
   :ensure t
-  :after ivy
   :config
-  (message ":config ivy-rich")
+  (message ":config swiper-helm")
 
-  (defun ivy-rich-switch-buffer-icon (candidate)
-    (with-current-buffer
-   	(get-buffer candidate)
-      (let ((icon (all-the-icons-icon-for-mode major-mode)))
-        (if (symbolp icon)
-            (all-the-icons-icon-for-mode 'fundamental-mode)
-          icon))))
+  (add-to-list 'display-buffer-alist
+               `(,(rx bos "*swiper" (* not-newline) "*" eos)
+                 (display-buffer-in-side-window)
+                 (inhibit-same-window . t)
+                 (window-height . 0.5)))
 
-  (setq ivy-rich--display-transformers-list
-        '(ivy-switch-buffer
-          (:columns
-           ((ivy-rich-switch-buffer-icon :width 2)
-            (ivy-rich-candidate (:width 30))
-            (ivy-rich-switch-buffer-size (:width 7))
-            (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-            (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-            (ivy-rich-switch-buffer-project (:width 15 :face success))
-            (ivy-rich-switch-buffer-path
-             (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path
-                                  x (ivy-rich-minibuffer-width 0.3))))))
-           :predicate
-           (lambda (cand) (get-buffer cand)))))
 
-  (setq ivy-format-function #'ivy-format-function-line)
-  (ivy-rich-mode t)
-  ;; (use-package all-the-icons-ivy
-  ;;   :ensure t
-  ;;   :config
-  ;;   (message ":config all-the-icons-ivy")
-  ;;   (all-the-icons-ivy-setup)
-  ;;   (defun ivy-rich-switch-buffer-icon (candidate)
-  ;;     (with-current-buffer
-  ;;         (get-buffer candidate)
-  ;;       (all-the-icons-icon-for-mode major-mode)))
-  ;;   (setq ivy-rich--display-transformers-list
-  ;;         '(ivy-switch-buffer
-  ;;           (:columns
-  ;;            ((ivy-rich-switch-buffer-icon :width 2)
-  ;;             (ivy-rich-candidate (:width 30))
-  ;;             (ivy-rich-switch-buffer-size (:width 7))
-  ;;             (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-  ;;             (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-  ;;             (ivy-rich-switch-buffer-project (:width 15 :face success))
-  ;;             (ivy-rich-switch-buffer-path
-  ;;              (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path
-  ;;                                   x (ivy-rich-minibuffer-width 0.3))))))
-  ;;            :predicate
-  ;;            (lambda (cand) (get-buffer cand)))))
-  ;;   (ivy-rich-mode t)
-  ;;   )
+  ;; (setq swiper-helm-display-function 'helm-default-display-buffer)
   )
 
-(use-package counsel
-  :ensure t
-  :after ivy
-  :config
-  (message ":config counsel")
-  (counsel-mode 1)
-  )
+;; (use-package helm-swoop
+;;   :ensure t
+;;   :config
+;;   (message ":config helm-swoop")
+;;   )
 
-(use-package swiper
-  :ensure t
-  :after ivy
-  :config
-  (message ":config swiper")
-  ;; :bind (("C-s" . swiper)
-  ;;        ("C-r" . swiper))
-  ;; (defvar swiper-include-line-number-in-search t) ;; line-number search
-  )
+;; (use-package ivy
+;;   :ensure t
+;;   :defer
+;;   ;; :custom
+;;   ;; (ivy-format-function 'ivy-format-function-arrow)
+;;   :config
+;;   (message ":config ivy")
+;;   (setq ivy-use-virtual-buffers t)
+;;   (setq enable-recursive-minibuffers t)
+;;   (setq ivy-count-format "(%d/%d) ")
+;;   ;; (setq ivy-height 60)
+
+;;   ;; (add-to-list 'ivy-height-alist
+;;   ;;              (cons 'counsel-find-file
+;;   ;;                    (lambda (_caller)
+;;   ;;                      (/ (frame-height) 2))))
+
+;;   (setq ivy-height-alist
+;;         '((t lambda (_caller)
+;;              (/ (frame-height) 2))))
+
+;;   ;; (add-to-list 'ivy-height-alist
+;;   ;;              (cons 'counsel-find-file
+;;   ;;                    (lambda (_caller)
+;;   ;;                      (/ (frame-height) 2))))
+
+;;   (ivy-mode 1)
+;;   )
+
+;; (use-package ivy-rich
+;;   :ensure t
+;;   :after ivy
+;;   :config
+;;   (message ":config ivy-rich")
+
+;;   (defun ivy-rich-switch-buffer-icon (candidate)
+;;     (with-current-buffer
+;;    	(get-buffer candidate)
+;;       (let ((icon (all-the-icons-icon-for-mode major-mode)))
+;;         (if (symbolp icon)
+;;             (all-the-icons-icon-for-mode 'fundamental-mode)
+;;           icon))))
+
+;;   (setq ivy-rich--display-transformers-list
+;;         '(ivy-switch-buffer
+;;           (:columns
+;;            ((ivy-rich-switch-buffer-icon :width 2)
+;;             (ivy-rich-candidate (:width 30))
+;;             (ivy-rich-switch-buffer-size (:width 7))
+;;             (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+;;             (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
+;;             (ivy-rich-switch-buffer-project (:width 15 :face success))
+;;             (ivy-rich-switch-buffer-path
+;;              (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path
+;;                                   x (ivy-rich-minibuffer-width 0.3))))))
+;;            :predicate
+;;            (lambda (cand) (get-buffer cand)))))
+
+;;   (setq ivy-format-function #'ivy-format-function-line)
+;;   (ivy-rich-mode t)
+;;   )
+
+;; (use-package counsel
+;;   :ensure t
+;;   :after ivy
+;;   :config
+;;   (message ":config counsel")
+;;   (counsel-mode 1)
+;;   )
+
+;; (use-package swiper
+;;   :ensure t
+;;   :after ivy
+;;   :config
+;;   (message ":config swiper")
+;;   ;; :bind (("C-s" . swiper)
+;;   ;;        ("C-r" . swiper))
+;;   ;; (defvar swiper-include-line-number-in-search t) ;; line-number search
+;;   )
 
 (use-package company
   :ensure t
@@ -1208,4 +1238,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(git-gutter:added ((t (:background "#50fa7b" :foreground "black"))))
+ '(git-gutter:deleted ((t (:background "#ff79c6" :foreground "black"))))
+ '(git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
+ '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold))))
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
