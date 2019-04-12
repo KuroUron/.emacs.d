@@ -503,12 +503,11 @@
   :config
   (message ":config swiper-helm")
 
-  (add-to-list 'display-buffer-alist
-               `(,(rx bos "*swiper" (* not-newline) "*" eos)
-                 (display-buffer-in-side-window)
-                 (inhibit-same-window . t)
-                 (window-height . 0.5)))
-
+  ;; (add-to-list 'display-buffer-alist
+  ;;              `(,(rx bos "*swiper" (* not-newline) "*" eos)
+  ;;                (display-buffer-in-side-window)
+  ;;                (inhibit-same-window . t)
+  ;;                (window-height . 0.5)))
 
   ;; (setq swiper-helm-display-function 'helm-default-display-buffer)
   )
