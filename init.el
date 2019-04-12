@@ -498,6 +498,13 @@
 ;;   :ensure t
 ;;   :config
 ;;   (message ":config swiper-helm")
+
+;;   (add-to-list 'display-buffer-alist
+;;                `(,(rx bos "*swiper" (* not-newline) "*" eos)
+;;                  (display-buffer-in-side-window)
+;;                  (inhibit-same-window . t)
+;;                  (window-height . 0.5)))
+;;   ;; (setq swiper-helm-display-function 'helm-default-display-buffer)
 ;;   )
 
 ;; (use-package helm-swoop
@@ -516,10 +523,21 @@
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) ")
+  ;; (setq ivy-height 60)
+
+  ;; (add-to-list 'ivy-height-alist
+  ;;              (cons 'counsel-find-file
+  ;;                    (lambda (_caller)
+  ;;                      (/ (frame-height) 2))))
 
   (setq ivy-height-alist
         '((t lambda (_caller)
              (/ (frame-height) 2))))
+
+  ;; (add-to-list 'ivy-height-alist
+  ;;              (cons 'counsel-find-file
+  ;;                    (lambda (_caller)
+  ;;                      (/ (frame-height) 2))))
 
   (ivy-mode 1)
   )
@@ -575,6 +593,29 @@
   ;;        ("C-r" . swiper))
   ;; (defvar swiper-include-line-number-in-search t) ;; line-number search
   )
+
+;; (use-package migemo
+;;   :ensure t
+;;   :config
+;;   ;; C/Migemo を使う場合は次のような設定を .emacs に加えます．
+;;   (setq migemo-command "cmigemo")
+;;   (setq migemo-options '("-q" "--emacs" "-i" "\a"))
+;;   ;; (setq migemo-dictionary "/usr/local/Cellar/cmigemo/20110227/share/migemo/utf-8/migemo-dict")  ;; 各自の辞書の在り処を指示
+;;   (setq migemo-user-dictionary nil)
+;;   (setq migemo-regex-dictionary nil)
+;;   ;; charset encoding
+;;   (setq migemo-coding-system 'utf-8-unix)
+;;   )
+
+;; (use-package avy-migemo
+;;   :ensure t
+;;   :config
+;;   (avy-migemo-mode 1)
+;;   (setq avy-timeout-seconds nil)
+;;   (require 'avy-migemo-e.g.swiper)
+;;   (global-set-key (kbd "C-M-;") 'avy-migemo-goto-char-timer)
+;;   ;;  (global-set-key (kbd "M-g m m") 'avy-migemo-mode)
+;;   )
 
 (use-package company
   :ensure t
@@ -1213,6 +1254,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(avy-migemo-function-names
+   (quote
+    (swiper--add-overlays-migemo
+     (swiper--re-builder :around swiper--re-builder-migemo-around)
+     (ivy--regex :around ivy--regex-migemo-around)
+     (ivy--regex-ignore-order :around ivy--regex-ignore-order-migemo-around)
+     (ivy--regex-plus :around ivy--regex-plus-migemo-around)
+     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full)))
  '(package-selected-packages
    (quote
     (helm ag yasnippet yascroll writeroom-mode which-key volatile-highlights use-package smooth-scroll realgud rainbow-mode rainbow-delimiters pt nyan-mode neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline counsel company-box cmake-mode clang-format blacken beacon anzu all-the-icons-ivy))))
