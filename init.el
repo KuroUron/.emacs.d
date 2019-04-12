@@ -516,21 +516,10 @@
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) ")
-  ;; (setq ivy-height 60)
-
-  ;; (add-to-list 'ivy-height-alist
-  ;;              (cons 'counsel-find-file
-  ;;                    (lambda (_caller)
-  ;;                      (/ (frame-height) 2))))
 
   (setq ivy-height-alist
         '((t lambda (_caller)
              (/ (frame-height) 2))))
-
-  ;; (add-to-list 'ivy-height-alist
-  ;;              (cons 'counsel-find-file
-  ;;                    (lambda (_caller)
-  ;;                      (/ (frame-height) 2))))
 
   (ivy-mode 1)
   )
@@ -721,6 +710,12 @@
 ;;   (magithub-feature-autoinject t)
 ;;   (setq magithub-clone-default-directory "~/github")
 ;;   )
+
+(use-package monky
+  :ensure t
+  :config
+  (message ":config monky")
+  )
 
 (use-package imenu-list
   :ensure t
