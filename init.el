@@ -563,6 +563,7 @@
   :config
   (message ":config counsel")
   (counsel-mode 1)
+  (define-key counsel-find-file-map (kbd "C-l") 'backward-kill-word)
   )
 
 (use-package swiper
