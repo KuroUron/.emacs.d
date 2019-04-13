@@ -1249,29 +1249,3 @@
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;; @ auto
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(avy-migemo-function-names
-   (quote
-    (swiper--add-overlays-migemo
-     (swiper--re-builder :around swiper--re-builder-migemo-around)
-     (ivy--regex :around ivy--regex-migemo-around)
-     (ivy--regex-ignore-order :around ivy--regex-ignore-order-migemo-around)
-     (ivy--regex-plus :around ivy--regex-plus-migemo-around)
-     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full)))
- '(package-selected-packages
-   (quote
-    (helm ag yasnippet yascroll writeroom-mode which-key volatile-highlights use-package smooth-scroll realgud rainbow-mode rainbow-delimiters pt nyan-mode neotree minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme git-gutter flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline counsel company-box cmake-mode clang-format blacken beacon anzu all-the-icons-ivy))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(git-gutter:added ((t (:background "#50fa7b" :foreground "black"))))
- '(git-gutter:deleted ((t (:background "#ff79c6" :foreground "black"))))
- '(git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
- '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold))))
- '(realgud-bp-line-enabled-face ((t (:underline "red")))))
