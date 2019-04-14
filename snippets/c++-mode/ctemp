@@ -29,7 +29,10 @@ template <class T> inline bool chmax(T &a, const T &b) {
   return (a < b) ? a = b, true : false;
 }
 
-template <class T> inline void chadd(T &a, const T &b) { a += b, a %= MOD; }
+template <class T> inline void chadd(T &a, const T &b) {
+  a += b, a %= MOD;
+  // TODO minus case
+}
 
 template <class T>
 std::ostream &operator<<(std::ostream &s, const std::vector<T> &v) {
