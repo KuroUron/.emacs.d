@@ -900,6 +900,49 @@
                    ))))
   )
 
+(use-package yatex
+  :ensure t
+  :mode (("\\.tex" . yatex-mode))
+  :config
+  (message ":config yatex")
+
+  (defun my-typeset-and-dvi2pdf ()
+    (interactive)
+    (let ((mycommand
+           (format "platex.exe %s.tex && dvipdfmx.exe %s.dvi"
+                   (file-name-base) (file-name-base))))
+      (save-buffer)
+      (async-shell-command mycommand)
+      ))
+
+  (defun my-typeset ()
+    (interactive)
+    (let ((cmd (format "platex.exe %s.tex && dvipdfmx.exe %s.dvi"
+                       (file-name-base) (file-name-base))))
+      (save-excursion
+        (other-window 1)
+        (insert cmd)
+        (other-window 1)
+        )
+      )
+    )
+
+  (defun my-display-pdf ()
+    (interactive)
+    (let* ((mycommand
+            (format "sumatrapdf.exe %s.pdf" (file-name-base))))
+      (async-shell-command mycommand)
+      ;; (delete-other-windows)
+      ))
+
+  (define-key evil-normal-state-map (kbd "C-j") 'my-typeset-and-dvi2pdf)
+  (define-key evil-normal-state-map (kbd "C-S-j") 'my-display-pdf)
+
+  (defun input-label()
+    (interactive)
+    (insert (format-time-string "%Y%m%d%H%M%S" (current-time))))
+  )
+
 ;; (use-package flymd
 ;;   :ensure t
 ;;   :config
@@ -1018,7 +1061,7 @@
   :ensure t
   :hook
   ;; ((python-mode c++-mode c-mode) . yas-minor-mode)
-  (prog-mode . yas-minor-mode)
+  ((prog-mode yatex-mode) . yas-minor-mode)
   :config
   (message ":config yasnippet")
   (yas-reload-all)
