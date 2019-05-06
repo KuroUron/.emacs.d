@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: tpl
+# key: tpl
+# --
+std::tuple<$0>

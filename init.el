@@ -278,8 +278,9 @@
   ;; (setq evil-insert-state-cursor ("dark red" . 2))
 
   ;; evil-normal-state-map
-  ;; (define-key evil-motion-state-map (kbd "<tab>") nil)  ; TODO
   ;; (define-key evil-normal-state-map (kbd "M-x") 'helm-M-x)
+  (define-key evil-normal-state-map (kbd "J") 'nil)
+  (define-key evil-normal-state-map (kbd "K") 'nil)
   (define-key evil-normal-state-map (kbd "M-p")
     '(lambda () (interactive) (evil-scroll-line-down 5)))
   (define-key evil-normal-state-map (kbd "M-n")
@@ -358,6 +359,20 @@
   (define-key evil-insert-state-map (kbd "M-n")
     '(lambda () (interactive) (evil-scroll-line-up 5)))
 
+  ;; evil-motion-state-map
+  (define-key evil-motion-state-map (kbd "SPC") 'my-space-map)
+  ;; (define-key evil-motion-state-map (kbd "<tab>") nil)  ; TODO
+  (define-key evil-motion-state-map (kbd "J")
+    '(lambda () (interactive) (next-line 5)))
+  (define-key evil-motion-state-map (kbd "K")
+    '(lambda () (interactive) (previous-line 5)))
+
+  ;; ;; evil-visual-state-map
+  ;; (define-key evil-visual-state-map (kbd "J")
+  ;;   '(lambda () (interactive) (evil-next-line 5)))
+  ;; (define-key evil-visual-state-map (kbd "K")
+  ;;   '(lambda () (interactive) (evil-previous-line 5)))
+
   ;; Inactivation SPC key for my-space-map
   (add-hook 'compilation-mode-hook
             '(lambda ()
@@ -380,7 +395,6 @@
   ;;              (define-key compilation-mode-map (kbd "SPC") nil))
   ;;           )
   ;; (define-key undo-tree-visualizer-mode-map (kbd "SPC") 'my-space-map)
-  (define-key evil-motion-state-map (kbd "SPC") 'my-space-map)
 
   ;; my-space-map
   (define-prefix-command 'my-space-map)

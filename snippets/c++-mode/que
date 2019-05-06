@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: que
+# key: que
+# --
+std::queue<$0>
