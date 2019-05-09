@@ -1154,7 +1154,9 @@
   :ensure t
   :after ivy
   :custom-face
-  (hl-todo ((t (:inherit nil :foreground "#ff6c6b" :box 1 :weight bold))))
+  (hl-todo ((t (:inherit nil :foreground "#ff6c6b"
+                         ;; :box 1
+                         :weight bold))))
   :config
   (message ":config hl-todo")
   (global-hl-todo-mode t)

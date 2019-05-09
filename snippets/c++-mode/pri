@@ -2,4 +2,4 @@
 # name: pri
 # key: pri
 # --
-printf("$0");
+std::printf("$0");
