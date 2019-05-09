@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sptr
+# key: sptr
+# --
+std::shared_ptr<$0>
