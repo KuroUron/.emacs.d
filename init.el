@@ -880,6 +880,22 @@
     'my-python-async-shell-command)
   )
 
+(use-package ess
+  :ensure t
+  :mode (("\\.R" . ess-r-mode))
+  :config
+  (message ":config ess")
+
+  (defun my-r-run ()
+    (interactive)
+    (let ((command (concat "Rscript " (file-name-base) ".R")))
+      (save-buffer)
+      (async-shell-command command)
+      ))
+  (evil-define-key 'normal ess-r-mode-map (kbd "C-j") 'my-r-run)
+
+  )
+
 (use-package elisp-format
   :ensure t
   :commands (elisp-format-region)
