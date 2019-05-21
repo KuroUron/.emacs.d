@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: log2
+# key: log2
+# --
+std::log2($0)
