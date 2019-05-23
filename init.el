@@ -421,10 +421,12 @@
                                         (other-window 1)
                                         (evil-force-normal-state)
                                         ))
-  (define-key my-space-map (kbd "ns") 'neotree-show)
-  (define-key my-space-map (kbd "nh") 'neotree-hide)
-  (define-key my-space-map (kbd "nt") 'neotree-toggle)
-  (define-key my-space-map (kbd "nr") 'neotree-refresh)
+  ;; (define-key my-space-map (kbd "ns") 'neotree-show)
+  ;; (define-key my-space-map (kbd "nh") 'neotree-hide)
+  ;; (define-key my-space-map (kbd "nt") 'neotree-toggle)
+  ;; (define-key my-space-map (kbd "nr") 'neotree-refresh)
+  (define-key my-space-map (kbd "n") 'dumb-jump-go)
+  (define-key my-space-map (kbd "N") 'dumb-jump-back)
   (define-key my-space-map (kbd "cc") 'compile)
   (define-key my-space-map (kbd "cm") 'helm-make)
   (define-key my-space-map (kbd "rg") 'realgud:gdb)
@@ -432,7 +434,7 @@
   (define-key my-space-map (kbd "@") 'my-cd-current-file-directory)
   (define-key my-space-map (kbd "tf") 'toggle-frame-fullscreen)
   (define-key my-space-map (kbd "uo") 'toggle-frame-fullscreen)
-  (define-key my-space-map (kbd "J") 'smooth-scroll/scroll-up)
+  ;; (define-key my-space-map (kbd "J") 'smooth-scroll/scroll-up)
   (define-key my-space-map (kbd "dk") 'describe-key)
   (define-key my-space-map (kbd "dv") 'describe-variable)
   (define-key my-space-map (kbd "df") 'describe-function)
@@ -693,29 +695,29 @@
   ;;   :ensure t)
   )
 
-(use-package neotree
-  :ensure t
-  :defer
-  ;; :commands (neotree-show)
-  ;; :after
-  ;; projectile
-  ;; :hook
-  ;; (ivy-mode . neotree-show)
-  ;; (find-file . neotree-refresh)
-  ;; :commands
-  ;; (neotree-show neotree-hide neotree-dir neotree-find)
-  :config
-  (message ":config neotree")
-  (add-hook 'neotree-mode-hook '(lambda ()
-                                  (display-line-numbers-mode 0)
-                                  (text-scale-decrease 1)
-                                  ))
-  (setq neo-show-hidden-files t)
-  (setq neo-theme 'icons)
-  (setq neo-window-fixed-size nil)
-  (setq neo-window-width 20)
-  ;; (neo-theme 'nerd2)
-  )
+;; (use-package neotree
+;;   :ensure t
+;;   :defer
+;;   ;; :commands (neotree-show)
+;;   ;; :after
+;;   ;; projectile
+;;   ;; :hook
+;;   ;; (ivy-mode . neotree-show)
+;;   ;; (find-file . neotree-refresh)
+;;   ;; :commands
+;;   ;; (neotree-show neotree-hide neotree-dir neotree-find)
+;;   :config
+;;   (message ":config neotree")
+;;   (add-hook 'neotree-mode-hook '(lambda ()
+;;                                   (display-line-numbers-mode 0)
+;;                                   (text-scale-decrease 1)
+;;                                   ))
+;;   (setq neo-show-hidden-files t)
+;;   (setq neo-theme 'icons)
+;;   (setq neo-window-fixed-size nil)
+;;   (setq neo-window-width 20)
+;;   ;; (neo-theme 'nerd2)
+;;   )
 
 (use-package minimap
   :ensure t
@@ -1052,6 +1054,16 @@
 ;;   (message ":config highlight-indent-guides")
 ;;   (setq highlight-indent-guides-method 'character)
 ;;   )
+
+(use-package dumb-jump
+  :ensure t
+  :config
+  (message ":config dumb-jump")
+  (setq dumb-jump-selector 'ivy)
+
+  ;; (define-key evil-normal-state-map (kbd "") 'dumb-jump-go)
+  ;; (define-key evil-normal-state-map (kbd "") 'dumb-jump-back)
+  )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Edit
