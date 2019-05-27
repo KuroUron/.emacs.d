@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ssort
+# key: ssort
+# --
+std::stable_sort($0)
