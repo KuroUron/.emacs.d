@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: uint
+# key: uint
+# --
+unsigned int$0

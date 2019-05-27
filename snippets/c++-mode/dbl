@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dbl
+# key: dbl
+# --
+double$0
