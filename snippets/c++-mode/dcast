@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dcast
+# key: dcast
+# --
+dynamic_cast<$0>
