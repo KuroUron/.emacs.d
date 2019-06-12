@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: htemp
+# key: htemp
+# --
+#ifndef PROJECT_DIRECTORY_SOURCE_HPP_
+#define PROJECT_DIRECTORY_SOURCE_HPP_
+$0
+#endif // PROJECT_DIRECTORY_SOURCE_HPP_
