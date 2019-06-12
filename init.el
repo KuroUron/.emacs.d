@@ -746,6 +746,40 @@
       (t (:background "#C847D8FEFFFF"))) :group 'minimap))
   )
 
+(use-package google-translate
+  :ensure t
+  :after ivy
+  :config
+  (message ":config google-translate")
+  (defvar google-translate-english-chars "[:ascii:]’“”–"
+    "When these characters are included, it is considered as English")
+  (defun google-translate-enja-or-jaen (&optional string)
+    "Google translates the region or the current sentence by automatic language detection."
+    (interactive)
+    (setq string
+          (cond ((stringp string) string)
+                (current-prefix-arg
+                 (read-string "Google Translate: "))
+                ((use-region-p)
+                 (buffer-substring (region-beginning) (region-end)))
+                (t
+                 (save-excursion
+                   (let (s)
+                     (forward-char 1)
+                     (backward-sentence)
+                     (setq s (point))
+                     (forward-sentence)
+                     (buffer-substring s (point)))))))
+    (let* ((asciip (string-match
+                    (format "\\`[%s]+\\'" google-translate-english-chars)
+                    string)))
+      (run-at-time 0.1 nil 'deactivate-mark)
+      (google-translate-translate
+       (if asciip "en" "ja")
+       (if asciip "ja" "en")
+       string)))
+  )
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
 
