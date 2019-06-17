@@ -1386,3 +1386,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
+(put 'upcase-region 'disabled nil)

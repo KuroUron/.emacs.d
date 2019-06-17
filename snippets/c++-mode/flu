@@ -2,4 +2,4 @@
 # name: flu
 # key: flu
 # --
-fflush(stdout);$0
+std::fflush(stdout);$0
