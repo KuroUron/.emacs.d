@@ -868,6 +868,15 @@
   :mode (("CMakeLists.txt" . cmake-mode))
   :config
   (message ":config cmake-mode")
+
+  (defun my-cmake-run ()
+    (interactive)
+    (let ((command (concat "cmake -P " (file-name-base) ".cmake")))
+      (save-buffer)
+      (async-shell-command command)
+      ))
+  (evil-define-key 'normal cmake-mode-map (kbd "C-j") 'my-cmake-run)
+
   )
 
 (use-package python
