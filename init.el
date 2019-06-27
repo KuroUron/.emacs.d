@@ -868,6 +868,15 @@
   :mode (("CMakeLists.txt" . cmake-mode))
   :config
   (message ":config cmake-mode")
+
+  (defun my-cmake-run ()
+    (interactive)
+    (let ((command (concat "cmake -P " (file-name-base) ".cmake")))
+      (save-buffer)
+      (async-shell-command command)
+      ))
+  (evil-define-key 'normal cmake-mode-map (kbd "C-j") 'my-cmake-run)
+
   )
 
 (use-package python
@@ -1386,3 +1395,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
+(put 'upcase-region 'disabled nil)
