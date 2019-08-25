@@ -940,7 +940,14 @@
       (async-shell-command command)
       ))
   (evil-define-key 'normal ess-r-mode-map (kbd "C-j") 'my-r-run)
+  )
 
+(use-package rust-mode
+  :ensure t
+  :mode ("\\.rs" . rust-mode)
+  :config
+  (message ":config rust-mode")
+  (setq rust-format-on-save t)
   )
 
 (use-package elisp-format
