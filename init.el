@@ -1235,28 +1235,48 @@
   (global-hl-todo-mode t)
   )
 
-;; (use-package flymake
-;;   :ensure t
-;;   :defer t
-;;   :config
-;;   (message ":config flymake"))
-
-;; (use-package flymake-diagnostic-at-point
-;;   :ensure t
-;;   :after flymake
-;;   :config
-;;   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode)
-;;   )
-
-(use-package flycheck
+(use-package flymake
   :ensure t
+  :defer t
   :hook
-  ;; (after-init . global-flycheck-mode)
-  (c++-mode . flycheck-mode)
-  (python-mode . flycheck-mode)
+  (python-mode . flymake-mode)
   :config
-  (message ":config flycheck")
+  (message ":config flymake")
+
+  ;; For Python
+  (add-hook 'find-file-hook 'flymake-find-file-hook) ; ?
+  (defun flymake-pyflakes-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "pyflakes"  (list local-file))))
+
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pyflakes-init))
+
   )
+
+(use-package flymake-diagnostic-at-point
+  :ensure t
+  :after flymake
+  :custom
+  ;; (flymake-diagnostic-at-point-timer-delay 0.1)
+  (flymake-diagnostic-at-point-error-prefix "▲ ")
+  :config
+  (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode)
+  )
+
+;; (use-package flycheck
+;;   :ensure t
+;;   :hook
+;;   ;; (after-init . global-flycheck-mode)
+;;   (c++-mode . flycheck-mode)
+;;   (python-mode . flycheck-mode)
+;;   :config
+;;   (message ":config flycheck")
+;;   )
 
 ;; (use-package flycheck-posframe
 ;;   :ensure t
