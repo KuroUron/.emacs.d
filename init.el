@@ -1248,14 +1248,15 @@
 ;;   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode)
 ;;   )
 
-;; (use-package flycheck
-;;   :ensure t
-;;   :hook
-;;   ;; (after-init . global-flycheck-mode)
-;;   (c++-mode . flycheck-mode)
-;;   :config
-;;   (message ":config flycheck")
-;;   )
+(use-package flycheck
+  :ensure t
+  :hook
+  ;; (after-init . global-flycheck-mode)
+  (c++-mode . flycheck-mode)
+  (python-mode . flycheck-mode)
+  :config
+  (message ":config flycheck")
+  )
 
 ;; (use-package flycheck-posframe
 ;;   :ensure t
