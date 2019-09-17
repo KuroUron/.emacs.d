@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: base
+# key: base
+# --
+os.path.basename($0)
