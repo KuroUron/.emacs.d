@@ -927,6 +927,13 @@
     'my-python-async-shell-command)
   )
 
+(use-package rust-mode
+  :ensure t
+  ;; :mode (("\\.rs" . rust-mode))
+  :config
+  (message ":config rust-mode")
+  )
+
 (use-package ess
   :ensure t
   :mode (("\\.R" . ess-r-mode))
