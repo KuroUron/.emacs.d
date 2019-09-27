@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mp
+# key: mp
+# --
+std::make_pair($0)

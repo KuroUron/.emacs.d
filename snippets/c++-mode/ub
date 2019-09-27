@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ub
+# key: ub
+# --
+std::upper_bound($0)

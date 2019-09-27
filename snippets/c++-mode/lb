@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lb
+# key: lb
+# --
+std::lower_bound($0)
