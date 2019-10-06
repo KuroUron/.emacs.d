@@ -50,11 +50,6 @@ std::ostream &operator<<(std::ostream &s, const std::vector<T> &v) {
 }
 
 int main() {
-  // Input
-
-  // Main
-
-  // Output
 
   return 0;
 }$0
