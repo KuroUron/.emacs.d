@@ -840,6 +840,7 @@
   :config
   (message ":config cc-mode")
 
+  ;; Compile command
   (add-hook
    'c++-mode-hook
    (lambda ()
@@ -927,13 +928,6 @@
     'my-python-async-shell-command)
   )
 
-(use-package rust-mode
-  :ensure t
-  ;; :mode (("\\.rs" . rust-mode))
-  :config
-  (message ":config rust-mode")
-  )
-
 (use-package ess
   :ensure t
   :mode (("\\.R" . ess-r-mode))
@@ -955,6 +949,15 @@
   :config
   (message ":config rust-mode")
   (setq rust-format-on-save t)
+
+  ;; Compile command
+  (add-hook
+   'rust-mode-hook
+   (lambda ()
+     (set (make-local-variable 'compile-command)
+          (format "rustc %s -o a.exe"
+                  (file-name-nondirectory buffer-file-name)))))
+
   )
 
 (use-package elisp-format
@@ -1352,7 +1355,6 @@
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Other
-
 
 (add-hook
  'after-init-hook
