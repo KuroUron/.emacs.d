@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pri
+# key: pri
+# --
+println!($0)
