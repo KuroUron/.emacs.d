@@ -2,6 +2,5 @@
 # name: fin
 # key: fin
 # --
-fin = codecs.open(${1:Path}, u'r', sys.getfilesystemencoding())
-$0
-fin.close()
+with open("input.txt", "r") as fin:
+    lines = fin.readlines()$0
