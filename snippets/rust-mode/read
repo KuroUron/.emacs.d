@@ -1,0 +1,16 @@
+# key: read
+# name: read
+# --
+use std::io::Read;
+
+fn read<T: std::str::FromStr>() -> T {
+    let stdin = std::io::stdin();
+    let stdin = stdin.lock();
+    let token: String = stdin
+        .bytes()
+        .map(|c| c.expect("failed to read char") as char)
+        .skip_while(|c| c.is_whitespace())
+        .take_while(|c| !c.is_whitespace())
+        .collect();
+    token.parse().ok().expect("failed to parse token")
+}$0
