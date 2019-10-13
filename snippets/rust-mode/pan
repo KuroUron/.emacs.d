@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pan
+# key: pan
+# --
+panic!($0)
