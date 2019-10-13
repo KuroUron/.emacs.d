@@ -1,7 +1,5 @@
 # -*- mode: snippet -*-
-# name: foriN
-# key: foriN
+# name: forin
+# key: forin
 # --
-for (int i = 0; i < N; ++i) {
-    $0
-}
+for (int i = 0; i < n; ++i)$0
