@@ -1,7 +1,5 @@
 # -*- mode: snippet -*-
-# name: foriM
-# key: foriM
+# name: forim
+# key: forim
 # --
-for (int i = 0; i < M; ++i) {
-    $0
-}
+for (int i = 0; i < m; ++i)$0
