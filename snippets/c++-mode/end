@@ -1,5 +1,4 @@
-# -*- mode: snippet -*-
-# name: end
 # key: end
+# name: end
 # --
-std::endl$0
+std::endl;$0
