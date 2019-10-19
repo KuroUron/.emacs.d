@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: forkn
+# key: forkn
+# --
+for (int k = 0; k < n; ++k)$0

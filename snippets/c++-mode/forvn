@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: forvn
+# key: forvn
+# --
+for (int v = 0; v < n; ++v)$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gr
+# key: gr
+# --
+std::greater<$0>()

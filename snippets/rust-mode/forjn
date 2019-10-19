@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: forjn
+# key: forjn
+# --
+for j in 0..n {
+    $0
+}
