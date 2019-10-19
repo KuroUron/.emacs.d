@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ed
+# key: ed
+# --
+end()$0

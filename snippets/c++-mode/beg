@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: beg
+# key: beg
+# --
+begin()$0
