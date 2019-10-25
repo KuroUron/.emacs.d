@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: forjm
+# key: forjm
+# --
+for (int j = 0; j < m; ++j)$0

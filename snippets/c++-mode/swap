@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: swap
+# key: swap
+# --
+std::swap($0)

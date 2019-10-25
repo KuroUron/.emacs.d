@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: szt
+# key: szt
+# --
+std::size_t$0
