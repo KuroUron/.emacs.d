@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: min
+# key: min
+# --
+std::cmp::min($0)
