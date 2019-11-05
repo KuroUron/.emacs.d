@@ -1383,15 +1383,18 @@
     (setq scroll-preserve-screen-position t)
     (setq redisplay-dont-pause t)
     (fset 'yes-or-no-p 'y-or-n-p)
-    ;; (set-frame-font "Migu 1M-12:antialias=standard")
+
     (when (eq system-type 'windows-nt)
-      ;; (set-frame-font "Consolas-11.5")
-      ;; (set-face-attribute 'default nil :height 110)
       (set-frame-font "Migu 1M-12:antialias=standard")
+
+      ;; For surface
+      (when (equal system-name "DESKTOP-U491J4T")
+        (set-frame-font "Migu 1M-11:antialias=standard"))
       )
+
     (when (eq system-type 'gnu/linux)
-      (set-frame-font "Migu 1M-12:antialias=standard")
-      )
+      (set-frame-font "Migu 1M-12:antialias=standard"))
+
     ;; Key binding
     (define-key global-map (kbd "C-h") (kbd "DEL"))
     (define-key global-map (kbd "C-<tab>") 'dabbrev-expand)

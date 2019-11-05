@@ -2,6 +2,12 @@
 # name: ctemp
 # key: ctemp
 # --
+#![allow(dead_code)]
+#![allow(non_snake_case)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+
+use std::collections::BinaryHeap;
 use std::io::Read;
 
 const U32_LARGE: u32 = 1 << 30;
