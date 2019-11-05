@@ -2,4 +2,4 @@
 # name: endl
 # key: endl
 # --
-std::endl;$0
+std::endl$0
