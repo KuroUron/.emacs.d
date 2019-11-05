@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: setfill
+# key: setfill
+# --
+std::setfill($0)

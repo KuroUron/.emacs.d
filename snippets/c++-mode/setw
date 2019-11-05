@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: setw
+# key: setw
+# --
+std::setw($0)

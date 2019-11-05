@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: strcpy
+# key: strcpy
+# --
+std::strcpy($0)
