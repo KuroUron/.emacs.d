@@ -1395,9 +1395,13 @@
     (when (eq system-type 'gnu/linux)
       (set-frame-font "Migu 1M-12:antialias=standard"))
 
+    ;; Distinguish "C-i" and "TAB"
+    (define-key input-decode-map "\C-i" [C-i])
+
     ;; Key binding
     (define-key global-map (kbd "C-h") (kbd "DEL"))
     (define-key global-map (kbd "C-<tab>") 'dabbrev-expand)
+    (define-key global-map (kbd "<C-i>") 'dabbrev-expand)
     (global-set-key (kbd "C-8") 'start-kbd-macro)
     (global-set-key (kbd "C-9") 'end-kbd-macro)
     (global-set-key (kbd "C-0") 'call-last-kbd-macro)
