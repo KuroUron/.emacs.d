@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: strl
+# key: strl
+# --
+std::strlen($0)
