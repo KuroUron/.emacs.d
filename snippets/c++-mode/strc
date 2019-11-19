@@ -1,0 +1,4 @@
+# key: strc
+# name: strc
+# --
+std::strcpy($0)

@@ -859,7 +859,16 @@
               (list (region-beginning) (region-end))
             (list (point) (point))))
          (clang-format-region start end)
-         )))
+         ))
+    (define-key evil-normal-state-map (kbd "F")
+      '(lambda ()
+         (interactive)
+         (clang-format-buffer)
+         (save-buffer)
+         (message "\"clang-format-buffer\" and \"save-buffer\"")
+         ))
+    )
+
   ;; (use-package modern-cpp-font-lock
   ;;   :ensure t)
   )
