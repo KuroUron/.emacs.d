@@ -861,7 +861,16 @@
               (list (region-beginning) (region-end))
             (list (point) (point))))
          (clang-format-region start end)
-         )))
+         ))
+    (define-key evil-normal-state-map (kbd "F")
+      '(lambda ()
+         (interactive)
+         (clang-format-buffer)
+         (save-buffer)
+         (message "\"clang-format-buffer\" and \"save-buffer\"")
+         ))
+    )
+
   ;; (use-package modern-cpp-font-lock
   ;;   :ensure t)
   )
@@ -1440,5 +1449,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(git-gutter:added ((t (:background "#50fa7b" :foreground "black"))))
+ '(git-gutter:deleted ((t (:background "#ff79c6" :foreground "black"))))
+ '(git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
+ '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :weight bold))))
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
 (put 'upcase-region 'disabled nil)

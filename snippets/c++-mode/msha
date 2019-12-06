@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: msha
+# key: msha
+# --
+std::make_shared<$1>($0)
