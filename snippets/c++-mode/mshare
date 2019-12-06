@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mshare
+# key: mshare
+# --
+std::make_shared<$1>($0)
