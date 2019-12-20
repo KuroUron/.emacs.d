@@ -753,7 +753,7 @@
   (message ":config google-translate")
   (defvar google-translate-english-chars "[:ascii:]’“”–"
     "When these characters are included, it is considered as English")
-  (defun google-auto (&optional string)
+  (defun google-auto-translate (&optional string)
     "Google translates the region or the current sentence by automatic language detection."
     (interactive)
     (setq string
@@ -778,7 +778,7 @@
        (if asciip "en" "ja")
        (if asciip "ja" "en")
        string)))
-  (define-key evil-normal-state-map (kbd "T") 'google-auto)
+  (define-key evil-normal-state-map (kbd "T") 'google-auto-translate)
 
   )
 
@@ -982,7 +982,7 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown")
+  ;; :init (setq markdown-command "multimarkdown")
   :config
   (message ":config: markdown-mode")
   )
