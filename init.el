@@ -753,8 +753,7 @@
   (message ":config google-translate")
   (defvar google-translate-english-chars "[:ascii:]’“”–"
     "When these characters are included, it is considered as English")
-
-  (defun google-auto (&optional string)
+  (defun google-auto-translate (&optional string)
     "Google translates the region or the current sentence by automatic language detection."
     (interactive)
     (setq string
@@ -779,8 +778,7 @@
        (if asciip "en" "ja")
        (if asciip "ja" "en")
        string)))
-
-  (define-key evil-normal-state-map (kbd "T") 'google-auto)
+  (define-key evil-normal-state-map (kbd "T") 'google-auto-translate)
 
   )
 
@@ -984,7 +982,7 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown")
+  ;; :init (setq markdown-command "multimarkdown")
   :config
   (message ":config: markdown-mode")
   )
@@ -1419,8 +1417,14 @@
 
     (setq-default indent-tabs-mode nil)
     (setq-default tab-width 8)
-    (add-hook 'before-save-hook 'delete-trailing-whitespace)
     (setq set-mark-command-repeat-pop t)
+
+    ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+    (defun set-whitespace-deleter ()
+      (unless (eq major-mode 'fundamental-mode)
+        (add-hook 'before-save-hook
+                  'delete-trailing-whitespace nil t)))
+    (add-hook 'after-change-major-mode-hook 'set-whitespace-deleter)
 
     ;; Suppress warning: ad-handle-definition: ‘~’ got redefined
     (setq ad-redefinition-action 'accept)
