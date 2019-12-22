@@ -778,8 +778,8 @@
        (if asciip "en" "ja")
        (if asciip "ja" "en")
        string)))
-  (define-key evil-normal-state-map (kbd "T") 'google-auto-translate)
 
+  (define-key evil-normal-state-map (kbd "T") 'google-auto-translate)
   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
