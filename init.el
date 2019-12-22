@@ -969,6 +969,21 @@
 
   )
 
+(use-package go-mode
+  :ensure t
+  :mode ("\\.go" . go-mode)
+  :config
+  (message ":config go-mode")
+
+  ;; Compile command
+  (add-hook
+   'go-mode-hook
+   (lambda ()
+     (set (make-local-variable 'compile-command)
+          (format "go build %s"
+                  (file-name-nondirectory buffer-file-name)))))
+  )
+
 (use-package elisp-format
   :ensure t
   :commands (elisp-format-region)
