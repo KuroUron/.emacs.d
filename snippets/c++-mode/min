@@ -2,4 +2,4 @@
 # name: min
 # key: min
 # --
-minimize$0
+std::min($0)
