@@ -1431,7 +1431,7 @@
     (global-set-key (kbd "C-0") 'call-last-kbd-macro)
 
     (setq-default indent-tabs-mode nil)
-    (setq-default tab-width 8)
+    (setq-default tab-width 4)
     (setq set-mark-command-repeat-pop t)
 
     ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
