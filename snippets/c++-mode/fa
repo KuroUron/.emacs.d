@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fa
+# key: fa
+# --
+std::fabs($0)
