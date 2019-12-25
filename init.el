@@ -981,7 +981,15 @@
    (lambda ()
      (set (make-local-variable 'compile-command)
           (format "go build %s"
-                  (file-name-nondirectory buffer-file-name)))))
+                  (file-name-nondirectory buffer-file-name)))
+     (define-key evil-normal-state-map (kbd "F")
+       '(lambda ()
+          (interactive)
+          (gofmt)
+          (save-buffer)
+          (message "\"gofmt\" and \"save-buffer\"")
+          ))
+     ))
   )
 
 (use-package elisp-format
