@@ -778,8 +778,8 @@
        (if asciip "en" "ja")
        (if asciip "ja" "en")
        string)))
-  (define-key evil-normal-state-map (kbd "T") 'google-auto-translate)
 
+  (define-key evil-normal-state-map (kbd "T") 'google-auto-translate)
   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -868,6 +868,12 @@
          (message "\"clang-format-buffer\" and \"save-buffer\"")
          ))
     )
+
+  ;; (use-package clang-format+
+  ;;   :ensure t
+  ;;   :config
+  ;;   (message ":config clang-format+")
+  ;;   )
 
   ;; (use-package modern-cpp-font-lock
   ;;   :ensure t)
@@ -967,6 +973,29 @@
           (format "rustc %s -o a.exe"
                   (file-name-nondirectory buffer-file-name)))))
 
+  )
+
+(use-package go-mode
+  :ensure t
+  :mode ("\\.go" . go-mode)
+  :config
+  (message ":config go-mode")
+
+  ;; Compile command
+  (add-hook
+   'go-mode-hook
+   (lambda ()
+     (set (make-local-variable 'compile-command)
+          (format "go build %s"
+                  (file-name-nondirectory buffer-file-name)))
+     (define-key evil-normal-state-map (kbd "F")
+       '(lambda ()
+          (interactive)
+          (gofmt)
+          (save-buffer)
+          (message "\"gofmt\" and \"save-buffer\"")
+          ))
+     ))
   )
 
 (use-package elisp-format
@@ -1416,9 +1445,15 @@
     (global-set-key (kbd "C-0") 'call-last-kbd-macro)
 
     (setq-default indent-tabs-mode nil)
-    (setq-default tab-width 8)
-    (add-hook 'before-save-hook 'delete-trailing-whitespace)
+    (setq-default tab-width 4)
     (setq set-mark-command-repeat-pop t)
+
+    ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+    (defun set-whitespace-deleter ()
+      (unless (eq major-mode 'fundamental-mode)
+        (add-hook 'before-save-hook
+                  'delete-trailing-whitespace nil t)))
+    (add-hook 'after-change-major-mode-hook 'set-whitespace-deleter)
 
     ;; Suppress warning: ad-handle-definition: ‘~’ got redefined
     (setq ad-redefinition-action 'accept)
@@ -1441,7 +1476,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))))
+    (clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
