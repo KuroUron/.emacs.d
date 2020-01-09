@@ -539,21 +539,26 @@
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) ")
-  ;; (setq ivy-height 60)
-
-  ;; (add-to-list 'ivy-height-alist
-  ;;              (cons 'counsel-find-file
-  ;;                    (lambda (_caller)
-  ;;                      (/ (frame-height) 2))))
 
   (setq ivy-height-alist
         '((t lambda (_caller)
              (/ (frame-height) 2))))
 
+
   ;; (add-to-list 'ivy-height-alist
   ;;              (cons 'counsel-find-file
   ;;                    (lambda (_caller)
   ;;                      (/ (frame-height) 2))))
+
+
+  ;; (define-key counsel-find-file-map (kbd "C-x C-f")
+  ;;   (lambda ()
+  ;;     (interactive)
+  ;;     (ivy-set-action
+  ;;      (lambda (_x)
+  ;;        (let ((completing-read-function 'completing-read-default))
+  ;;          (call-interactively 'find-file))))
+  ;;     (ivy-done)))
 
   (ivy-mode 1)
   )
