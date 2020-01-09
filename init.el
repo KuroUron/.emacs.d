@@ -544,12 +544,10 @@
         '((t lambda (_caller)
              (/ (frame-height) 2))))
 
-
   ;; (add-to-list 'ivy-height-alist
   ;;              (cons 'counsel-find-file
   ;;                    (lambda (_caller)
   ;;                      (/ (frame-height) 2))))
-
 
   ;; (define-key counsel-find-file-map (kbd "C-x C-f")
   ;;   (lambda ()
