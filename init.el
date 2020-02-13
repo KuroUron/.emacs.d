@@ -898,6 +898,13 @@
 
   )
 
+(use-package csv-mode
+  :ensure t
+  :mode (("\\.csv" . csv-mode))
+  :config
+  (message ":config csv-mode")
+  )
+
 (use-package python
   :defer t
   :mode (("\\.py" . python-mode))
