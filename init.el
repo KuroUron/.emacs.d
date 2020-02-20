@@ -951,6 +951,14 @@
 
   (evil-define-key 'normal python-mode-map (kbd "C-S-j")
     'my-python-async-shell-command)
+
+  (evil-define-key 'normal python-mode-map (kbd "F")
+    '(lambda ()
+       (interactive)
+       (blacken-buffer)
+       (save-buffer)
+       (message "\"blacken-buffer\" and \"save-buffer\"")
+       ))
   )
 
 (use-package ess
