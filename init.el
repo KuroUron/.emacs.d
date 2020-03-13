@@ -209,6 +209,7 @@
   (set-face-foreground 'whitespace-tab "#222222")
   (set-face-underline  'whitespace-tab t)
   (set-face-background 'whitespace-tab nil)
+  (set-face-background 'whitespace-trailing "#222222")
   )
 
 (use-package beacon
