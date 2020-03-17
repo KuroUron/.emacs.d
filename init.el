@@ -209,6 +209,7 @@
   (set-face-foreground 'whitespace-tab "#222222")
   (set-face-underline  'whitespace-tab t)
   (set-face-background 'whitespace-tab nil)
+  (set-face-background 'whitespace-trailing "#222222")
   )
 
 (use-package beacon
@@ -898,6 +899,13 @@
 
   )
 
+(use-package csv-mode
+  :ensure t
+  :mode (("\\.csv" . csv-mode))
+  :config
+  (message ":config csv-mode")
+  )
+
 (use-package python
   :defer t
   :mode (("\\.py" . python-mode))
@@ -944,6 +952,14 @@
 
   (evil-define-key 'normal python-mode-map (kbd "C-S-j")
     'my-python-async-shell-command)
+
+  (evil-define-key 'normal python-mode-map (kbd "F")
+    '(lambda ()
+       (interactive)
+       (blacken-buffer)
+       (save-buffer)
+       (message "\"blacken-buffer\" and \"save-buffer\"")
+       ))
   )
 
 (use-package ess
@@ -1249,6 +1265,20 @@
   (message ":config ag")
   )
 
+(use-package highlight-symbol
+  :ensure t
+  :after ivy
+  :hook
+  (prog-mode . highlight-symbol-mode)
+  :config
+  (message ":config highlight-symbol")
+
+  ;; Key binding
+  ;; (define-key evil-normal-state-map (kbd "n") 'highlight-symbol-next)
+  ;; (define-key evil-normal-state-map (kbd "p") 'highlight-symbol-prev)
+
+  )
+
 ;; (use-package writeroom-mode
 ;;   :ensure t)
 
@@ -1434,7 +1464,9 @@
       )
 
     (when (eq system-type 'gnu/linux)
-      (set-fontset-font "fontset-default" 'japanese-jisx0208 '("Noto Sans CJK JP Medium" . "iso10646-1"))
+      (set-fontset-font "fontset-default"
+                        'japanese-jisx0208
+                        '("Noto Sans CJK JP Medium" . "iso10646-1")) ; For WSL
       (set-frame-font "Migu 1M-12:antialias=standard")
       )
 
@@ -1481,7 +1513,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))))
+    (highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
