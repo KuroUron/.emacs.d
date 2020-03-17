@@ -1434,7 +1434,9 @@
       )
 
     (when (eq system-type 'gnu/linux)
-      (set-frame-font "Migu 1M-12:antialias=standard"))
+      (set-fontset-font "fontset-default" 'japanese-jisx0208 '("Noto Sans CJK JP Medium" . "iso10646-1"))
+      (set-frame-font "Migu 1M-12:antialias=standard")
+      )
 
     ;; Distinguish "C-i" and "TAB"
     (define-key input-decode-map "\C-i" [C-i])
