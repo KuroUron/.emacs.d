@@ -1265,19 +1265,17 @@
   (message ":config ag")
   )
 
-(use-package highlight-symbol
-  :ensure t
-  :after ivy
-  :hook
-  (prog-mode . highlight-symbol-mode)
-  :config
-  (message ":config highlight-symbol")
-
-  ;; Key binding
-  ;; (define-key evil-normal-state-map (kbd "n") 'highlight-symbol-next)
-  ;; (define-key evil-normal-state-map (kbd "p") 'highlight-symbol-prev)
-
-  )
+;; (use-package highlight-symbol
+;;   :ensure t
+;;   :after ivy
+;;   :hook
+;;   (prog-mode . highlight-symbol-mode)
+;;   :config
+;;   (message ":config highlight-symbol")
+;;   ;; Key binding
+;;   ;; (define-key evil-normal-state-map (kbd "n") 'highlight-symbol-next)
+;;   ;; (define-key evil-normal-state-map (kbd "p") 'highlight-symbol-prev)
+;;   )
 
 ;; (use-package writeroom-mode
 ;;   :ensure t)
