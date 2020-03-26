@@ -280,8 +280,8 @@
 
   ;; evil-normal-state-map
   ;; (define-key evil-normal-state-map (kbd "M-x") 'helm-M-x)
-  (define-key evil-normal-state-map (kbd "J") 'nil)
-  (define-key evil-normal-state-map (kbd "K") 'nil)
+  ;; (define-key evil-normal-state-map (kbd "J") 'nil)
+  ;; (define-key evil-normal-state-map (kbd "K") 'nil)
   (define-key evil-normal-state-map (kbd "M-p")
     '(lambda () (interactive) (evil-scroll-line-down 5)))
   (define-key evil-normal-state-map (kbd "M-n")
