@@ -912,6 +912,7 @@
                               (list (region-beginning) (region-end))
                             (list (point-min) (point-max)))))
        (csv-align-fields hard beg end)
+       ;; (csv-align-fields nil (window-start) (window-end)) ; Only for visible lines
        (save-buffer)
        (message "csv-align-fields")
        )
