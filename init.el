@@ -903,6 +903,18 @@
   :mode (("\\.csv" . csv-mode))
   :config
   (message ":config csv-mode")
+
+  (evil-define-key 'normal csv-mode-map (kbd "F")
+    '(lambda (hard beg end)
+       (interactive (cons current-prefix-arg
+                          (if (use-region-p)
+                              (list (region-beginning) (region-end))
+                            (list (point-min) (point-max)))))
+       (csv-align-fields hard beg end)
+       (save-buffer)
+       (message "csv-align-fields")
+       )
+    )
   )
 
 (use-package python
