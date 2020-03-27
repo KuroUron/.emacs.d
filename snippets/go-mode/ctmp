@@ -1,0 +1,28 @@
+# key: ctmp
+# name: ctmp
+# --
+package main
+
+import (
+	"fmt"
+)
+
+func chmax(a *int, b int) bool {
+	if *a < b {
+		*a = b
+		return true
+	}
+	return false
+}
+
+func chmin(a *int, b int) bool {
+	if *a > b {
+		*a = b
+		return true
+	}
+	return false
+}
+
+func main() {
+	$0
+}
