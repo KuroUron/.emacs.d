@@ -2,5 +2,9 @@ auto-save-list
 bkup
 elpa
 places
-recentf
+recentf*
 transient
+.lsp*
+kkcrc
+url
+
