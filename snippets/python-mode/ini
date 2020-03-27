@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ini
+# key: ini
+# --
+def __init__(self):$0
