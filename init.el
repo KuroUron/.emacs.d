@@ -629,7 +629,7 @@
   (setq migemo-dictionary
         (concat
          (expand-file-name user-emacs-directory)
-         "nora/migemo/utf-8/migemo-dict"))
+         "nora/migemo/dict/utf-8/migemo-dict"))
   (setq migemo-user-dictionary nil)
   (setq migemo-regex-dictionary nil)
   (setq migemo-coding-system 'utf-8-unix)
