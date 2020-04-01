@@ -620,7 +620,11 @@
   :config
   (message ":config cmigemo")
 
-  (setq migemo-command "cmigemo")
+  ;; (setq migemo-command "cmigemo")
+  (setq migemo-command
+        (concat
+         (expand-file-name user-emacs-directory)
+         "nora/migemo/bin/cmigemo.exe"))
   (setq migemo-options '("-q" "--emacs" "-i" "\a"))
   (setq migemo-dictionary
         (concat
