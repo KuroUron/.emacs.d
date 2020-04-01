@@ -622,9 +622,14 @@
 
   (setq migemo-command "cmigemo")
   (setq migemo-options '("-q" "--emacs" "-i" "\a"))
-  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+  ;; (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
   ;; (setq migemo-dictionary
   ;;       (concat user-emacs-directory "nora/migemo/utf-8/migemo-dict"))
+  ;; (setq migemo-dictionary "/home/harvest/.emacs.d/nora/migemo/utf-8/migemo-dict")
+  (setq migemo-dictionary
+        (concat
+         (expand-file-name user-emacs-directory)
+         "nora/migemo/utf-8/migemo-dict"))
   (setq migemo-user-dictionary nil)
   (setq migemo-regex-dictionary nil)
   (setq migemo-coding-system 'utf-8-unix)
