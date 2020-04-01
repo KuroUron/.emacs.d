@@ -614,18 +614,23 @@
   ;; (defvar swiper-include-line-number-in-search t) ;; line-number search
   )
 
-;; (use-package migemo
-;;   :ensure t
-;;   :config
-;;   ;; C/Migemo を使う場合は次のような設定を .emacs に加えます．
-;;   (setq migemo-command "cmigemo")
-;;   (setq migemo-options '("-q" "--emacs" "-i" "\a"))
-;;   ;; (setq migemo-dictionary "/usr/local/Cellar/cmigemo/20110227/share/migemo/utf-8/migemo-dict")  ;; 各自の辞書の在り処を指示
-;;   (setq migemo-user-dictionary nil)
-;;   (setq migemo-regex-dictionary nil)
-;;   ;; charset encoding
-;;   (setq migemo-coding-system 'utf-8-unix)
-;;   )
+(use-package migemo
+  ;; cf. https://github.com/koron/cmigemo
+  :ensure t
+  :config
+  (message ":config cmigemo")
+
+  (setq migemo-command "cmigemo")
+  (setq migemo-options '("-q" "--emacs" "-i" "\a"))
+  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+  ;; (setq migemo-dictionary
+  ;;       (concat user-emacs-directory "nora/migemo/utf-8/migemo-dict"))
+  (setq migemo-user-dictionary nil)
+  (setq migemo-regex-dictionary nil)
+
+  ;; For evil `/?`
+  (setq evil-regexp-search nil)
+  )
 
 ;; (use-package avy-migemo
 ;;   :ensure t
