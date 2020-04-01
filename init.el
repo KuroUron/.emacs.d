@@ -1302,9 +1302,6 @@ of the buffer."
   (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
   (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
   (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
-  ;; (git-gutter:modified ((t (:foreground "yellow" :background "#282a36"))))
-  ;; (git-gutter:added    ((t (:foreground "green" :background "#282a36"))))
-  ;; (git-gutter:deleted  ((t (:foreground "red" :background "#282a36"))))
   ;; NOTE 2020-04-01: To get the theme color, try `describe-face RET default`
   :config
   (message ":config git-gutter")
