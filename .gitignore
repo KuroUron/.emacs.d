@@ -7,4 +7,6 @@ transient
 .lsp*
 kkcrc
 url
-
+server
+trashbox
+%backup%*
