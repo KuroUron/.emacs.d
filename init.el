@@ -1283,8 +1283,6 @@ of the buffer."
 (use-package git-gutter
   :ensure t
   :after ivy
-
-
   ;; :custom
   ;; (git-gutter:modified-sign "~")
   ;; (git-gutter:added-sign    "+")
