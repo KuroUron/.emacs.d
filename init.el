@@ -1283,6 +1283,8 @@ of the buffer."
 (use-package git-gutter
   :ensure t
   :after ivy
+
+
   ;; :custom
   ;; (git-gutter:modified-sign "~")
   ;; (git-gutter:added-sign    "+")
@@ -1293,13 +1295,17 @@ of the buffer."
   ;; (git-gutter:deleted  ((t (:background "#ff79c6" :foreground "black"))))
   :custom
   (git-gutter:window-width 2)
-  (git-gutter:modified-sign "☁")
-  (git-gutter:added-sign "☀")
-  (git-gutter:deleted-sign "☂")
+  (git-gutter:modified-sign "")
+  (git-gutter:added-sign "")
+  (git-gutter:deleted-sign "")
+  ;; ☁ ☀ ☂               ⚡
   :custom-face
-  (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
-  (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
-  (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
+  ;; (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
+  ;; (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
+  ;; (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
+  (git-gutter:modified ((t (:foreground "yellow" :background "#282a36"))))
+  (git-gutter:added    ((t (:foreground "green" :background "#282a36"))))
+  (git-gutter:deleted  ((t (:foreground "red" :background "#282a36"))))
   ;; NOTE 2020-04-01: To get the theme color, try `describe-face RET default`
   :config
   (message ":config git-gutter")
@@ -1311,7 +1317,6 @@ of the buffer."
   (message ":config smooth-scroll")
   (smooth-scroll-mode t)
   )
-
 (use-package pt
   :ensure t
   :config
