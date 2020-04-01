@@ -664,15 +664,13 @@ of the buffer."
          result)))
   )
 
-;; (use-package avy-migemo
-;;   :ensure t
-;;   :config
-;;   (avy-migemo-mode 1)
-;;   (setq avy-timeout-seconds nil)
-;;   (require 'avy-migemo-e.g.swiper)
-;;   (global-set-key (kbd "C-M-;") 'avy-migemo-goto-char-timer)
-;;   ;;  (global-set-key (kbd "M-g m m") 'avy-migemo-mode)
-;;   )
+(use-package avy-migemo
+  :ensure t
+  :config
+  (avy-migemo-mode 1)
+  (setq avy-timeout-seconds nil)
+  (require 'avy-migemo-e.g.swiper)
+  )
 
 (use-package company
   :ensure t
