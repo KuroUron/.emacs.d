@@ -701,12 +701,15 @@ of the buffer."
   (message ":config hydra")
   (defhydra hydra-space (evil-normal-state-map "SPC")
     ;; ("j" (lambda () (interactive) (evil-next-line 5)))
+    ("SPC" (lambda () (interactive) ()))
     ("j" (lambda () (interactive) (evil-next-line 5)))
     ("k" (lambda () (interactive) (evil-previous-line 5)))
     ;; ("h" (lambda () (interactive) (evil-backward-char 5)))
     ;; ("l" (lambda () (interactive) (evil-forward-char 5)))
     ("l" (lambda () (interactive) (recenter-top-bottom)))
-    ("g" nil "leave")
+    ;; ("o" (lambda () (interactive) (other-window 1) (evil-force-normal-state) ))
+    ;; ("g" nil "leave")
+    ("SPC" nil "leave")
     )
 
   ;; (defhydra hydra-u (evil-normal-state-map "u")
@@ -1557,6 +1560,14 @@ of the buffer."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(avy-migemo-function-names
+   (quote
+    (swiper--add-overlays-migemo
+     (swiper--re-builder :around swiper--re-builder-migemo-around)
+     (ivy--regex :around ivy--regex-migemo-around)
+     (ivy--regex-ignore-order :around ivy--regex-ignore-order-migemo-around)
+     (ivy--regex-plus :around ivy--regex-plus-migemo-around)
+     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full)))
  '(package-selected-packages
    (quote
     (highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))))
