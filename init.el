@@ -1283,19 +1283,28 @@ of the buffer."
 (use-package git-gutter
   :ensure t
   :after ivy
+
+
   :custom
-  (git-gutter:modified-sign "~")
-  (git-gutter:added-sign    "+")
-  (git-gutter:deleted-sign  "-")
+  ;; (git-gutter:modified-sign "~")
+  ;; (git-gutter:added-sign    "+")
+  ;; (git-gutter:deleted-sign  "-")
+  (git-gutter:window-width 2)
+  (git-gutter:modified-sign "☁")
+  (git-gutter:added-sign "☀")
+  (git-gutter:deleted-sign "☂")
   :custom-face
-  (git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
-  (git-gutter:added    ((t (:background "#50fa7b" :foreground "black"))))
-  (git-gutter:deleted  ((t (:background "#ff79c6" :foreground "black"))))
+  ;; (git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
+  ;; (git-gutter:added    ((t (:background "#50fa7b" :foreground "black"))))
+  ;; (git-gutter:deleted  ((t (:background "#ff79c6" :foreground "black"))))
+  (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
+  (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
+  (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
+  ;; NOTE 2020-04-01: To get the theme color, try `describe-face RET default`
   :config
   (message ":config git-gutter")
   (global-git-gutter-mode +1)
   )
-
 (use-package smooth-scroll
   :ensure t
   :config
@@ -1560,6 +1569,8 @@ of the buffer."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#282a36" "#ff5555" "#50fa7b" "#f1fa8c" "#61bfff" "#ff79c6" "#8be9fd" "#f8f8f2"])
  '(avy-migemo-function-names
    (quote
     (swiper--add-overlays-migemo
@@ -1568,17 +1579,43 @@ of the buffer."
      (ivy--regex-ignore-order :around ivy--regex-ignore-order-migemo-around)
      (ivy--regex-plus :around ivy--regex-plus-migemo-around)
      ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full)))
+ '(custom-safe-themes
+   (quote
+    ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
+ '(fci-rule-color "#6272a4")
+ '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
    (quote
-    (highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))))
+    (highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
+ '(vc-annotate-background "#282a36")
+ '(vc-annotate-color-map
+   (list
+    (cons 20 "#50fa7b")
+    (cons 40 "#85fa80")
+    (cons 60 "#bbf986")
+    (cons 80 "#f1fa8c")
+    (cons 100 "#f5e381")
+    (cons 120 "#face76")
+    (cons 140 "#ffb86c")
+    (cons 160 "#ffa38a")
+    (cons 180 "#ff8ea8")
+    (cons 200 "#ff79c6")
+    (cons 220 "#ff6da0")
+    (cons 240 "#ff617a")
+    (cons 260 "#ff5555")
+    (cons 280 "#d45558")
+    (cons 300 "#aa565a")
+    (cons 320 "#80565d")
+    (cons 340 "#6272a4")
+    (cons 360 "#6272a4")))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(git-gutter:added ((t (:background "#50fa7b" :foreground "black"))))
- '(git-gutter:deleted ((t (:background "#ff79c6" :foreground "black"))))
- '(git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
  '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :weight bold))))
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
 (put 'upcase-region 'disabled nil)
