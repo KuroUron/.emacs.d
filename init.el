@@ -619,12 +619,13 @@
   :ensure t
   :config
   (message ":config cmigemo")
-
-  ;; (setq migemo-command "cmigemo")
   (setq migemo-command
         (concat
          (expand-file-name user-emacs-directory)
-         "nora/migemo/bin/cmigemo.exe"))
+         "nora/migemo/bin/"
+         (cond
+          ((eq system-type 'windows-nt) "cmigemo.exe")
+          ((eq system-type 'gnu/linux) "cmigemo.out"))))
   (setq migemo-options '("-q" "--emacs" "-i" "\a"))
   (setq migemo-dictionary
         (concat
