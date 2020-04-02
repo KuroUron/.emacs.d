@@ -1305,12 +1305,14 @@ of the buffer."
   (message ":config git-gutter")
   (global-git-gutter-mode +1)
   )
+
 (use-package smooth-scroll
   :ensure t
   :config
   (message ":config smooth-scroll")
   (smooth-scroll-mode t)
   )
+
 (use-package pt
   :ensure t
   :config
