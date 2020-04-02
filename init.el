@@ -694,12 +694,25 @@ of the buffer."
   (define-key company-search-map (kbd "C-p") 'company-select-previous)
   )
 
+;; %`(make-string 10 ?☁)
+;; (window-total-width)
+;; (frame-total-cols)
+
 (use-package hydra
   :ensure t
   :after ivy
   :config
   (message ":config hydra")
   (defhydra hydra-space (evil-normal-state-map "SPC")
+    "
+%s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
+%s(apply #'concat (make-list (frame-total-cols) \"                  ☂  ☂                 \"))
+%s(apply #'concat (make-list (frame-total-cols) \"      ～～    ☂          ☂             \"))
+%s(apply #'concat (make-list (frame-total-cols) \"    ～～    ☂                 ☂        \"))
+%s(apply #'concat (make-list (frame-total-cols) \"          ☂             ～～      ☂    \"))
+%s(apply #'concat (make-list (frame-total-cols) \"  ☂  ☂                   ～～       ☂ \"))
+%s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
+"
     ;; ("j" (lambda () (interactive) (evil-next-line 5)))
     ("SPC" (lambda () (interactive) ()))
     ("j" (lambda () (interactive) (evil-next-line 5)))
@@ -711,6 +724,7 @@ of the buffer."
     ;; ("g" nil "leave")
     ("SPC" nil "leave")
     )
+
 
   ;; (defhydra hydra-u (evil-normal-state-map "u")
   ;;   ("SPC" (lambda () (interactive) (my-mark-move)))
@@ -875,12 +889,6 @@ of the buffer."
            (format "gfortran %s" (file-name-nondirectory buffer-file-name)))))
   )
 
-(use-package c-mode
-  :mode (("\\.c" . c-mode))
-  :config
-  (message ":config c-mode")
-  )
-
 (use-package cc-mode
   :mode (("\\.cpp" . c++-mode)
          ("\\.cc" . c++-mode)
@@ -894,6 +902,12 @@ of the buffer."
    (lambda ()
      (set (make-local-variable 'compile-command)
           (format "g++ -Wall -Wextra -std=c++14 %s"
+                  (file-name-nondirectory buffer-file-name)))))
+  (add-hook
+   'c-mode-hook
+   (lambda ()
+     (set (make-local-variable 'compile-command)
+          (format "gcc -Wall -Wextra %s"
                   (file-name-nondirectory buffer-file-name)))))
 
   (use-package clang-format
