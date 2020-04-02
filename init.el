@@ -615,26 +615,62 @@
   )
 
 (use-package migemo
+  ;; cf. https://github.com/koron/cmigemo
   :ensure t
   :config
-  (message ":config migemo")
-
-  (setq migemo-command "cmigemo")
+  (message ":config cmigemo")
+  (setq migemo-command
+        (concat
+         (expand-file-name user-emacs-directory)
+         "nora/migemo/bin/"
+         (cond
+          ((eq system-type 'windows-nt) "cmigemo.exe")
+          ((eq system-type 'gnu/linux) "cmigemo.out"))))
   (setq migemo-options '("-q" "--emacs" "-i" "\a"))
-  ;; (setq migemo-dictionary "somewhere/migemo/euc-jp/migemo-dict")
+  (setq migemo-dictionary
+        (concat
+         (expand-file-name user-emacs-directory)
+         "nora/migemo/dict/utf-8/migemo-dict"))
   (setq migemo-user-dictionary nil)
   (setq migemo-regex-dictionary nil)
+  (setq migemo-coding-system 'utf-8-unix)
+
+  ;; For evil `/?`, redefine `evil-search-function`
+  (setq evil-regexp-search nil)
+  (defun evil-search-function (&optional forward regexp-p wrap)
+    "Return a search function.
+If FORWARD is nil, search backward, otherwise forward.
+If REGEXP-P is non-nil, the input is a regular expression.
+If WRAP is non-nil, the search wraps around the top or bottom
+of the buffer."
+    `(lambda (string &optional bound noerror count)
+       (let ((start (point))
+             (search-fun ',(if regexp-p
+                               (if forward
+                                   're-search-forward
+                                 're-search-backward)
+                             (if forward
+                                 'migemo-forward
+                               'migemo-backward)))
+             result)
+         (setq result (funcall search-fun string bound
+                               ,(if wrap t 'noerror) count))
+         (when (and ,wrap (null result))
+           (goto-char ,(if forward '(point-min) '(point-max)))
+           (unwind-protect
+               (setq result (funcall search-fun string bound noerror count))
+             (unless result
+               (goto-char start))))
+         result)))
   )
 
-;; (use-package avy-migemo
-;;   :ensure t
-;;   :config
-;;   (avy-migemo-mode 1)
-;;   (setq avy-timeout-seconds nil)
-;;   (require 'avy-migemo-e.g.swiper)
-;;   (global-set-key (kbd "C-M-;") 'avy-migemo-goto-char-timer)
-;;   ;;  (global-set-key (kbd "M-g m m") 'avy-migemo-mode)
-;;   )
+(use-package avy-migemo
+  :ensure t
+  :config
+  (avy-migemo-mode 1)
+  (setq avy-timeout-seconds nil)
+  (require 'avy-migemo-e.g.swiper)
+  )
 
 (use-package company
   :ensure t
@@ -665,12 +701,15 @@
   (message ":config hydra")
   (defhydra hydra-space (evil-normal-state-map "SPC")
     ;; ("j" (lambda () (interactive) (evil-next-line 5)))
+    ("SPC" (lambda () (interactive) ()))
     ("j" (lambda () (interactive) (evil-next-line 5)))
     ("k" (lambda () (interactive) (evil-previous-line 5)))
     ;; ("h" (lambda () (interactive) (evil-backward-char 5)))
     ;; ("l" (lambda () (interactive) (evil-forward-char 5)))
     ("l" (lambda () (interactive) (recenter-top-bottom)))
-    ("g" nil "leave")
+    ;; ("o" (lambda () (interactive) (other-window 1) (evil-force-normal-state) ))
+    ;; ("g" nil "leave")
+    ("SPC" nil "leave")
     )
 
   ;; (defhydra hydra-u (evil-normal-state-map "u")
@@ -911,6 +950,7 @@
                               (list (region-beginning) (region-end))
                             (list (point-min) (point-max)))))
        (csv-align-fields hard beg end)
+       ;; (csv-align-fields nil (window-start) (window-end)) ; Only for visible lines
        (save-buffer)
        (message "csv-align-fields")
        )
@@ -1243,26 +1283,34 @@
 (use-package git-gutter
   :ensure t
   :after ivy
+  ;; :custom
+  ;; (git-gutter:modified-sign "~")
+  ;; (git-gutter:added-sign    "+")
+  ;; (git-gutter:deleted-sign  "-")
+  ;; :custom-face
+  ;; (git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
+  ;; (git-gutter:added    ((t (:background "#50fa7b" :foreground "black"))))
+  ;; (git-gutter:deleted  ((t (:background "#ff79c6" :foreground "black"))))
   :custom
-  (git-gutter:modified-sign "~")
-  (git-gutter:added-sign    "+")
-  (git-gutter:deleted-sign  "-")
+  (git-gutter:window-width 2)
+  (git-gutter:modified-sign "☁")
+  (git-gutter:added-sign "☀")
+  (git-gutter:deleted-sign "☂")
   :custom-face
-  (git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
-  (git-gutter:added    ((t (:background "#50fa7b" :foreground "black"))))
-  (git-gutter:deleted  ((t (:background "#ff79c6" :foreground "black"))))
+  (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
+  (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
+  (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
+  ;; NOTE 2020-04-01: To get the theme color, try `describe-face RET default`
   :config
   (message ":config git-gutter")
   (global-git-gutter-mode +1)
   )
-
 (use-package smooth-scroll
   :ensure t
   :config
   (message ":config smooth-scroll")
   (smooth-scroll-mode t)
   )
-
 (use-package pt
   :ensure t
   :config
@@ -1520,17 +1568,53 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#282a36" "#ff5555" "#50fa7b" "#f1fa8c" "#61bfff" "#ff79c6" "#8be9fd" "#f8f8f2"])
+ '(avy-migemo-function-names
+   (quote
+    (swiper--add-overlays-migemo
+     (swiper--re-builder :around swiper--re-builder-migemo-around)
+     (ivy--regex :around ivy--regex-migemo-around)
+     (ivy--regex-ignore-order :around ivy--regex-ignore-order-migemo-around)
+     (ivy--regex-plus :around ivy--regex-plus-migemo-around)
+     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full)))
+ '(custom-safe-themes
+   (quote
+    ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
+ '(fci-rule-color "#6272a4")
+ '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
    (quote
-    (highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))))
+    (highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
+ '(vc-annotate-background "#282a36")
+ '(vc-annotate-color-map
+   (list
+    (cons 20 "#50fa7b")
+    (cons 40 "#85fa80")
+    (cons 60 "#bbf986")
+    (cons 80 "#f1fa8c")
+    (cons 100 "#f5e381")
+    (cons 120 "#face76")
+    (cons 140 "#ffb86c")
+    (cons 160 "#ffa38a")
+    (cons 180 "#ff8ea8")
+    (cons 200 "#ff79c6")
+    (cons 220 "#ff6da0")
+    (cons 240 "#ff617a")
+    (cons 260 "#ff5555")
+    (cons 280 "#d45558")
+    (cons 300 "#aa565a")
+    (cons 320 "#80565d")
+    (cons 340 "#6272a4")
+    (cons 360 "#6272a4")))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(git-gutter:added ((t (:background "#50fa7b" :foreground "black"))))
- '(git-gutter:deleted ((t (:background "#ff79c6" :foreground "black"))))
- '(git-gutter:modified ((t (:background "#f1fa8c" :foreground "black"))))
  '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :weight bold))))
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
 (put 'upcase-region 'disabled nil)
