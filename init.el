@@ -1325,12 +1325,14 @@ of the buffer."
   (message ":config git-gutter")
   (global-git-gutter-mode +1)
   )
+
 (use-package smooth-scroll
   :ensure t
   :config
   (message ":config smooth-scroll")
   (smooth-scroll-mode t)
   )
+
 (use-package pt
   :ensure t
   :config
@@ -1635,6 +1637,9 @@ of the buffer."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(git-gutter:added ((t (:foreground "orange" :background "#282a36"))))
+ '(git-gutter:deleted ((t (:foreground "cyan" :background "#282a36"))))
+ '(git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
  '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :weight bold))))
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
 (put 'upcase-region 'disabled nil)
