@@ -709,8 +709,8 @@ of the buffer."
 %s(apply #'concat (make-list (frame-total-cols) \"                  ☂  ☂                 \"))
 %s(apply #'concat (make-list (frame-total-cols) \"      ～～    ☂          ☂             \"))
 %s(apply #'concat (make-list (frame-total-cols) \"    ～～    ☂                 ☂        \"))
-%s(apply #'concat (make-list (frame-total-cols) \"          ☂             ～～      ☂    \"))
-%s(apply #'concat (make-list (frame-total-cols) \"  ☂  ☂                   ～～       ☂ \"))
+%s(apply #'concat (make-list (frame-total-cols) \"          ☂              ～～     ☂    \"))
+%s(apply #'concat (make-list (frame-total-cols) \"  ☂  ☂                    ～～      ☂ \"))
 %s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
 "
     ;; ("j" (lambda () (interactive) (evil-next-line 5)))
@@ -724,7 +724,6 @@ of the buffer."
     ;; ("g" nil "leave")
     ("SPC" nil "leave")
     )
-
 
   ;; (defhydra hydra-u (evil-normal-state-map "u")
   ;;   ("SPC" (lambda () (interactive) (my-mark-move)))
