@@ -637,31 +637,33 @@
 
   ;; For evil `/?`, redefine `evil-search-function`
   (setq evil-regexp-search nil)
-;;   (defun evil-search-function (&optional forward regexp-p wrap)
-;;     "Return a search function.
-;; If FORWARD is nil, search backward, otherwise forward.
-;; If REGEXP-P is non-nil, the input is a regular expression.
-;; If WRAP is non-nil, the search wraps around the top or bottom
-;; of the buffer."
-;;     `(lambda (string &optional bound noerror count)
-;;        (let ((start (point))
-;;              (search-fun ',(if regexp-p
-;;                                (if forward
-;;                                    're-search-forward
-;;                                  're-search-backward)
-;;                              (if forward
-;;                                  'migemo-forward
-;;                                'migemo-backward)))
-;;              result)
-;;          (setq result (funcall search-fun string bound
-;;                                ,(if wrap t 'noerror) count))
-;;          (when (and ,wrap (null result))
-;;            (goto-char ,(if forward '(point-min) '(point-max)))
-;;            (unwind-protect
-;;                (setq result (funcall search-fun string bound noerror count))
-;;              (unless result
-;;                (goto-char start))))
-;;          result)))
+  ;;   (defun evil-search-function (&optional forward regexp-p wrap)
+  ;;     "Return a search function.
+  ;; If FORWARD is nil, search backward, otherwise forward.
+  ;; If REGEXP-P is non-nil, the input is a regular expression.
+  ;; If WRAP is non-nil, the search wraps around the top or bottom
+  ;; of the buffer."
+  ;;     `(lambda (string &optional bound noerror count)
+  ;;        (let ((start (point))
+  ;;              (search-fun ',(if regexp-p
+  ;;                                (if forward
+  ;;                                    're-search-forward
+  ;;                                  're-search-backward)
+  ;;                              (if forward
+  ;;                                  'migemo-forward
+  ;;                                'migemo-backward)))
+  ;;              result)
+  ;;          (setq result (funcall search-fun string bound
+  ;;                                ,(if wrap t 'noerror) count))
+  ;;          (when (and ,wrap (null result))
+  ;;            (goto-char ,(if forward '(point-min) '(point-max)))
+  ;;            (unwind-protect
+  ;;                (setq result (funcall search-fun string bound noerror count))
+  ;;              (unless result
+  ;;                (goto-char start))))
+  ;;          result)))
+
+  ;; NOTE 2020-04-02: When the migemo fails, reinstall the evil package.
 
   (defun evil-search-function (&optional forward regexp-p wrap predicate)
     "Return a search function.
@@ -867,6 +869,17 @@ acceptable."
        string)))
 
   (define-key evil-normal-state-map (kbd "T") 'google-auto-translate)
+
+  ;; Redefine to deal with args-out-of-range error
+  (defun google-translate-json-suggestion (json)
+    "Retrieve from JSON (which returns by the
+`google-translate-request' function) suggestion. This function
+does matter when translating misspelled word. So instead of
+translation it is possible to get suggestion."
+    (let ((info (aref json 7)))
+      (if (and info (> (length info) 0))
+          (aref info 1)
+        nil)))
   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

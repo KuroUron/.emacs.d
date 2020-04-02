@@ -38,16 +38,14 @@ template <class T> inline void chadd(T &a, const T &b) {
 }
 
 template <class T>
-std::ostream &operator<<(std::ostream &s, const std::vector<T> &v) {
-  if (v.empty())
-    return s;
-  s << *v.begin();
-  for (auto iter = v.begin() + 1; iter != v.end(); ++iter)
+std::ostream &operator<<(std::ostream &stream, const std::vector<T> &vec) {
+  for (auto val : vec) {
     if (std::is_fundamental<T>::value)
-      s << " " << *iter;
+      stream << " " << val;
     else
-      s << std::endl << *iter;
-  return s;
+      stream << std::endl << val;
+  }
+  return stream;
 }
 
 int main() {
