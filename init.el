@@ -875,6 +875,12 @@ of the buffer."
            (format "gfortran %s" (file-name-nondirectory buffer-file-name)))))
   )
 
+(use-package c-mode
+  :mode (("\\.c" . c-mode))
+  :config
+  (message ":config c-mode")
+  )
+
 (use-package cc-mode
   :mode (("\\.cpp" . c++-mode)
          ("\\.cc" . c++-mode)
