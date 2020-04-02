@@ -738,6 +738,9 @@ acceptable."
   :config
   (message ":config hydra")
   (defhydra hydra-space (evil-normal-state-map "SPC")
+    "
+%s(apply #'concat (make-list (/ (- (frame-total-cols) 11) 12) \"★✶✸✸✶★\"))
+"
 ;;     "
 ;; %s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
 ;; %s(apply #'concat (make-list (frame-total-cols) \"                  ☂  ☂                 \"))
