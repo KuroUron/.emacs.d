@@ -1,5 +1,8 @@
 ;; TODO set-mark-command-repeat-pop の振る舞いを変更 (my-space-map ?)
 
+;; cf.
+;;
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
 
@@ -739,7 +742,7 @@ acceptable."
   (message ":config hydra")
 
   (defun get-stars (n)
-    (let ((stars "★★☆＊＊・＊＊☆★★")
+    (let ((stars "★☆＊＊・＊＊☆★★")
           (res ""))
       (do ((i 0 (+ i 1))) ((not (< i n)))
         (let* ((current-idx (mod i (length stars)))
@@ -1568,6 +1571,14 @@ translation it is possible to get suggestion."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Other
 
+(use-package restart-emacs
+  :ensure t
+  :commands restart-emacs
+  :config
+  (message ":config restart-emacs")
+  ;; You cannot see this message forever!!
+  )
+
 (add-hook
  'after-init-hook
  ;; 'emacs-startup-hook
@@ -1621,6 +1632,10 @@ translation it is possible to get suggestion."
     (global-set-key (kbd "C-8") 'start-kbd-macro)
     (global-set-key (kbd "C-9") 'end-kbd-macro)
     (global-set-key (kbd "C-0") 'call-last-kbd-macro)
+
+    (global-set-key (kbd "C-+") 'text-scale-increase)
+    (global-set-key (kbd "C-;") 'text-scale-increase)
+    (global-set-key (kbd "C--") 'text-scale-decrease)
 
     (setq-default indent-tabs-mode nil)
     (setq-default tab-width 4)
