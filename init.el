@@ -737,10 +737,23 @@ acceptable."
   :after ivy
   :config
   (message ":config hydra")
+
+  (defun get-stars (n)
+    (let ((stars "★★☆＊＊・＊＊☆★★")
+          (res ""))
+      (do ((i 0 (+ i 1))) ((not (< i n)))
+        (let* ((current-idx (mod i (length stars)))
+               (current-str (string (elt stars current-idx))))
+          (setq res (concat res current-str))))
+      res))
+
   (defhydra hydra-space (evil-normal-state-map "SPC")
     "
-%s(apply #'concat (make-list (/ (frame-total-cols) 12) \"★✶✸✸✶★\"))
+%s(get-stars (- (/ (frame-total-cols) 2) 1))
 "
+;; %s(apply #'concat (make-list (/ (- (frame-total-cols) 11) 12) \"★✶✸✸✶★\"))
+;; "
+;;     "
 ;; %s(apply #'concat (make-list (/ (- (frame-total-cols) 11) 12) \"★✶✸✸✶★\"))
 ;; "
 ;;     "
