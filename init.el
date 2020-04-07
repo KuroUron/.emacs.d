@@ -1,7 +1,8 @@
 ;; TODO set-mark-command-repeat-pop の振る舞いを変更 (my-space-map ?)
 
 ;; cf.
-;;
+;; - [A Life Configuring Emacs](https://alhassy.github.io/init/)
+;; - [Emacsモダン化計画 -かわEmacs編-](https://qiita.com/Ladicle/items/feb5f9dce9adf89652caf)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
@@ -1578,6 +1579,14 @@ translation it is possible to get suggestion."
   (message ":config restart-emacs")
   ;; You cannot see this message forever!!
   )
+
+;; (use-package golden-ratio
+;;   :ensure t
+;;   :diminish golden-ratio-mode
+;;   :init (golden-ratio-mode 1)
+;;   :config
+;;   (message ":config golden-ratio")
+;;   )
 
 (add-hook
  'after-init-hook
