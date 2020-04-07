@@ -751,7 +751,39 @@ acceptable."
           (setq res (concat res current-str))))
       res))
 
-  (defhydra hydra-space (evil-normal-state-map "SPC")
+  ;; (highlight-regexp "★" 'all-the-icons-yellow)
+  ;; (highlight-regexp "☆" 'all-the-icons-yellow)
+  ;; (highlight-regexp "＊" 'all-the-icons-yellow)
+
+  ;; (add-hook 'text-mode-hook
+  ;;           '(lambda ()
+  ;;              (font-lock-mode 1)
+  ;;              ;; キーワード用にFaceを作成 (1)
+  ;;              (make-face 'emphasis-face)
+  ;;              (set-face-foreground 'emphasis-face "red")
+  ;;              ;; キーワード定義 (2)
+  ;;              (setq font-lock-keywords
+  ;;                    '(("★" 0 emphasis-face)
+  ;;                      ))
+
+  ;;              (font-lock-fontify-buffer)
+  ;;              ))
+
+       ;; (add-hook 'c-mode-hook
+       ;;         (lambda ()
+       ;;          (font-lock-add-keywords c-mode
+       ;;           '(("FOO" 1
+       ;;              all-the-icons-yellow t))) ;
+       ;;          ) ; FOO
+       ;;         )
+
+  (defhydra hydra-space (
+                         ;; :pre (highlight-regexp "✶" 'all-the-icons-yellow)
+                         ;;      :post (progn
+                         ;;              (set-cursor-color "#ffffff")
+                         ;;              (message
+                         ;;               "Thank you, come again."))
+                              evil-normal-state-map "SPC")
     "
 %s(get-stars (- (/ (frame-total-cols) 2) 1))
 "
@@ -780,6 +812,18 @@ acceptable."
     ("g" nil "leave")
     ;; ("SPC" nil "leave")
     )
+
+  ;; (defhydra hydra-vi (:pre (set-cursor-color "#40e0d0")
+  ;;                   :post (progn
+  ;;                           (set-cursor-color "#ffffff")
+  ;;                           (message
+  ;;                            "Thank you, come again.")))
+  ;;   "vi"
+  ;;   ("l" forward-char)
+  ;;   ("h" backward-char)
+  ;;   ("j" next-line)
+  ;;   ("k" previous-line)
+  ;;   ("q" nil "quit"))
 
   ;; (defhydra hydra-u (evil-normal-state-map "u")
   ;;   ("SPC" (lambda () (interactive) (my-mark-move)))
@@ -1465,6 +1509,11 @@ translation it is possible to get suggestion."
                          :weight bold))))
   :config
   (message ":config hl-todo")
+  ;; (setq hl-todo-keyword-faces
+  ;;       '(("★"   . "#FF0000")
+  ;;         ("☆"  . "#FF0000")
+  ;;         ("package" "#A020F0")
+  ;;         ("＊"  . "#A020F0")))
   (global-hl-todo-mode t)
   )
 
@@ -1588,6 +1637,13 @@ translation it is possible to get suggestion."
 ;;   (message ":config golden-ratio")
 ;;   )
 
+(add-hook 'after-init-hook
+          '(lambda ()
+             (global-hi-lock-mode 1)
+             (require 'all-the-icons)
+             (hi-lock-set-pattern "★" 'all-the-icons-yellow)
+             ))
+
 (add-hook
  'after-init-hook
  ;; 'emacs-startup-hook
@@ -1615,6 +1671,16 @@ translation it is possible to get suggestion."
     (setq scroll-preserve-screen-position t)
     (setq redisplay-dont-pause t)
     (fset 'yes-or-no-p 'y-or-n-p)
+
+    ;; Hi-lock: (("★" (0 (quote all-the-icons-yellow) prepend)))
+    ;; (global-hi-lock-mode 1)
+    ;; (highlight-regexp "★" 'all-the-icons-yellow)
+    ;; (highlight-regexp "★" 'all-the-icons-yellow)
+    ;; (add-hook 'text-mode-hook
+    ;;           '(lambda ()
+    ;;              (hi-lock-set-pattern "★" 'all-the-icons-yellow)
+    ;;              )
+    ;;           )
 
     (when (eq system-type 'windows-nt)
       (set-frame-font "Migu 1M-12:antialias=standard")
