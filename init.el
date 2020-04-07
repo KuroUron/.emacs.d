@@ -770,15 +770,15 @@ acceptable."
 ;; %s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
 ;; "
     ;; ("j" (lambda () (interactive) (evil-next-line 5)))
-    ("SPC" (lambda () (interactive) ()))
+    ;; ("SPC" (lambda () (interactive) ()))
     ("j" (lambda () (interactive) (evil-next-line 5)))
     ("k" (lambda () (interactive) (evil-previous-line 5)))
     ;; ("h" (lambda () (interactive) (evil-backward-char 5)))
     ;; ("l" (lambda () (interactive) (evil-forward-char 5)))
     ("l" (lambda () (interactive) (recenter-top-bottom)))
     ;; ("o" (lambda () (interactive) (other-window 1) (evil-force-normal-state) ))
-    ;; ("g" nil "leave")
-    ("SPC" nil "leave")
+    ("g" nil "leave")
+    ;; ("SPC" nil "leave")
     )
 
   ;; (defhydra hydra-u (evil-normal-state-map "u")
