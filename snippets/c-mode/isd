@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: isd
+# key: isd
+# --
+isdigit($0)
