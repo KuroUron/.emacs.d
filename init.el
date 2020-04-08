@@ -732,21 +732,17 @@ acceptable."
   (define-key company-search-map (kbd "C-p") 'company-select-previous)
   )
 
-;; %`(make-string 10 ?☁)
-;; (window-total-width)
-;; (frame-total-cols)
-
 (use-package hydra
   :ensure t
   :after ivy
   :config
   (message ":config hydra")
 
-  (defun get-stars (n)
+  (defun get-stars (n offset)
     (let ((stars "★☆＊＊・＊＊☆★★")
           (res ""))
       (do ((i 0 (+ i 1))) ((not (< i n)))
-        (let* ((current-idx (mod i (length stars)))
+        (let* ((current-idx (mod (+ i offset) (length stars)))
                (current-str (string (elt stars current-idx))))
           (setq res (concat res current-str))))
       res))
@@ -755,43 +751,13 @@ acceptable."
   ;; (highlight-regexp "☆" 'all-the-icons-yellow)
   ;; (highlight-regexp "＊" 'all-the-icons-yellow)
 
-  ;; (add-hook 'text-mode-hook
-  ;;           '(lambda ()
-  ;;              (font-lock-mode 1)
-  ;;              ;; キーワード用にFaceを作成 (1)
-  ;;              (make-face 'emphasis-face)
-  ;;              (set-face-foreground 'emphasis-face "red")
-  ;;              ;; キーワード定義 (2)
-  ;;              (setq font-lock-keywords
-  ;;                    '(("★" 0 emphasis-face)
-  ;;                      ))
-
-  ;;              (font-lock-fontify-buffer)
-  ;;              ))
-
-       ;; (add-hook 'c-mode-hook
-       ;;         (lambda ()
-       ;;          (font-lock-add-keywords c-mode
-       ;;           '(("FOO" 1
-       ;;              all-the-icons-yellow t))) ;
-       ;;          ) ; FOO
-       ;;         )
-
-  (defhydra hydra-space (
-                         ;; :pre (highlight-regexp "✶" 'all-the-icons-yellow)
-                         ;;      :post (progn
-                         ;;              (set-cursor-color "#ffffff")
-                         ;;              (message
-                         ;;               "Thank you, come again."))
-                              evil-normal-state-map "SPC")
+  (defhydra hydra-space (evil-normal-state-map "SPC")
     "
-%s(get-stars (- (/ (frame-total-cols) 2) 1))
+%s(get-stars (- (/ (frame-total-cols) 2) 1) 0)
+%s(get-stars (- (/ (frame-total-cols) 2) 1) -2)
+%s(get-stars (- (/ (frame-total-cols) 2) 1) -4)
+%s(get-stars (- (/ (frame-total-cols) 2) 1) -6)
 "
-;; %s(apply #'concat (make-list (/ (- (frame-total-cols) 11) 12) \"★✶✸✸✶★\"))
-;; "
-;;     "
-;; %s(apply #'concat (make-list (/ (- (frame-total-cols) 11) 12) \"★✶✸✸✶★\"))
-;; "
 ;;     "
 ;; %s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
 ;; %s(apply #'concat (make-list (frame-total-cols) \"                  ☂  ☂                 \"))
@@ -813,26 +779,16 @@ acceptable."
     ;; ("SPC" nil "leave")
     )
 
-  ;; (defhydra hydra-vi (:pre (set-cursor-color "#40e0d0")
-  ;;                   :post (progn
-  ;;                           (set-cursor-color "#ffffff")
-  ;;                           (message
-  ;;                            "Thank you, come again.")))
-  ;;   "vi"
-  ;;   ("l" forward-char)
-  ;;   ("h" backward-char)
-  ;;   ("j" next-line)
-  ;;   ("k" previous-line)
-  ;;   ("q" nil "quit"))
-
   ;; (defhydra hydra-u (evil-normal-state-map "u")
   ;;   ("SPC" (lambda () (interactive) (my-mark-move)))
   ;;   )
+
   (defhydra hydra-scroll (my-window-map "u")
     ("n" (lambda () (interactive) (scroll-up)))
     ("p" (lambda () (interactive) (scroll-down)))
     ("g" nil "leave")
     )
+
   ;; (defhydra hydra-ivy (ivy-mode-map "SPC")
   ;;   ("n" (lambda () (interactive) (next-line)))
   ;;   ("g" nil "leave")
@@ -1636,13 +1592,6 @@ translation it is possible to get suggestion."
 ;;   :config
 ;;   (message ":config golden-ratio")
 ;;   )
-
-(add-hook 'after-init-hook
-          '(lambda ()
-             (global-hi-lock-mode 1)
-             (require 'all-the-icons)
-             (hi-lock-set-pattern "★" 'all-the-icons-yellow)
-             ))
 
 (add-hook
  'after-init-hook
