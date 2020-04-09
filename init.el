@@ -976,6 +976,12 @@ translation it is possible to get suggestion."
           (format "gcc -Wall -Wextra %s"
                   (file-name-nondirectory buffer-file-name)))))
 
+  ;; Comment out
+  (add-hook 'c-mode-hook
+            (function (lambda ()
+                        (setq comment-start "// ")
+                        (setq comment-end ""))))
+
   (use-package clang-format
     :ensure t
     :config
