@@ -732,6 +732,13 @@ acceptable."
   (define-key company-search-map (kbd "C-p") 'company-select-previous)
   )
 
+;; (use-package hydra-posframe
+;;   :ensure t
+;;   :hook (after-init . hydra-posframe-enable)
+;;   :config
+;;   (message ":config hydra-posframe")
+;;   )
+
 (use-package hydra
   :ensure t
   :after ivy
@@ -754,9 +761,6 @@ acceptable."
   (defhydra hydra-space (evil-normal-state-map "SPC")
     "
 %s(get-stars (- (/ (frame-total-cols) 2) 1) 0)
-%s(get-stars (- (/ (frame-total-cols) 2) 1) -2)
-%s(get-stars (- (/ (frame-total-cols) 2) 1) -4)
-%s(get-stars (- (/ (frame-total-cols) 2) 1) -6)
 "
 ;;     "
 ;; %s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
@@ -1716,7 +1720,7 @@ translation it is possible to get suggestion."
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
    (quote
-    (highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
+    (hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
