@@ -4,6 +4,8 @@
 ;; - [A Life Configuring Emacs](https://alhassy.github.io/init/)
 ;; - [Emacsモダン化計画 -かわEmacs編-](https://qiita.com/Ladicle/items/feb5f9dce9adf89652caf)
 
+;; NOTE 2020-04-02: When the migemo fails, reinstall the evil package.
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
 
@@ -667,8 +669,6 @@
   ;;                (goto-char start))))
   ;;          result)))
 
-  ;; NOTE 2020-04-02: When the migemo fails, reinstall the evil package.
-
   (defun evil-search-function (&optional forward regexp-p wrap predicate)
     "Return a search function.
 If FORWARD is nil, search backward, otherwise forward.
@@ -702,7 +702,7 @@ acceptable."
 
   )
 
-;; (use-package avy-migemo
+;; (uee-package avy-migemo
 ;;   :ensure t
 ;;   :config
 ;;   (avy-migemo-mode 1)
