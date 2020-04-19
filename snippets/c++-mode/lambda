@@ -1,0 +1,4 @@
+# key: lambda
+# name: lambda
+# --
+auto f = [&]() {};$0
