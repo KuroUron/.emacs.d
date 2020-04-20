@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fpri
+# key: fpri
+# --
+fprintf(${1:stderr}, "$0");

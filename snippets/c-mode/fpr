@@ -1,0 +1,4 @@
+# key: fpr
+# name: fpr
+# --
+fprintf(${1:stderr}, "$0");
