@@ -908,6 +908,12 @@ translation it is possible to get suggestion."
         nil)))
   )
 
+;; (use-package tramp
+;;   :ensure t
+;;   :config
+;;   (message ":config tramp")
+;;   )
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
 
@@ -1180,6 +1186,12 @@ translation it is possible to get suggestion."
   ;; :init (setq markdown-command "multimarkdown")
   :config
   (message ":config: markdown-mode")
+
+  (use-package markdown-toc
+    :ensure t
+    :config
+    (message ":config markdown-toc")
+    )
   )
 
 (use-package graphviz-dot-mode
@@ -1720,7 +1732,7 @@ translation it is possible to get suggestion."
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
    (quote
-    (hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
+    (markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
