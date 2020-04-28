@@ -1,4 +1,5 @@
-# key: pr
+# -*- mode: snippet -*-
 # name: pr
+# key: pr
 # --
 printf("$0");
