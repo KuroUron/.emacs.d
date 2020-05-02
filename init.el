@@ -810,29 +810,29 @@ acceptable."
   ;;   :ensure t)
   )
 
-;; (use-package neotree
-;;   :ensure t
-;;   :defer
-;;   ;; :commands (neotree-show)
-;;   ;; :after
-;;   ;; projectile
-;;   ;; :hook
-;;   ;; (ivy-mode . neotree-show)
-;;   ;; (find-file . neotree-refresh)
-;;   ;; :commands
-;;   ;; (neotree-show neotree-hide neotree-dir neotree-find)
-;;   :config
-;;   (message ":config neotree")
-;;   (add-hook 'neotree-mode-hook '(lambda ()
-;;                                   (display-line-numbers-mode 0)
-;;                                   (text-scale-decrease 1)
-;;                                   ))
-;;   (setq neo-show-hidden-files t)
-;;   (setq neo-theme 'icons)
-;;   (setq neo-window-fixed-size nil)
-;;   (setq neo-window-width 20)
-;;   ;; (neo-theme 'nerd2)
-;;   )
+(use-package neotree
+  :ensure t
+  :defer
+  ;; :commands (neotree-show)
+  ;; :after
+  ;; projectile
+  ;; :hook
+  ;; (ivy-mode . neotree-show)
+  ;; (find-file . neotree-refresh)
+  ;; :commands
+  ;; (neotree-show neotree-hide neotree-dir neotree-find)
+  :config
+  (message ":config neotree")
+  (add-hook 'neotree-mode-hook '(lambda ()
+                                  (display-line-numbers-mode 0)
+                                  (text-scale-decrease 1)
+                                  ))
+  (setq neo-show-hidden-files t)
+  (setq neo-theme 'icons)
+  (setq neo-window-fixed-size nil)
+  (setq neo-window-width 20)
+  ;; (neo-theme 'nerd2)
+  )
 
 (use-package minimap
   :ensure t
