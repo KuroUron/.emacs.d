@@ -728,8 +728,10 @@ acceptable."
 
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (define-key company-active-map (kbd "<tab>") 'yas-expand)
   (define-key company-search-map (kbd "C-n") 'company-select-next)
   (define-key company-search-map (kbd "C-p") 'company-select-previous)
+  (define-key company-search-map (kbd "<tab>") 'yas-expand)
   )
 
 ;; (use-package hydra-posframe
