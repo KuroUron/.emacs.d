@@ -914,6 +914,12 @@ translation it is possible to get suggestion."
 ;;   (message ":config tramp")
 ;;   )
 
+(use-package awesome-tab
+  :load-path "nora/awesome-tab"
+  :config
+  (awesome-tab-mode t)
+  )
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
 
