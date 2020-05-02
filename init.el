@@ -914,14 +914,14 @@ translation it is possible to get suggestion."
 ;;   (message ":config tramp")
 ;;   )
 
-(use-package awesome-tab
-  :load-path "nora/awesome-tab"
-  :config
-  (message ":config awesome-tab")
-  (awesome-tab-mode t)
-  (setq awesome-tab-label-fixed-length 14)
-  (setq awesome-tab-height 100)
-  )
+;; (use-package awesome-tab
+;;   :load-path "nora/awesome-tab"
+;;   :config
+;;   (message ":config awesome-tab")
+;;   (awesome-tab-mode t)
+;;   (setq awesome-tab-label-fixed-length 14)
+;;   (setq awesome-tab-height 100)
+;;   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
