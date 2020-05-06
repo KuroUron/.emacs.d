@@ -814,7 +814,7 @@ acceptable."
 
 (use-package neotree
   :ensure t
-  :defer
+  ;; :defer
   ;; :commands (neotree-show)
   ;; :after
   ;; projectile
@@ -832,8 +832,13 @@ acceptable."
   (setq neo-show-hidden-files t)
   (setq neo-theme 'icons)
   (setq neo-window-fixed-size nil)
-  (setq neo-window-width 20)
+  ;; (setq neo-window-width 20)
   ;; (neo-theme 'nerd2)
+  ;; (bind-key "<left>" 'neotree-select-up-node neotree-mode-map)
+  (define-key evil-normal-state-map (kbd "SPC n") 'neotree-toggle)
+  (define-key neotree-mode-map (kbd "C-f") 'neotree-change-root)
+  ;; (bind-key "<right>" 'neotree-change-root neotree-mode-map)
+  (bind-key "C-f" 'neotree-change-root neotree-mode-map)
   )
 
 (use-package minimap
