@@ -908,11 +908,11 @@ translation it is possible to get suggestion."
         nil)))
   )
 
-;; (use-package tramp
-;;   :ensure t
-;;   :config
-;;   (message ":config tramp")
-;;   )
+(use-package tramp
+  :ensure t
+  :config
+  (message ":config tramp")
+  )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
