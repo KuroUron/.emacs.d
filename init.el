@@ -1184,6 +1184,14 @@ translation it is possible to get suggestion."
           (message "\"gofmt\" and \"save-buffer\"")
           ))
      ))
+
+  ;; Run command
+  (defun my-go-run ()
+    (interactive)
+    (let ((cmd (concat "go run " (file-name-base) ".go")))
+      (save-buffer)
+      (async-shell-command cmd)))
+  (evil-define-key 'normal go-mode-map (kbd "C-j") 'my-go-run)
   )
 
 (use-package elisp-format
