@@ -728,8 +728,10 @@ acceptable."
 
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (define-key company-active-map (kbd "<tab>") 'yas-expand)
   (define-key company-search-map (kbd "C-n") 'company-select-next)
   (define-key company-search-map (kbd "C-p") 'company-select-previous)
+  (define-key company-search-map (kbd "<tab>") 'yas-expand)
   )
 
 ;; (use-package hydra-posframe
@@ -810,29 +812,34 @@ acceptable."
   ;;   :ensure t)
   )
 
-;; (use-package neotree
-;;   :ensure t
-;;   :defer
-;;   ;; :commands (neotree-show)
-;;   ;; :after
-;;   ;; projectile
-;;   ;; :hook
-;;   ;; (ivy-mode . neotree-show)
-;;   ;; (find-file . neotree-refresh)
-;;   ;; :commands
-;;   ;; (neotree-show neotree-hide neotree-dir neotree-find)
-;;   :config
-;;   (message ":config neotree")
-;;   (add-hook 'neotree-mode-hook '(lambda ()
-;;                                   (display-line-numbers-mode 0)
-;;                                   (text-scale-decrease 1)
-;;                                   ))
-;;   (setq neo-show-hidden-files t)
-;;   (setq neo-theme 'icons)
-;;   (setq neo-window-fixed-size nil)
-;;   (setq neo-window-width 20)
-;;   ;; (neo-theme 'nerd2)
-;;   )
+(use-package neotree
+  :ensure t
+  ;; :defer
+  ;; :commands (neotree-show)
+  ;; :after
+  ;; projectile
+  ;; :hook
+  ;; (ivy-mode . neotree-show)
+  ;; (find-file . neotree-refresh)
+  ;; :commands
+  ;; (neotree-show neotree-hide neotree-dir neotree-find)
+  :config
+  (message ":config neotree")
+  (add-hook 'neotree-mode-hook '(lambda ()
+                                  (display-line-numbers-mode 0)
+                                  (text-scale-decrease 1)
+                                  ))
+  (setq neo-show-hidden-files t)
+  (setq neo-theme 'icons)
+  (setq neo-window-fixed-size nil)
+  ;; (setq neo-window-width 20)
+  ;; (neo-theme 'nerd2)
+  ;; (bind-key "<left>" 'neotree-select-up-node neotree-mode-map)
+  (define-key evil-normal-state-map (kbd "SPC n") 'neotree-toggle)
+  (define-key neotree-mode-map (kbd "C-f") 'neotree-change-root)
+  ;; (bind-key "<right>" 'neotree-change-root neotree-mode-map)
+  (bind-key "C-f" 'neotree-change-root neotree-mode-map)
+  )
 
 (use-package minimap
   :ensure t
@@ -913,6 +920,15 @@ translation it is possible to get suggestion."
   :config
   (message ":config tramp")
   )
+
+;; (use-package awesome-tab
+;;   :load-path "nora/awesome-tab"
+;;   :config
+;;   (message ":config awesome-tab")
+;;   (awesome-tab-mode t)
+;;   (setq awesome-tab-label-fixed-length 14)
+;;   (setq awesome-tab-height 100)
+;;   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
