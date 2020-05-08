@@ -1192,6 +1192,31 @@ translation it is possible to get suggestion."
       (save-buffer)
       (async-shell-command cmd)))
   (evil-define-key 'normal go-mode-map (kbd "C-j") 'my-go-run)
+
+  (defun my-go-async-shell-command
+      (command &optional output-buffer error-buffer)
+    (interactive
+     (list (read-shell-command "Async shell command: "
+                               (concat "go run " (file-name-base) ".go ")
+                               nil
+                               (let ((filename
+                                      (cond
+                                       (buffer-file-name)
+                                       ((eq major-mode 'dired-mode)
+                                        (dired-get-filename nil t))
+                                       )))
+                                 (and filename (file-relative-name filename))))
+           current-prefix-arg
+           shell-command-default-error-buffer
+           ))
+    (save-buffer)
+    (unless (string-match "&[ \t]*\\'" command)
+      (setq command (concat command " &")))
+    (shell-command command output-buffer error-buffer))
+
+  (evil-define-key 'normal go-mode-map (kbd "C-S-j")
+    'my-go-async-shell-command)
+
   )
 
 (use-package elisp-format
