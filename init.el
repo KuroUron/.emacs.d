@@ -451,6 +451,22 @@
   ;; (define-key my-sapce-map (kbd "crg") 'realgud:gdb)
   ;; (define-key my-sapce-map (kbd "crp") 'realgud:pdb)
 
+  ;; cf. https://suzuki.tdiary.net/20140806.html
+  (defun swap-buffers ()
+    "Swapping buffers in two windows"
+    (interactive)
+    (let ((current-w (frame-selected-window))
+          (current-b (window-buffer (frame-selected-window)))
+          (other-w (get-lru-window))
+          (other-b (window-buffer (get-lru-window))))
+      (if (not (one-window-p))
+          (progn
+            (select-window current-w)
+            (switch-to-buffer other-b)
+            (select-window other-w)
+            (switch-to-buffer current-b)
+            ))))
+
   ;; my-window-map
   (define-prefix-command 'my-window-map)
   (define-key evil-normal-state-map (kbd "u") 'my-window-map)
@@ -462,7 +478,8 @@
   (define-key my-window-map (kbd "0") 'delete-window)
   (define-key my-window-map (kbd "k") 'toggle-frame-fullscreen)
   ;; (define-key my-window-map (kbd "uuo") 'toggle-frame-fullscreen)
-  (define-key my-window-map (kbd "uo") 'toggle-frame-fullscreen)
+  ;; (define-key my-window-map (kbd "uo") 'toggle-frame-fullscreen)
+  (define-key my-window-map (kbd "uo") 'swap-buffers)
   )
 
 ;; (use-package evil-collection
