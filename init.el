@@ -1719,8 +1719,32 @@ translation it is possible to get suggestion."
     ;;              )
     ;;           )
 
+
     (when (eq system-type 'windows-nt)
+
+      (use-package unicode-fonts
+        :ensure t
+        :config
+        (message ":config unicode-fonts")
+        (unicode-fonts-setup)
+        )
+
+      ;; ;; デフォルトフォント
       (set-frame-font "Migu 1M-12:antialias=standard")
+
+      ;; 日本語フォント：あいうえお ... 日本語
+      (set-fontset-font
+       'nil 'japanese-jisx0208 (font-spec :family "Migu 1M" :height 120))
+
+      ;; TODO: ギリシャ文字を半角にしたい
+
+      ;; ;; ギリシャ文字：αβγκλ ... ΛΩ
+      ;; (set-fontset-font
+      ;;  'nil '(#x0370 . #x03FF) (font-spec :family "Migu 1M" :height 100))
+
+      ;; ;; キリル文字：Эта статья ... Русский
+      ;; (set-fontset-font
+      ;;  'nil '(#x0400 . #x04FF) (font-spec :family "MSP明朝" :height 100))
 
       ;; For surface
       (when (equal system-name "DESKTOP-U491J4T")
@@ -1798,7 +1822,7 @@ translation it is possible to get suggestion."
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
    (quote
-    (markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
+    (unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
