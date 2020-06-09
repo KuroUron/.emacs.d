@@ -1288,7 +1288,13 @@ translation it is possible to get suggestion."
            (format "platex.exe %s.tex && dvipdfmx.exe %s.dvi"
                    (file-name-base) (file-name-base))))
       (save-buffer)
+      ;; (if (get-buffer "*Async Shell Command*")
+      ;;     ;; (message "foo")
+      ;;     ;; (delete-window "*Async Shell Command*")
+      ;;   (message "bar")
+      ;;   )
       (async-shell-command mycommand)
+      ;; (delete-window)
       ))
 
   (defun my-typeset ()

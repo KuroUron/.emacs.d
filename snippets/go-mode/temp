@@ -9,5 +9,6 @@ import (
 )
 
 func main() {
-	$0
+	fmt.Println("Start!")$0
+	fmt.Println("Finish!")
 }
