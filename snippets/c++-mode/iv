@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: iv
+# key: iv
+# --
+#include <vector>$0

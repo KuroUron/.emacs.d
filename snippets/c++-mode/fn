@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fn
+# key: fn
+# --
+std::function<$1($2)>$0
