@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: vecp
+# key: vecp
+# --
+template <class T>
+std::ostream &operator<<(std::ostream &stream, const std::vector<T> &vec) {
+  for (auto val : vec) {
+    if (std::is_fundamental<T>::value)
+      stream << " " << val;
+    else
+      stream << std::endl << val;
+  }
+  return stream;
+}$0
