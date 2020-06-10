@@ -451,6 +451,22 @@
   ;; (define-key my-sapce-map (kbd "crg") 'realgud:gdb)
   ;; (define-key my-sapce-map (kbd "crp") 'realgud:pdb)
 
+  ;; cf. https://suzuki.tdiary.net/20140806.html
+  (defun swap-buffers ()
+    "Swapping buffers in two windows"
+    (interactive)
+    (let ((current-w (frame-selected-window))
+          (current-b (window-buffer (frame-selected-window)))
+          (other-w (get-lru-window))
+          (other-b (window-buffer (get-lru-window))))
+      (if (not (one-window-p))
+          (progn
+            (select-window current-w)
+            (switch-to-buffer other-b)
+            (select-window other-w)
+            (switch-to-buffer current-b)
+            ))))
+
   ;; my-window-map
   (define-prefix-command 'my-window-map)
   (define-key evil-normal-state-map (kbd "u") 'my-window-map)
@@ -462,7 +478,8 @@
   (define-key my-window-map (kbd "0") 'delete-window)
   (define-key my-window-map (kbd "k") 'toggle-frame-fullscreen)
   ;; (define-key my-window-map (kbd "uuo") 'toggle-frame-fullscreen)
-  (define-key my-window-map (kbd "uo") 'toggle-frame-fullscreen)
+  ;; (define-key my-window-map (kbd "uo") 'toggle-frame-fullscreen)
+  (define-key my-window-map (kbd "uo") 'swap-buffers)
   )
 
 ;; (use-package evil-collection
@@ -1192,6 +1209,31 @@ translation it is possible to get suggestion."
       (save-buffer)
       (async-shell-command cmd)))
   (evil-define-key 'normal go-mode-map (kbd "C-j") 'my-go-run)
+
+  (defun my-go-async-shell-command
+      (command &optional output-buffer error-buffer)
+    (interactive
+     (list (read-shell-command "Async shell command: "
+                               (concat "go run " (file-name-base) ".go ")
+                               nil
+                               (let ((filename
+                                      (cond
+                                       (buffer-file-name)
+                                       ((eq major-mode 'dired-mode)
+                                        (dired-get-filename nil t))
+                                       )))
+                                 (and filename (file-relative-name filename))))
+           current-prefix-arg
+           shell-command-default-error-buffer
+           ))
+    (save-buffer)
+    (unless (string-match "&[ \t]*\\'" command)
+      (setq command (concat command " &")))
+    (shell-command command output-buffer error-buffer))
+
+  (evil-define-key 'normal go-mode-map (kbd "C-S-j")
+    'my-go-async-shell-command)
+
   )
 
 (use-package elisp-format
@@ -1246,7 +1288,13 @@ translation it is possible to get suggestion."
            (format "platex.exe %s.tex && dvipdfmx.exe %s.dvi"
                    (file-name-base) (file-name-base))))
       (save-buffer)
+      ;; (if (get-buffer "*Async Shell Command*")
+      ;;     ;; (message "foo")
+      ;;     ;; (delete-window "*Async Shell Command*")
+      ;;   (message "bar")
+      ;;   )
       (async-shell-command mycommand)
+      ;; (delete-window)
       ))
 
   (defun my-typeset ()
@@ -1677,8 +1725,32 @@ translation it is possible to get suggestion."
     ;;              )
     ;;           )
 
+
     (when (eq system-type 'windows-nt)
+
+      (use-package unicode-fonts
+        :ensure t
+        :config
+        (message ":config unicode-fonts")
+        (unicode-fonts-setup)
+        )
+
+      ;; ;; デフォルトフォント
       (set-frame-font "Migu 1M-12:antialias=standard")
+
+      ;; 日本語フォント：あいうえお ... 日本語
+      (set-fontset-font
+       'nil 'japanese-jisx0208 (font-spec :family "Migu 1M" :height 120))
+
+      ;; TODO: ギリシャ文字を半角にしたい
+
+      ;; ;; ギリシャ文字：αβγκλ ... ΛΩ
+      ;; (set-fontset-font
+      ;;  'nil '(#x0370 . #x03FF) (font-spec :family "Migu 1M" :height 100))
+
+      ;; ;; キリル文字：Эта статья ... Русский
+      ;; (set-fontset-font
+      ;;  'nil '(#x0400 . #x04FF) (font-spec :family "MSP明朝" :height 100))
 
       ;; For surface
       (when (equal system-name "DESKTOP-U491J4T")
@@ -1756,7 +1828,7 @@ translation it is possible to get suggestion."
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
    (quote
-    (markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
+    (unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
