@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pre
+# key: pre
+# --
+std::setprecision($0)
