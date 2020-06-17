@@ -1109,7 +1109,7 @@ translation it is possible to get suggestion."
 
   (defun my-python-run ()
     (interactive)
-    (let ((command (concat "python3 " (file-name-base) ".py")))
+    (let ((command (concat "python " (file-name-base) ".py")))
       (save-buffer)
       (async-shell-command command)
       ))
