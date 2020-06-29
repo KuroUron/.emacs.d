@@ -1119,7 +1119,7 @@ translation it is possible to get suggestion."
       (command &optional output-buffer error-buffer)
     (interactive
      (list (read-shell-command "Async shell command: "
-                               (concat "python3 " (file-name-base) ".py ")
+                               (concat "python " (file-name-base) ".py ")
                                nil
                                (let ((filename
                                       (cond

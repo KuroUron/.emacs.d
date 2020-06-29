@@ -2,5 +2,7 @@
 # name: temp
 # key: temp
 # --
-call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
-nmake -f Makefile.vc$0
+@echo off
+echo ======== start  %~nx0 %* ========
+$0
+echo ======== finish %~nx0 %* ========

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: itoa
+# key: itoa
+# --
+strconv.Itoa($0)
