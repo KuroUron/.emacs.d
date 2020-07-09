@@ -6,6 +6,9 @@
 
 ;; NOTE 2020-04-02: When the migemo fails, reinstall the evil package.
 
+;; NOTE 2020-07-09: Linux 環境で cmigemo を用いる際には
+;; `nora/migemo/bin/libmigemo.so.1` を `/usr/lib` にコピーすること．
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
 
@@ -1026,7 +1029,7 @@ translation it is possible to get suggestion."
                         (setq comment-end ""))))
 
   (use-package clang-format
-    :ensure t
+    ;; :ensure t
     :config
     (message ":config clang-format")
     (define-key evil-normal-state-map (kbd "f")
@@ -1098,14 +1101,14 @@ translation it is possible to get suggestion."
   :config
   (message ":config python")
 
-  ;; (use-package blacken
-  ;;   :ensure t
-  ;;   :hook
-  ;;   (python-mode . blacken-mode)
-  ;;   :config
-  ;;   (message ":config blacken")
-  ;;   ;; (blacken-mode t)
-  ;;   )
+  (use-package blacken
+    :ensure t
+    :hook
+    (python-mode . blacken-mode)
+    :config
+    (message ":config blacken")
+    ;; (blacken-mode t)
+    )
 
   (defun my-python-run ()
     (interactive)
