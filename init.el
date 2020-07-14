@@ -1487,6 +1487,10 @@ translation it is possible to get suggestion."
   :config
   (message ":config git-gutter")
   (global-git-gutter-mode +1)
+
+  ;; Mercurial
+  (custom-set-variables
+   '(git-gutter:handled-backends '(git hg)))
   )
 
 (use-package smooth-scroll
