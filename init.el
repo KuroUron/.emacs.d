@@ -722,11 +722,12 @@ acceptable."
 
   )
 
-;; (uee-package avy-migemo
+;; (use-package avy-migemo
 ;;   :ensure t
 ;;   :config
 ;;   (avy-migemo-mode 1)
-;;   (setq avy-timeout-seconds nil)
+;;   ;; (setq avy-timeout-seconds nil)
+;;   (require 'avy-migemo-e.g.counsel)
 ;;   (require 'avy-migemo-e.g.swiper)
 ;;   )
 
@@ -1830,6 +1831,7 @@ translation it is possible to get suggestion."
    (quote
     ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
  '(fci-rule-color "#6272a4")
+ '(git-gutter:handled-backends (quote (git hg)))
  '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
