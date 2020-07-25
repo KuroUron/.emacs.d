@@ -277,6 +277,7 @@
   :ensure t
   :init
   (setq evil-want-keybinding nil)       ; for evil-collection
+  (setq evil-want-C-u-scroll t)         ; C-u
   :config
   (message ":config evil")
   (evil-mode t)
@@ -1413,6 +1414,13 @@ translation it is possible to get suggestion."
 
   ;; (define-key evil-normal-state-map (kbd "") 'dumb-jump-go)
   ;; (define-key evil-normal-state-map (kbd "") 'dumb-jump-back)
+  )
+
+(use-package dockerfile-mode
+  :ensure t
+  :mode (("Dockerfile" . dockerfile-mode))
+  :config
+  (message ":config dockerfile-mode")
   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
