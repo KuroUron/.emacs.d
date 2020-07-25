@@ -6,6 +6,9 @@
 
 ;; NOTE 2020-04-02: When the migemo fails, reinstall the evil package.
 
+;; NOTE 2020-07-09: Linux 環境で cmigemo を用いる際には
+;; `nora/migemo/bin/libmigemo.so.1` を `/usr/lib` にコピーすること．
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
 
@@ -720,11 +723,12 @@ acceptable."
 
   )
 
-;; (uee-package avy-migemo
+;; (use-package avy-migemo
 ;;   :ensure t
 ;;   :config
 ;;   (avy-migemo-mode 1)
-;;   (setq avy-timeout-seconds nil)
+;;   ;; (setq avy-timeout-seconds nil)
+;;   (require 'avy-migemo-e.g.counsel)
 ;;   (require 'avy-migemo-e.g.swiper)
 ;;   )
 
@@ -1027,7 +1031,7 @@ translation it is possible to get suggestion."
                         (setq comment-end ""))))
 
   (use-package clang-format
-    :ensure t
+    ;; :ensure t
     :config
     (message ":config clang-format")
     (define-key evil-normal-state-map (kbd "f")
@@ -1099,14 +1103,14 @@ translation it is possible to get suggestion."
   :config
   (message ":config python")
 
-  ;; (use-package blacken
-  ;;   :ensure t
-  ;;   :hook
-  ;;   (python-mode . blacken-mode)
-  ;;   :config
-  ;;   (message ":config blacken")
-  ;;   ;; (blacken-mode t)
-  ;;   )
+  (use-package blacken
+    :ensure t
+    :hook
+    (python-mode . blacken-mode)
+    :config
+    (message ":config blacken")
+    ;; (blacken-mode t)
+    )
 
   (defun my-python-run ()
     (interactive)
@@ -1492,6 +1496,10 @@ translation it is possible to get suggestion."
   :config
   (message ":config git-gutter")
   (global-git-gutter-mode +1)
+
+  ;; Mercurial
+  (custom-set-variables
+   '(git-gutter:handled-backends '(git hg)))
   )
 
 (use-package smooth-scroll
@@ -1831,6 +1839,7 @@ translation it is possible to get suggestion."
    (quote
     ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
  '(fci-rule-color "#6272a4")
+ '(git-gutter:handled-backends (quote (git hg)))
  '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
