@@ -1,0 +1,4 @@
+# key: mset
+# name: mset
+# --
+std::multiset<$0>
