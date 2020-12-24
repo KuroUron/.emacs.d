@@ -1103,14 +1103,14 @@ translation it is possible to get suggestion."
   :config
   (message ":config python")
 
-  (use-package blacken
-    :ensure t
-    :hook
-    (python-mode . blacken-mode)
-    :config
-    (message ":config blacken")
-    ;; (blacken-mode t)
-    )
+  ;; (use-package blacken
+  ;;   :ensure t
+  ;;   :hook
+  ;;   (python-mode . blacken-mode)
+  ;;   :config
+  ;;   (message ":config blacken")
+  ;;   ;; (blacken-mode t)
+  ;;   )
 
   (defun my-python-run ()
     (interactive)

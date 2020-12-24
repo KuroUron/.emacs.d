@@ -2,34 +2,11 @@
 # name: temp
 # key: temp
 # --
-"""
-Descript this module.
-"""
-# Author: Shimizu Shoji
-# Created: BBB
-import logging
-
-logger = logging.getLogger(__name__)
-
-
 def main():
-    logger.info("Start")
-    logger.info("Finish")
+    print("Start!")
+    print("Finish!")
     pass$0
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        level=logging.INFO,
-        format=":".join(
-            [
-                "%(levelname)s",
-                "%(relativeCreated)08d[ms]",
-                "%(module)s",
-                "%(lineno)d",
-                "%(message)s",
-            ]
-        ),
-    )
-    logging.getLogger(__name__).setLevel(level=logging.INFO)
     main()
