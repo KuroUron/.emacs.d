@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: nth
+# key: nth
+# --
+std::nth_element($0)

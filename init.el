@@ -1350,7 +1350,7 @@ translation it is possible to get suggestion."
 
 (use-package realgud
   :ensure t
-  :commands (realgud:pdb realgud:gdb)
+  ;; :commands (realgud:pdb realgud:gdb)
   :custom-face
   (realgud-bp-line-enabled-face ((t (:underline "red"))))
   :config
