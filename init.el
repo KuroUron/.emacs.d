@@ -285,6 +285,14 @@
   (message ":config evil")
   (evil-mode t)
 
+  ;; デフォルトモードの設定
+  ;; cf. https://blog.aaronbieber.com/2016/01/23/living-in-evil.html
+  ;; (add-to-list 'evil-emacs-state-modes '<some-mode>)
+  ;; (add-to-list 'evil-insert-state-modes '<some-mode>)
+  ;; (add-to-list 'evil-visual-state-modes '<some-mode>)
+  ;; (add-to-list 'evil-normal-state-modes '<some-mode>)
+  (add-to-list 'evil-normal-state-modes 'package-menu-mode)
+
   ;; (setq evil-normal-state-cursor "dark green")
   ;; (setq evil-insert-state-cursor ("dark red" . 2))
 
@@ -1293,6 +1301,19 @@ translation it is possible to get suggestion."
     :config
     (message ":config markdownfmt")
     )
+
+  ;; Formatter
+  (add-hook
+   'markdown-mode-hook
+   (lambda ()
+     (define-key evil-normal-state-map (kbd "F")
+       '(lambda ()
+          (interactive)
+          (markdownfmt-format-buffer)
+          (save-buffer)
+          (message "\"markdownfmt-format-buffer\" and \"save-buffer\"")
+          ))
+     ))
   )
 
 (use-package graphviz-dot-mode
