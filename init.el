@@ -1665,7 +1665,7 @@ translation it is possible to get suggestion."
     (setq delete-old-versions t)  ;; delete out-of-range backup files
     (setq backup-directory-alist
           (cons
-           (cons ".*" (concat (file-name-directory user-init-file) "bkup/bkup"))
+           (cons ".*" (concat (file-name-directory user-init-file) "backup/backup"))
            backup-directory-alist))
 
     ;; 2. auto-save file: #aaa.txt#
@@ -1673,12 +1673,12 @@ translation it is possible to get suggestion."
     (setq delete-auto-save-files nil)
     (setq auto-save-timeout 3)     ;; sec
     (setq auto-save-interval 100)  ;; keystroke
-    (let ((autosave-dir (concat (file-name-directory user-init-file) "bkup/autosave/")))
+    (let ((autosave-dir (concat (file-name-directory user-init-file) "backup/autosave/")))
       (unless (file-exists-p autosave-dir)
         (make-directory autosave-dir :parents)
         ))
     (setq auto-save-file-name-transforms
-          `((".*" ,(concat (file-name-directory user-init-file) "bkup/autosave/") t)))
+          `((".*" ,(concat (file-name-directory user-init-file) "backup/autosave/") t)))
 
     ;; 3. lock file: .#aaa.txt
     (setq create-lockfiles nil)
@@ -1720,7 +1720,6 @@ translation it is possible to get suggestion."
     ;; (add-to-list 'default-frame-alist '(ns-appearance . red))
 
     (set-frame-parameter nil 'alpha 99)
-    (show-paren-mode t)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
     (save-place-mode 1)
@@ -1730,6 +1729,10 @@ translation it is possible to get suggestion."
     (setq scroll-preserve-screen-position t)
     (setq redisplay-dont-pause t)
     (fset 'yes-or-no-p 'y-or-n-p)
+
+    ;; paren
+    (show-paren-mode t)
+    (setq show-paren-delay 0.1)
 
     ;; autorevert
     ;; Emacs 以外でファイルが書き変わったときに自動的に読み直すマイナーモード．
