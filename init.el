@@ -354,8 +354,13 @@
       ))
   (define-key evil-normal-state-map (kbd "`") 'my-cd-current-file-directory)
 
+  ;; ;; evil-normal-state-map
+  (define-key evil-normal-state-map (kbd "C-<tab>") 'tab-next)
+  (define-key evil-normal-state-map (kbd "C-o") 'tab-new)
+
   ;; ;; evil-insert-state-map
   ;; (define-key evil-insert-state-map (kbd "M-x") 'helm-M-x)
+  (define-key evil-insert-state-map (kbd "C-<tab>") 'dabbrev-expand)
   (define-key evil-insert-state-map (kbd "M-h") 'backward-kill-word)
   (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
   (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
@@ -1211,7 +1216,18 @@ translation it is possible to get suggestion."
   :mode ("\\.rs" . rust-mode)
   :config
   (message ":config rust-mode")
-  (setq rust-format-on-save t)
+  ;; (setq rust-format-on-save t)
+
+  ;; Formatter
+  (add-hook
+   'rust-mode-hook
+   (lambda ()
+     (define-key evil-normal-state-map (kbd "F")
+       (lambda ()
+         (interactive)
+         (rust-format-buffer)
+         (save-buffer)
+         (message "\"rustfmt\" and \"save-buffer\"")))))
 
   ;; Compile command
   (add-hook
@@ -1851,8 +1867,7 @@ translation it is possible to get suggestion."
 
     ;; Key binding
     (define-key global-map (kbd "C-h") (kbd "DEL"))
-    (define-key global-map (kbd "C-<tab>") 'dabbrev-expand)
-    (define-key global-map (kbd "<C-i>") 'dabbrev-expand)
+u    (define-key global-map (kbd "<C-i>") 'dabbrev-expand)
     (global-set-key (kbd "C-8") 'start-kbd-macro)
     (global-set-key (kbd "C-9") 'end-kbd-macro)
     (global-set-key (kbd "C-0") 'call-last-kbd-macro)
