@@ -1788,7 +1788,7 @@ translation it is possible to get suggestion."
     ;; autorevert
     ;; Emacs 以外でファイルが書き変わったときに自動的に読み直すマイナーモード．
     (global-auto-revert-mode 1)
-    (setq auto-revert-interval 1)
+    (setq auto-revert-interval 2)
 
     ;; Hi-lock: (("★" (0 (quote all-the-icons-yellow) prepend)))
     ;; (global-hi-lock-mode 1)
