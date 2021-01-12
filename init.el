@@ -580,6 +580,9 @@
         '((t lambda (_caller)
              (/ (frame-height) 2))))
 
+  ;; <escape> を一回で ivy を抜けられるようにする
+  (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit))
+
   ;; (add-to-list 'ivy-height-alist
   ;;              (cons 'counsel-find-file
   ;;                    (lambda (_caller)
