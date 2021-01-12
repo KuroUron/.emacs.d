@@ -981,7 +981,11 @@ translation it is possible to get suggestion."
 ;;   (setq awesome-tab-height 100)
 ;;   )
 
-
+;; tab-bar-mode
+(if (fboundp 'tab-bar-mode)
+    ;; Emacs 27.1 or more => OK
+    (tab-bar-mode 1)
+   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
@@ -1867,6 +1871,7 @@ translation it is possible to get suggestion."
 
     ;; Suppress warning: ad-handle-definition: ‘~’ got redefined
     (setq ad-redefinition-action 'accept)
+
     ))
 
 ;; (add-hook
