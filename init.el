@@ -1731,6 +1731,11 @@ translation it is possible to get suggestion."
     (setq redisplay-dont-pause t)
     (fset 'yes-or-no-p 'y-or-n-p)
 
+    ;; autorevert
+    ;; Emacs 以外でファイルが書き変わったときに自動的に読み直すマイナーモード．
+    (global-auto-revert-mode 1)
+    (setq auto-revert-interval 1)
+
     ;; Hi-lock: (("★" (0 (quote all-the-icons-yellow) prepend)))
     ;; (global-hi-lock-mode 1)
     ;; (highlight-regexp "★" 'all-the-icons-yellow)
