@@ -486,20 +486,20 @@
   (define-key my-window-map (kbd "uo") 'swap-buffers)
   )
 
-;; (use-package evil-collection
+;; (use-package evil-magit
+;;   :after magit
 ;;   :ensure t
-;;   ;; :after evil
-;;   :after ivy
 ;;   :config
-;;   (message ":config evil-collection")
-;;   (evil-collection-init)
+;;   (message ":config evil-magit")
 ;;   )
 
-(use-package evil-magit
+(use-package evil-collection
+  ;; This includs `evil-magit`
   :after magit
   :ensure t
   :config
-  (message ":config evil-magit")
+  (message ":config evil-collection")
+  (evil-collection-init)
   )
 
 ;; (use-package modalka
