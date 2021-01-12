@@ -1867,7 +1867,7 @@ translation it is possible to get suggestion."
 
     ;; Key binding
     (define-key global-map (kbd "C-h") (kbd "DEL"))
-u    (define-key global-map (kbd "<C-i>") 'dabbrev-expand)
+    (define-key global-map (kbd "<C-i>") 'dabbrev-expand)
     (global-set-key (kbd "C-8") 'start-kbd-macro)
     (global-set-key (kbd "C-9") 'end-kbd-macro)
     (global-set-key (kbd "C-0") 'call-last-kbd-macro)
