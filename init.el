@@ -292,6 +292,7 @@
   ;; (add-to-list 'evil-visual-state-modes '<some-mode>)
   ;; (add-to-list 'evil-normal-state-modes '<some-mode>)
   (add-to-list 'evil-normal-state-modes 'package-menu-mode)
+  (add-to-list 'evil-normal-state-modes 'help-mode)
 
   ;; (setq evil-normal-state-cursor "dark green")
   ;; (setq evil-insert-state-cursor ("dark red" . 2))
@@ -1311,6 +1312,8 @@ translation it is possible to get suggestion."
   ;; :init (setq markdown-command "multimarkdown")
   :config
   (message ":config: markdown-mode")
+
+  (define-key evil-normal-state-map (kbd "L") 'markdown-follow-link-at-point)
 
   (use-package markdown-toc
     :ensure t
