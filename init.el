@@ -836,6 +836,9 @@ acceptable."
           (t (message "Unreachable"))))
 
   (defhydra hydra-space (evil-normal-state-map "SPC")
+    "
+%s(get-stars (- (/ (frame-total-cols) 2) 1) 0)
+"
     ;; ("j" (lambda () (interactive) (evil-next-line 5)))
     ;; ("SPC" (lambda () (interactive) ()))
     ("j" (lambda () (interactive) (evil-next-line 5)))
