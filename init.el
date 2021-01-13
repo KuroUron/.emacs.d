@@ -820,6 +820,21 @@ acceptable."
   ;; (highlight-regexp "☆" 'all-the-icons-yellow)
   ;; (highlight-regexp "＊" 'all-the-icons-yellow)
 
+  ;; カーソルの位置を (middle top bottom) と移す関数．
+  ;; recenter-top-bottom を参考に作成した．
+  (defvar my-cursor-positions '(middle top bottom))
+  (defun my-recenter-cursor ()
+    (interactive)
+    (setq my-cursor-last-position
+          (if (eq this-command last-command)
+              (car (or (cdr (member my-cursor-last-position my-cursor-positions))
+                       my-cursor-positions))
+            (car my-cursor-positions)))
+    (cond ((eq my-cursor-last-position 'middle) (evil-window-middle))
+          ((eq my-cursor-last-position 'top) (evil-window-top))
+          ((eq my-cursor-last-position 'bottom) (evil-window-bottom))
+          (t (message "Unreachable"))))
+
   (defhydra hydra-space (evil-normal-state-map "SPC")
     "
 %s(get-stars (- (/ (frame-total-cols) 2) 1) 0)
@@ -840,6 +855,7 @@ acceptable."
     ;; ("h" (lambda () (interactive) (evil-backward-char 5)))
     ;; ("l" (lambda () (interactive) (evil-forward-char 5)))
     ("l" (lambda () (interactive) (recenter-top-bottom)))
+    ("h" (lambda () (interactive) (my-recenter-cursor)))
     ;; ("o" (lambda () (interactive) (other-window 1) (evil-force-normal-state) ))
     ("g" nil "leave")
     ;; ("SPC" nil "leave")
@@ -1913,21 +1929,24 @@ translation it is possible to get suggestion."
  '(ansi-color-names-vector
    ["#282a36" "#ff5555" "#50fa7b" "#f1fa8c" "#61bfff" "#ff79c6" "#8be9fd" "#f8f8f2"])
  '(avy-migemo-function-names
-   '(swiper--add-overlays-migemo
+   (quote
+    (swiper--add-overlays-migemo
      (swiper--re-builder :around swiper--re-builder-migemo-around)
      (ivy--regex :around ivy--regex-migemo-around)
      (ivy--regex-ignore-order :around ivy--regex-ignore-order-migemo-around)
      (ivy--regex-plus :around ivy--regex-plus-migemo-around)
-     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full))
+     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full)))
  '(custom-safe-themes
-   '("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default))
+   (quote
+    ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
  '(fci-rule-color "#6272a4")
- '(git-gutter:handled-backends '(git hg))
+ '(git-gutter:handled-backends (quote (git hg)))
  '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   (quote
+    (markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
