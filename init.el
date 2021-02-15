@@ -1888,7 +1888,11 @@ translation it is possible to get suggestion."
 
     (setq-default indent-tabs-mode nil)
     (setq-default tab-width 4)
+
+    ;; 「C-u C-SPC」「C-u C-SPC」「C-u C-SPC」...
+    ;; => 「C-u C-SPC」「C-SPC」「C-SPC」...
     (setq set-mark-command-repeat-pop t)
+    (setq mark-ring-max 64)             ; default: 16
 
     ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
     (defun set-whitespace-deleter ()
