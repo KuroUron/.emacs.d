@@ -285,6 +285,15 @@
   (message ":config evil")
   (evil-mode t)
 
+  ;; デフォルトモードの設定
+  ;; cf. https://blog.aaronbieber.com/2016/01/23/living-in-evil.html
+  ;; (add-to-list 'evil-emacs-state-modes '<some-mode>)
+  ;; (add-to-list 'evil-insert-state-modes '<some-mode>)
+  ;; (add-to-list 'evil-visual-state-modes '<some-mode>)
+  ;; (add-to-list 'evil-normal-state-modes '<some-mode>)
+  (add-to-list 'evil-normal-state-modes 'package-menu-mode)
+  (add-to-list 'evil-normal-state-modes 'help-mode)
+
   ;; (setq evil-normal-state-cursor "dark green")
   ;; (setq evil-insert-state-cursor ("dark red" . 2))
 
@@ -346,8 +355,13 @@
       ))
   (define-key evil-normal-state-map (kbd "`") 'my-cd-current-file-directory)
 
+  ;; ;; evil-normal-state-map
+  (define-key evil-normal-state-map (kbd "C-<tab>") 'tab-next)
+  (define-key evil-normal-state-map (kbd "C-o") 'tab-new)
+
   ;; ;; evil-insert-state-map
   ;; (define-key evil-insert-state-map (kbd "M-x") 'helm-M-x)
+  (define-key evil-insert-state-map (kbd "C-<tab>") 'dabbrev-expand)
   (define-key evil-insert-state-map (kbd "M-h") 'backward-kill-word)
   (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
   (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
@@ -486,20 +500,20 @@
   (define-key my-window-map (kbd "uo") 'swap-buffers)
   )
 
-;; (use-package evil-collection
+;; (use-package evil-magit
+;;   :after magit
 ;;   :ensure t
-;;   ;; :after evil
-;;   :after ivy
 ;;   :config
-;;   (message ":config evil-collection")
-;;   (evil-collection-init)
+;;   (message ":config evil-magit")
 ;;   )
 
-(use-package evil-magit
+(use-package evil-collection
+  ;; This includs `evil-magit`
   :after magit
   :ensure t
   :config
-  (message ":config evil-magit")
+  (message ":config evil-collection")
+  (evil-collection-init)
   )
 
 ;; (use-package modalka
@@ -572,6 +586,9 @@
         '((t lambda (_caller)
              (/ (frame-height) 2))))
 
+  ;; <escape> を一回で ivy を抜けられるようにする
+  (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
+
   ;; (add-to-list 'ivy-height-alist
   ;;              (cons 'counsel-find-file
   ;;                    (lambda (_caller)
@@ -640,6 +657,27 @@
   ;;        ("C-r" . swiper))
   ;; (defvar swiper-include-line-number-in-search t) ;; line-number search
   )
+
+;; (use-package prescient
+;;   ;; cf. https://github.com/raxod502/prescient.el
+;;   ;;  Fast and intuitive frequency-and-recency-based sorting and filtering for Emacs.
+;;   :ensure t
+;;   :after ivy
+;;   :custom (prescient-aggressive-file-save t)
+;;   :config
+;;   (message ":config prescient")
+;;   (prescient-persist-mode 1)
+;;   )
+
+;; (use-package ivy-prescient
+;;   ;; prescient.el + Ivy
+;;   :ensure t
+;;   :after prescient
+;;   :custom (ivy-prescient-retain-classic-highlighting t)
+;;   :config
+;;   (message ":config ivy-prescient")
+;;   (ivy-prescient-mode 1)
+;;   )
 
 (use-package migemo
   ;; cf. https://github.com/koron/cmigemo
@@ -782,19 +820,25 @@ acceptable."
   ;; (highlight-regexp "☆" 'all-the-icons-yellow)
   ;; (highlight-regexp "＊" 'all-the-icons-yellow)
 
+  ;; カーソルの位置を (middle top bottom) と移す関数．
+  ;; recenter-top-bottom を参考に作成した．
+  (defvar my-cursor-positions '(middle top bottom))
+  (defun my-recenter-cursor ()
+    (interactive)
+    (setq my-cursor-last-position
+          (if (eq this-command last-command)
+              (car (or (cdr (member my-cursor-last-position my-cursor-positions))
+                       my-cursor-positions))
+            (car my-cursor-positions)))
+    (cond ((eq my-cursor-last-position 'middle) (evil-window-middle))
+          ((eq my-cursor-last-position 'top) (evil-window-top))
+          ((eq my-cursor-last-position 'bottom) (evil-window-bottom))
+          (t (message "Unreachable"))))
+
   (defhydra hydra-space (evil-normal-state-map "SPC")
     "
 %s(get-stars (- (/ (frame-total-cols) 2) 1) 0)
 "
-;;     "
-;; %s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"                  ☂  ☂                 \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"      ～～    ☂          ☂             \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"    ～～    ☂                 ☂        \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"          ☂              ～～     ☂    \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"  ☂  ☂                    ～～      ☂ \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
-;; "
     ;; ("j" (lambda () (interactive) (evil-next-line 5)))
     ;; ("SPC" (lambda () (interactive) ()))
     ("j" (lambda () (interactive) (evil-next-line 5)))
@@ -802,6 +846,7 @@ acceptable."
     ;; ("h" (lambda () (interactive) (evil-backward-char 5)))
     ;; ("l" (lambda () (interactive) (evil-forward-char 5)))
     ("l" (lambda () (interactive) (recenter-top-bottom)))
+    ("h" (lambda () (interactive) (my-recenter-cursor)))
     ;; ("o" (lambda () (interactive) (other-window 1) (evil-force-normal-state) ))
     ("g" nil "leave")
     ;; ("SPC" nil "leave")
@@ -951,6 +996,12 @@ translation it is possible to get suggestion."
 ;;   (setq awesome-tab-label-fixed-length 14)
 ;;   (setq awesome-tab-height 100)
 ;;   )
+
+;; tab-bar-mode
+(if (fboundp 'tab-bar-mode)
+    ;; Emacs 27.1 or more => OK
+    (tab-bar-mode 1)
+   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
@@ -1175,7 +1226,18 @@ translation it is possible to get suggestion."
   :mode ("\\.rs" . rust-mode)
   :config
   (message ":config rust-mode")
-  (setq rust-format-on-save t)
+  ;; (setq rust-format-on-save t)
+
+  ;; Formatter
+  (add-hook
+   'rust-mode-hook
+   (lambda ()
+     (define-key evil-normal-state-map (kbd "F")
+       (lambda ()
+         (interactive)
+         (rust-format-buffer)
+         (save-buffer)
+         (message "\"rustfmt\" and \"save-buffer\"")))))
 
   ;; Compile command
   (add-hook
@@ -1260,11 +1322,33 @@ translation it is possible to get suggestion."
   :config
   (message ":config: markdown-mode")
 
+  (define-key evil-normal-state-map (kbd "L") 'markdown-follow-link-at-point)
+
   (use-package markdown-toc
     :ensure t
     :config
     (message ":config markdown-toc")
     )
+
+  (use-package markdownfmt
+    ;; cf. https://github.com/nlamirault/emacs-markdownfmt
+    :ensure t
+    :config
+    (message ":config markdownfmt")
+    )
+
+  ;; Formatter
+  (add-hook
+   'markdown-mode-hook
+   (lambda ()
+     (define-key evil-normal-state-map (kbd "F")
+       '(lambda ()
+          (interactive)
+          (markdownfmt-format-buffer)
+          (save-buffer)
+          (message "\"markdownfmt-format-buffer\" and \"save-buffer\"")
+          ))
+     ))
   )
 
 (use-package graphviz-dot-mode
@@ -1667,7 +1751,7 @@ translation it is possible to get suggestion."
     (setq delete-old-versions t)  ;; delete out-of-range backup files
     (setq backup-directory-alist
           (cons
-           (cons ".*" (concat (file-name-directory user-init-file) "bkup/bkup"))
+           (cons ".*" (concat (file-name-directory user-init-file) "backup/backup"))
            backup-directory-alist))
 
     ;; 2. auto-save file: #aaa.txt#
@@ -1675,12 +1759,12 @@ translation it is possible to get suggestion."
     (setq delete-auto-save-files nil)
     (setq auto-save-timeout 3)     ;; sec
     (setq auto-save-interval 100)  ;; keystroke
-    (let ((autosave-dir (concat (file-name-directory user-init-file) "bkup/autosave/")))
+    (let ((autosave-dir (concat (file-name-directory user-init-file) "backup/autosave/")))
       (unless (file-exists-p autosave-dir)
         (make-directory autosave-dir :parents)
         ))
     (setq auto-save-file-name-transforms
-          `((".*" ,(concat (file-name-directory user-init-file) "bkup/autosave/") t)))
+          `((".*" ,(concat (file-name-directory user-init-file) "backup/autosave/") t)))
 
     ;; 3. lock file: .#aaa.txt
     (setq create-lockfiles nil)
@@ -1722,7 +1806,6 @@ translation it is possible to get suggestion."
     ;; (add-to-list 'default-frame-alist '(ns-appearance . red))
 
     (set-frame-parameter nil 'alpha 99)
-    (show-paren-mode t)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
     (save-place-mode 1)
@@ -1732,6 +1815,15 @@ translation it is possible to get suggestion."
     (setq scroll-preserve-screen-position t)
     (setq redisplay-dont-pause t)
     (fset 'yes-or-no-p 'y-or-n-p)
+
+    ;; paren
+    (show-paren-mode t)
+    (setq show-paren-delay 0.1)
+
+    ;; autorevert
+    ;; Emacs 以外でファイルが書き変わったときに自動的に読み直すマイナーモード．
+    (global-auto-revert-mode 1)
+    (setq auto-revert-interval 2)
 
     ;; Hi-lock: (("★" (0 (quote all-the-icons-yellow) prepend)))
     ;; (global-hi-lock-mode 1)
@@ -1787,7 +1879,6 @@ translation it is possible to get suggestion."
 
     ;; Key binding
     (define-key global-map (kbd "C-h") (kbd "DEL"))
-    (define-key global-map (kbd "C-<tab>") 'dabbrev-expand)
     (define-key global-map (kbd "<C-i>") 'dabbrev-expand)
     (global-set-key (kbd "C-8") 'start-kbd-macro)
     (global-set-key (kbd "C-9") 'end-kbd-macro)
@@ -1799,7 +1890,11 @@ translation it is possible to get suggestion."
 
     (setq-default indent-tabs-mode nil)
     (setq-default tab-width 4)
+
+    ;; 「C-u C-SPC」「C-u C-SPC」「C-u C-SPC」...
+    ;; => 「C-u C-SPC」「C-SPC」「C-SPC」...
     (setq set-mark-command-repeat-pop t)
+    (setq mark-ring-max 64)             ; default: 16
 
     ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
     (defun set-whitespace-deleter ()
@@ -1810,6 +1905,7 @@ translation it is possible to get suggestion."
 
     ;; Suppress warning: ad-handle-definition: ‘~’ got redefined
     (setq ad-redefinition-action 'accept)
+
     ))
 
 ;; (add-hook
@@ -1830,24 +1926,21 @@ translation it is possible to get suggestion."
  '(ansi-color-names-vector
    ["#282a36" "#ff5555" "#50fa7b" "#f1fa8c" "#61bfff" "#ff79c6" "#8be9fd" "#f8f8f2"])
  '(avy-migemo-function-names
-   (quote
-    (swiper--add-overlays-migemo
+   '(swiper--add-overlays-migemo
      (swiper--re-builder :around swiper--re-builder-migemo-around)
      (ivy--regex :around ivy--regex-migemo-around)
      (ivy--regex-ignore-order :around ivy--regex-ignore-order-migemo-around)
      (ivy--regex-plus :around ivy--regex-plus-migemo-around)
-     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full)))
+     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full))
  '(custom-safe-themes
-   (quote
-    ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
+   '("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default))
  '(fci-rule-color "#6272a4")
- '(git-gutter:handled-backends (quote (git hg)))
+ '(git-gutter:handled-backends '(git hg))
  '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   (quote
-    (unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag)))
+   '(markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
