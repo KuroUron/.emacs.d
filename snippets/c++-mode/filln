@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: filln
+# key: filln
+# --
+std::fill_n($0)

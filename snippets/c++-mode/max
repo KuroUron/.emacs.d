@@ -2,4 +2,4 @@
 # name: max
 # key: max
 # --
-maximize$0
+std::max($0)
