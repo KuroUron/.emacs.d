@@ -303,8 +303,11 @@
   ;; (define-key evil-normal-state-map (kbd "K") 'nil)
   (define-key evil-insert-state-map (kbd "<escape>")
     '(lambda () (interactive)
-       (save-buffer)
-       (message "\"save-buffer\"")
+       ;; shell や scratch では保存しない
+       (if (buffer-file-name)
+           (progn
+             (save-buffer)
+             (message "\"save-buffer\"")))
        (evil-normal-state)))
   (define-key evil-normal-state-map (kbd "M-p")
     '(lambda () (interactive) (evil-scroll-line-down 5)))
