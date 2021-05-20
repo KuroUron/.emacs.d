@@ -1061,6 +1061,8 @@ translation it is possible to get suggestion."
 
 (use-package cc-mode
   :mode (("\\.cpp" . c++-mode)
+         ("\\.hpp" . c++-mode)
+         ("\\.h" . c++-mode)
          ("\\.cc" . c++-mode)
          ("\\.smp" . c++-mode))
   :config
