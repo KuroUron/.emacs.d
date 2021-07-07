@@ -50,5 +50,5 @@ std::ostream &operator<<(std::ostream &stream, const std::vector<T> &vec) {
 }
 
 int main() {
-$0
+    $0
 }
