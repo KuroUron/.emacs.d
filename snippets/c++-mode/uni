@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: uni
+# key: uni
+# --
+std::unique($0)

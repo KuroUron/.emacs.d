@@ -1898,6 +1898,11 @@ translation it is possible to get suggestion."
     ;; Distinguish "C-i" and "TAB"
     (define-key input-decode-map "\C-i" [C-i])
 
+    ;; Spell check
+    (setq-default ispell-program-name "aspell")
+    (with-eval-after-load "ispell"
+      (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+
     ;; Key binding
     (define-key global-map (kbd "C-h") (kbd "DEL"))
     (define-key global-map (kbd "<C-i>") 'dabbrev-expand)
