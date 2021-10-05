@@ -1572,7 +1572,7 @@ translation it is possible to get suggestion."
   :ensure t
   :hook
   ;; ((python-mode c++-mode c-mode) . yas-minor-mode)
-  ((prog-mode yatex-mode) . yas-minor-mode)
+  ((prog-mode yatex-mode markdown-mode) . yas-minor-mode)
   :config
   (message ":config yasnippet")
   (yas-reload-all)
