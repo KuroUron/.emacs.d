@@ -292,6 +292,7 @@
   ;; (add-to-list 'evil-visual-state-modes '<some-mode>)
   ;; (add-to-list 'evil-normal-state-modes '<some-mode>)
   (add-to-list 'evil-normal-state-modes 'package-menu-mode)
+  (add-to-list 'evil-normal-state-modes 'help-mode)
 
   ;; (setq evil-normal-state-cursor "dark green")
   ;; (setq evil-insert-state-cursor ("dark red" . 2))
@@ -300,6 +301,14 @@
   ;; (define-key evil-normal-state-map (kbd "M-x") 'helm-M-x)
   ;; (define-key evil-normal-state-map (kbd "J") 'nil)
   ;; (define-key evil-normal-state-map (kbd "K") 'nil)
+  (define-key evil-insert-state-map (kbd "<escape>")
+    '(lambda () (interactive)
+       ;; shell や scratch では保存しない
+       (if (buffer-file-name)
+           (progn
+             (save-buffer)
+             (message "\"save-buffer\"")))
+       (evil-normal-state)))
   (define-key evil-normal-state-map (kbd "M-p")
     '(lambda () (interactive) (evil-scroll-line-down 5)))
   (define-key evil-normal-state-map (kbd "M-n")
@@ -354,8 +363,13 @@
       ))
   (define-key evil-normal-state-map (kbd "`") 'my-cd-current-file-directory)
 
+  ;; ;; evil-normal-state-map
+  (define-key evil-normal-state-map (kbd "C-<tab>") 'tab-next)
+  (define-key evil-normal-state-map (kbd "C-o") 'tab-new)
+
   ;; ;; evil-insert-state-map
   ;; (define-key evil-insert-state-map (kbd "M-x") 'helm-M-x)
+  (define-key evil-insert-state-map (kbd "C-<tab>") 'dabbrev-expand)
   (define-key evil-insert-state-map (kbd "M-h") 'backward-kill-word)
   (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
   (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
@@ -652,26 +666,26 @@
   ;; (defvar swiper-include-line-number-in-search t) ;; line-number search
   )
 
-(use-package prescient
-  ;; cf. https://github.com/raxod502/prescient.el
-  ;;  Fast and intuitive frequency-and-recency-based sorting and filtering for Emacs.
-  :ensure t
-  :after ivy
-  :custom (prescient-aggressive-file-save t)
-  :config
-  (message ":config prescient")
-  (prescient-persist-mode 1)
-  )
+;; (use-package prescient
+;;   ;; cf. https://github.com/raxod502/prescient.el
+;;   ;;  Fast and intuitive frequency-and-recency-based sorting and filtering for Emacs.
+;;   :ensure t
+;;   :after ivy
+;;   :custom (prescient-aggressive-file-save t)
+;;   :config
+;;   (message ":config prescient")
+;;   (prescient-persist-mode 1)
+;;   )
 
-(use-package ivy-prescient
-  ;; prescient.el + Ivy
-  :ensure t
-  :after prescient
-  :custom (ivy-prescient-retain-classic-highlighting t)
-  :config
-  (message ":config ivy-prescient")
-  (ivy-prescient-mode 1)
-  )
+;; (use-package ivy-prescient
+;;   ;; prescient.el + Ivy
+;;   :ensure t
+;;   :after prescient
+;;   :custom (ivy-prescient-retain-classic-highlighting t)
+;;   :config
+;;   (message ":config ivy-prescient")
+;;   (ivy-prescient-mode 1)
+;;   )
 
 (use-package migemo
   ;; cf. https://github.com/koron/cmigemo
@@ -814,19 +828,25 @@ acceptable."
   ;; (highlight-regexp "☆" 'all-the-icons-yellow)
   ;; (highlight-regexp "＊" 'all-the-icons-yellow)
 
+  ;; カーソルの位置を (middle top bottom) と移す関数．
+  ;; recenter-top-bottom を参考に作成した．
+  (defvar my-cursor-positions '(middle top bottom))
+  (defun my-recenter-cursor ()
+    (interactive)
+    (setq my-cursor-last-position
+          (if (eq this-command last-command)
+              (car (or (cdr (member my-cursor-last-position my-cursor-positions))
+                       my-cursor-positions))
+            (car my-cursor-positions)))
+    (cond ((eq my-cursor-last-position 'middle) (evil-window-middle))
+          ((eq my-cursor-last-position 'top) (evil-window-top))
+          ((eq my-cursor-last-position 'bottom) (evil-window-bottom))
+          (t (message "Unreachable"))))
+
   (defhydra hydra-space (evil-normal-state-map "SPC")
     "
 %s(get-stars (- (/ (frame-total-cols) 2) 1) 0)
 "
-;;     "
-;; %s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"                  ☂  ☂                 \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"      ～～    ☂          ☂             \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"    ～～    ☂                 ☂        \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"          ☂              ～～     ☂    \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"  ☂  ☂                    ～～      ☂ \"))
-;; %s(apply #'concat (make-list (frame-total-cols) \"                                         \"))
-;; "
     ;; ("j" (lambda () (interactive) (evil-next-line 5)))
     ;; ("SPC" (lambda () (interactive) ()))
     ("j" (lambda () (interactive) (evil-next-line 5)))
@@ -834,6 +854,7 @@ acceptable."
     ;; ("h" (lambda () (interactive) (evil-backward-char 5)))
     ;; ("l" (lambda () (interactive) (evil-forward-char 5)))
     ("l" (lambda () (interactive) (recenter-top-bottom)))
+    ("h" (lambda () (interactive) (my-recenter-cursor)))
     ;; ("o" (lambda () (interactive) (other-window 1) (evil-force-normal-state) ))
     ("g" nil "leave")
     ;; ("SPC" nil "leave")
@@ -1029,6 +1050,12 @@ translation it is possible to get suggestion."
   (message ":config imenu-list")
   )
 
+;; (use-package vterm
+;;   :ensure t
+;;   :config
+;;   (message ":config vterm")
+;;   )
+
 (use-package f90
   :mode (("\\.f90" . f90-mode))
   :config
@@ -1043,6 +1070,8 @@ translation it is possible to get suggestion."
 
 (use-package cc-mode
   :mode (("\\.cpp" . c++-mode)
+         ("\\.hpp" . c++-mode)
+         ("\\.h" . c++-mode)
          ("\\.cc" . c++-mode)
          ("\\.smp" . c++-mode))
   :config
@@ -1211,7 +1240,18 @@ translation it is possible to get suggestion."
   :mode ("\\.rs" . rust-mode)
   :config
   (message ":config rust-mode")
-  (setq rust-format-on-save t)
+  ;; (setq rust-format-on-save t)
+
+  ;; Formatter
+  (add-hook
+   'rust-mode-hook
+   (lambda ()
+     (define-key evil-normal-state-map (kbd "F")
+       (lambda ()
+         (interactive)
+         (rust-format-buffer)
+         (save-buffer)
+         (message "\"rustfmt\" and \"save-buffer\"")))))
 
   ;; Compile command
   (add-hook
@@ -1296,6 +1336,8 @@ translation it is possible to get suggestion."
   :config
   (message ":config: markdown-mode")
 
+  (define-key evil-normal-state-map (kbd "L") 'markdown-follow-link-at-point)
+
   (use-package markdown-toc
     :ensure t
     :config
@@ -1322,6 +1364,13 @@ translation it is possible to get suggestion."
           ))
      ))
   )
+
+;; (use-package markdown-mode
+;;   :ensure t
+;;   :mode (("\\.rst\\'" . rst-mode))
+;;   :config
+;;   (message ":config: rst-mode")
+;;   )
 
 (use-package graphviz-dot-mode
   :ensure t
@@ -1552,7 +1601,7 @@ translation it is possible to get suggestion."
   :ensure t
   :hook
   ;; ((python-mode c++-mode c-mode) . yas-minor-mode)
-  ((prog-mode yatex-mode) . yas-minor-mode)
+  ((prog-mode yatex-mode markdown-mode) . yas-minor-mode)
   :config
   (message ":config yasnippet")
   (yas-reload-all)
@@ -1878,9 +1927,13 @@ translation it is possible to get suggestion."
     ;; Distinguish "C-i" and "TAB"
     (define-key input-decode-map "\C-i" [C-i])
 
+    ;; Spell check
+    (setq-default ispell-program-name "aspell")
+    (with-eval-after-load "ispell"
+      (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+
     ;; Key binding
     (define-key global-map (kbd "C-h") (kbd "DEL"))
-    (define-key global-map (kbd "C-<tab>") 'dabbrev-expand)
     (define-key global-map (kbd "<C-i>") 'dabbrev-expand)
     (global-set-key (kbd "C-8") 'start-kbd-macro)
     (global-set-key (kbd "C-9") 'end-kbd-macro)
@@ -1892,7 +1945,11 @@ translation it is possible to get suggestion."
 
     (setq-default indent-tabs-mode nil)
     (setq-default tab-width 4)
+
+    ;; 「C-u C-SPC」「C-u C-SPC」「C-u C-SPC」...
+    ;; => 「C-u C-SPC」「C-SPC」「C-SPC」...
     (setq set-mark-command-repeat-pop t)
+    (setq mark-ring-max 64)             ; default: 16
 
     ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
     (defun set-whitespace-deleter ()
@@ -1924,21 +1981,23 @@ translation it is possible to get suggestion."
  '(ansi-color-names-vector
    ["#282a36" "#ff5555" "#50fa7b" "#f1fa8c" "#61bfff" "#ff79c6" "#8be9fd" "#f8f8f2"])
  '(avy-migemo-function-names
-   '(swiper--add-overlays-migemo
+   (quote
+    (swiper--add-overlays-migemo
      (swiper--re-builder :around swiper--re-builder-migemo-around)
      (ivy--regex :around ivy--regex-migemo-around)
      (ivy--regex-ignore-order :around ivy--regex-ignore-order-migemo-around)
      (ivy--regex-plus :around ivy--regex-plus-migemo-around)
-     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full))
+     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full)))
  '(custom-safe-themes
-   '("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default))
+   (quote
+    ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
  '(fci-rule-color "#6272a4")
- '(git-gutter:handled-backends '(git hg))
+ '(git-gutter:handled-backends (quote (git hg)))
  '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(tr-ime markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list

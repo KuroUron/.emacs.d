@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sp
+# key: sp
+# --
+std::setprecision($0)

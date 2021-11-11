@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: setp
+# key: setp
+# --
+std::setprecision($0)
