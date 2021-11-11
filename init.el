@@ -984,11 +984,11 @@ translation it is possible to get suggestion."
 ;;   (setq awesome-tab-height 100)
 ;;   )
 
-;; tab-bar-mode
-(if (fboundp 'tab-bar-mode)
-    ;; Emacs 27.1 or more => OK
-    (tab-bar-mode 1)
-   )
+;; ;; tab-bar-mode
+;; (if (fboundp 'tab-bar-mode)
+;;     ;; Emacs 27.1 or more => OK
+;;     (tab-bar-mode 1)
+;;    )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
@@ -1488,14 +1488,43 @@ translation it is possible to get suggestion."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Edit
 
-;; Windows IME
-(when (eq system-type 'windows-nt)
-  (setq default-input-method "W32-IME")
-  (setq-default w32-ime-mode-line-state-indicator "[--]")
-  (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
-  (w32-ime-initialize)
+;; Windows IME (~26)
+;; cf. https://github.com/mhatta/emacs-27-x86_64-win-ime
+(if (<= emacs-major-version 26)
+    (when (eq system-type 'windows-nt)
+      (setq default-input-method "W32-IME")
+      (setq-default w32-ime-mode-line-state-indicator "[--]")
+      (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
+      (w32-ime-initialize)
+      )
   )
 
+;; Windows IME (27~)
+;; cf. https://github.com/trueroad/tr-emacs-ime-module
+(if (>= emacs-major-version 27)
+    (use-package tr-ime
+      :ensure t
+      :config
+      (message ":config tr-ime")
+      (tr-ime-standard-install)
+      ;; IM のデフォルトを IME に設定
+      (setq default-input-method "W32-IME")
+      ;; IME のモードライン表示設定
+      (setq-default w32-ime-mode-line-state-indicator "[--]")
+      (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
+      ;; IME 初期化
+      (w32-ime-initialize)
+      ;; ;; IME 制御（yes/no などの入力の時に IME を off にする）
+      ;; (wrap-function-to-control-ime 'universal-argument t nil)
+      ;; (wrap-function-to-control-ime 'read-string nil nil)
+      ;; (wrap-function-to-control-ime 'read-char nil nil)
+      ;; (wrap-function-to-control-ime 'read-from-minibuffer nil nil)
+      ;; (wrap-function-to-control-ime 'y-or-n-p nil nil)
+      ;; (wrap-function-to-control-ime 'yes-or-no-p nil nil)
+      ;; (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
+      ;; (wrap-function-to-control-ime 'register-read-with-preview nil nil)
+      )
+  )
 
 (when (eq system-type 'gnu/linux)
   (use-package ddskk
@@ -1909,7 +1938,7 @@ translation it is possible to get suggestion."
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(tr-ime markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
