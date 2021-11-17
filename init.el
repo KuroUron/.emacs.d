@@ -294,13 +294,21 @@
   ;; (highlight-indent-guides-character ?\|)
 
   ;; (highlight-indent-guides-responsive t)
-  (highlight-indent-guides-auto-enabled t)
+  ;; (highlight-indent-guides-auto-enabled t)
+  (highlight-indent-guides-auto-enabled nil)
+
   :config
   (message ":config highlight-indent-guides")
-  (setq highlight-indent-guides-auto-odd-face-perc 3)
-  (setq highlight-indent-guides-auto-even-face-perc 3)
+  ;; (setq highlight-indent-guides-auto-odd-face-perc 3)
+  ;; (setq highlight-indent-guides-auto-even-face-perc 3)
   ;; (setq highlight-indent-guides-method 'fill)
   ;; (highlight-indent-guides-mode t)
+
+  (set-face-background 'highlight-indent-guides-odd-face "#222528")
+  (set-face-background 'highlight-indent-guides-even-face "#282522")
+  ;; e.g. "dimgray", "darkgray"
+
+  ;; (set-face-foreground 'highlight-indent-guides-character-face "dimgray")
   )
 
 ;; (use-package yascroll
