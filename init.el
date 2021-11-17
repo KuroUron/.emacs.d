@@ -3,6 +3,8 @@
 ;; cf.
 ;; - [A Life Configuring Emacs](https://alhassy.github.io/init/)
 ;; - [Emacsモダン化計画 -かわEmacs編-](https://qiita.com/Ladicle/items/feb5f9dce9adf89652caf)
+;; - [無名 λ](https://zenn.dev/lambdagonbei)
+;; - [ぐるっとぐりっど: My Emacs Config](https://www.grugrut.net/posts/my-emacs-init-el/)
 
 ;; NOTE 2020-04-02: When the migemo fails, reinstall the evil package.
 
