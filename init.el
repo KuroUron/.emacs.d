@@ -291,6 +291,7 @@
   (highlight-indent-guides-method 'character)
   (highlight-indent-guides-responsive t)
   (highlight-indent-guides-auto-enabled t)
+  (highlight-indent-guides-character ?\|)
   :config
   (message ":config highlight-indent-guides")
   (setq highlight-indent-guides-auto-odd-face-perc 3)
