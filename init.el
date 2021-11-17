@@ -205,17 +205,18 @@
 ;;   (message ":config dashboard")
 ;;   (dashboard-setup-startup-hook))
 
-;; (use-package volatile-highlights
-;;   :ensure t
-;;   ;; :custom-face
-;;   ;; (vhl/default-face ((nil (:foreground "#FF3333" :background "#FFCDCD"))))
-;;   :config
-;;   (message ":config volatile-highlights")
-;;   (volatile-highlights-mode t)
-;;   (vhl/define-extension 'evil 'evil-paste-after 'evil-paste-before
-;;                         'evil-paste-pop 'evil-move)
-;;   (vhl/install-extension 'evil)
-;;   )
+;; ヤンクした場合などに編集箇所を強調表示してわかりやすくする
+(use-package volatile-highlights
+  :ensure t
+  ;; :custom-face
+  ;; (vhl/default-face ((nil (:foreground "#FF3333" :background "#FFCDCD"))))
+  :config
+  (message ":config volatile-highlights")
+  (volatile-highlights-mode t)
+  (vhl/define-extension 'evil 'evil-paste-after 'evil-paste-before
+                        'evil-paste-pop 'evil-move)
+  (vhl/install-extension 'evil)
+  )
 
 ;; (use-package fill-column-indicator
 ;;   :ensure t
