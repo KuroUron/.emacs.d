@@ -919,10 +919,12 @@ acceptable."
                                  (redraw-frame)
                                  (message "Thank you, come again.")
                                  ))
-    (format "%s\n" (propertize
-                  (format "%s" (get-stars (- (/ (frame-total-cols) 2) 1) 0))
-                  'face `(:foreground "gold")
+    "
+%s(format \"%s\" (propertize
+                  (format \"%s\" (get-stars (- (/ (frame-total-cols) 2) 1) 0))
+                  'face `(:foreground \"gold\")
                   ))
+"
     ("j" hydra-space-j)
     ("k" hydra-space-k)
     ("l" hydra-space-l)
