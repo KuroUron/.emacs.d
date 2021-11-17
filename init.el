@@ -52,28 +52,44 @@
 ;;                       )
 ;;   )
 
-(use-package doom-themes
+;; (use-package doom-themes
+;;   :ensure t
+;;   :config
+;;   (message ":config doom-themes")
+
+;;   (when (eq system-type 'windows-nt)
+;;     (load-theme 'doom-one t)
+;;     )
+;;   (when (eq system-type 'gnu/linux)
+;;     (load-theme 'doom-dracula t)
+;;     )
+
+;;   ;; Enable flashing mode-line on errors
+;;   (doom-themes-visual-bell-config)
+
+;;   ;; Enable custom neotree theme (all-the-icons must be installed!)
+;;   (doom-themes-neotree-config)
+;;   ;; or for treemacs users
+;;   (doom-themes-treemacs-config)
+
+;;   ;; Corrects (and improves) org-mode's native fontification.
+;;   (doom-themes-org-config)
+;;   )
+
+(use-package modus-themes
   :ensure t
   :config
-  (message ":config doom-themes")
+  (message ":config modus-themes")
 
-  (when (eq system-type 'windows-nt)
-    (load-theme 'doom-one t)
-    )
-  (when (eq system-type 'gnu/linux)
-    (load-theme 'doom-dracula t)
-    )
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil
+        modus-themes-region '(bg-only no-extend))
 
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
+  (modus-themes-load-themes)
+  ;; (modus-themes-load-operandi) ; ライト
+  (modus-themes-load-vivendi) ; ダーク
 
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;; or for treemacs users
-  (doom-themes-treemacs-config)
-
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config)
+  ;; (global-set-key (kbd "<f5>") 'modus-themes-toggle) ; テーマの切り替え
   )
 
 ;; (use-package powerline
@@ -1981,23 +1997,21 @@ translation it is possible to get suggestion."
  '(ansi-color-names-vector
    ["#282a36" "#ff5555" "#50fa7b" "#f1fa8c" "#61bfff" "#ff79c6" "#8be9fd" "#f8f8f2"])
  '(avy-migemo-function-names
-   (quote
-    (swiper--add-overlays-migemo
+   '(swiper--add-overlays-migemo
      (swiper--re-builder :around swiper--re-builder-migemo-around)
      (ivy--regex :around ivy--regex-migemo-around)
      (ivy--regex-ignore-order :around ivy--regex-ignore-order-migemo-around)
      (ivy--regex-plus :around ivy--regex-plus-migemo-around)
-     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full)))
+     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full))
  '(custom-safe-themes
-   (quote
-    ("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
+   '("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default))
  '(fci-rule-color "#6272a4")
- '(git-gutter:handled-backends (quote (git hg)))
+ '(git-gutter:handled-backends '(git hg))
  '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(modus-themes tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
