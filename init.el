@@ -545,12 +545,12 @@
   (define-key my-window-map (kbd "uo") 'swap-buffers)
   )
 
-;; (use-package evil-magit
-;;   :after magit
-;;   :ensure t
-;;   :config
-;;   (message ":config evil-magit")
-;;   )
+(use-package evil-magit
+  :after magit
+  :ensure t
+  :config
+  (message ":config evil-magit")
+  )
 
 (use-package evil-collection
   ;; This includs `evil-magit`
