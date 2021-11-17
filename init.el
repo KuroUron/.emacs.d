@@ -922,7 +922,7 @@ acceptable."
     "
 %s(format \"%s\" (propertize
                   (format \"%s\" (get-stars (- (/ (frame-total-cols) 2) 1) 0))
-                  'face `(:foreground \"gold\")
+                  'face `(:foreground \"yellow\")
                   ))
 "
     ("j" hydra-space-j)
