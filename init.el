@@ -1081,6 +1081,15 @@ translation it is possible to get suggestion."
 ;;     (tab-bar-mode 1)
 ;;    )
 
+(use-package popwin
+  :ensure t
+  :custom
+  (popwin:popup-window-position 'bottom)
+  :config
+  (message ":config popwin")
+  (popwin-mode 1)
+  )
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
 
