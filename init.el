@@ -919,7 +919,7 @@ acceptable."
                                  (redraw-frame)
                                  (message "Thank you, come again.")
                                  ))
-    (format "%s" (propertize
+    (format "%s\n" (propertize
                   (format "%s" (get-stars (- (/ (frame-total-cols) 2) 1) 0))
                   'face `(:foreground "gold")
                   ))
