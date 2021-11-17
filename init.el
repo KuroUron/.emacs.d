@@ -285,10 +285,10 @@
   ;; ((python-mode c++-mode lisp-mode emacs-lisp-mode yaml-mode) . highlight-indent-guides-mode)
   :custom
   ;; (highlight-indent-guides-method 'fill)
-  (highlight-indent-guides-method 'column)
+  ;; (highlight-indent-guides-method 'column)
+  (highlight-indent-guides-method 'character)
+  (highlight-indent-guides-responsive t)
   (highlight-indent-guides-auto-enabled t)
-  ;; (highlight-indent-guides-responsive t)
-  ;; (highlight-indent-guides-method 'character)
   :config
   (message ":config highlight-indent-guides")
   (setq highlight-indent-guides-auto-odd-face-perc 3)
