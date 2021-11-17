@@ -293,7 +293,7 @@
   ;; (highlight-indent-guides-method 'character)
   ;; (highlight-indent-guides-character ?\|)
 
-  (highlight-indent-guides-responsive t)
+  ;; (highlight-indent-guides-responsive t)
   (highlight-indent-guides-auto-enabled t)
   :config
   (message ":config highlight-indent-guides")
