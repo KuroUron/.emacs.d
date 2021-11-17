@@ -919,9 +919,10 @@ acceptable."
                                  (redraw-frame)
                                  (message "Thank you, come again.")
                                  ))
-    "
-%s(get-stars (- (/ (frame-total-cols) 2) 1) 0)
-"
+    (format "%s" (propertize
+                  (format "%s" (get-stars (- (/ (frame-total-cols) 2) 1) 0))
+                  'face `(:foreground "gold")
+                  ))
     ("j" hydra-space-j)
     ("k" hydra-space-k)
     ("l" hydra-space-l)
@@ -930,10 +931,6 @@ acceptable."
   (define-key my-space-map (kbd "j") 'hydra-space/hydra-space-j)
   (define-key my-space-map (kbd "k") 'hydra-space/hydra-space-k)
   (define-key my-space-map (kbd "l") 'hydra-space/hydra-space-l)
-
-  ;; (defhydra hydra-u (evil-normal-state-map "u")
-  ;;   ("SPC" (lambda () (interactive) (my-mark-move)))
-  ;;   )
 
   (defhydra hydra-scroll (my-window-map "u")
     ("n" (lambda () (interactive) (scroll-up)))
