@@ -149,21 +149,38 @@
   (message ":config all-the-icons")
   )
 
-(use-package doom-modeline
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :defer t
+;;   :hook (after-init . doom-modeline-mode)
+;;   :config
+;;   (message ":config doom-modeline")
+;;   (setq doom-modeline-height 30)
+;;   (setq doom-modeline-bar-width 8)
+;;   ;; (setq doom-modeline-major-mode-color-icon t)
+;;   ;; (set-face-attribute 'error nil
+;;   ;;                     :foreground "dark red"
+;;   ;;                     )
+;;   ;; (set-face-attribute 'success nil
+;;   ;;                     :foreground "dark green"
+;;   ;;                     )
+;;   )
+
+(use-package moody
   :ensure t
-  :defer t
-  :hook (after-init . doom-modeline-mode)
   :config
-  (message ":config doom-modeline")
-  (setq doom-modeline-height 30)
-  (setq doom-modeline-bar-width 8)
-  ;; (setq doom-modeline-major-mode-color-icon t)
-  ;; (set-face-attribute 'error nil
-  ;;                     :foreground "dark red"
-  ;;                     )
-  ;; (set-face-attribute 'success nil
-  ;;                     :foreground "dark green"
-  ;;                     )
+  (message ":config moody")
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode)
+
+  (use-package minions
+    :ensure t
+    :config
+    (message ":config minions")
+    (minions-mode)
+    (setq minions-mode-line-lighter "[+]")
+    )
   )
 
 (use-package hide-mode-line
@@ -1859,7 +1876,7 @@ translation it is possible to get suggestion."
  'after-init-hook
  ;; 'emacs-startup-hook
  '(lambda ()
-    (column-number-mode t)
+    (column-number-mode t) ; 列番号の表示
     (setq inhibit-startup-message t)
     ;; (setq frame-title-format
     ;;       '("emacs " emacs-version (buffer-file-name " - %f")))
@@ -2011,7 +2028,7 @@ translation it is possible to get suggestion."
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(modus-themes tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(minions moody modus-themes tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
