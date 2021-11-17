@@ -257,27 +257,27 @@
   (set-face-background 'whitespace-trailing "#222222")
   )
 
-(use-package beacon
-  :ensure t
-  ;; :custom
-  ;; (beacon-color "yellow")
-  ;; (beacon-color "orange")
-  ;; (beacon-color "#00bfff")
-  ;; (beacon-color "#51afef")
-  :config
-  (message ":config beacon")
-  (when (eq system-type 'windows-nt)
-    ;; (setq beacon-color "#00bfff"))
-    (setq beacon-color "#51afee")
-    )
+;; (use-package beacon
+;;   :ensure t
+;;   ;; :custom
+;;   ;; (beacon-color "yellow")
+;;   ;; (beacon-color "orange")
+;;   ;; (beacon-color "#00bfff")
+;;   ;; (beacon-color "#51afef")
+;;   :config
+;;   (message ":config beacon")
+;;   (when (eq system-type 'windows-nt)
+;;     ;; (setq beacon-color "#00bfff"))
+;;     (setq beacon-color "#51afee")
+;;     )
 
-  (when (eq system-type 'gnu/linux)
-    (setq beacon-color "#bd93f8")
-    ;; (setq beacon-color "#9400d3")
-    ;; (setq beacon-color "#a020f0")
-    )
+;;   (when (eq system-type 'gnu/linux)
+;;     (setq beacon-color "#bd93f8")
+;;     ;; (setq beacon-color "#9400d3")
+;;     ;; (setq beacon-color "#a020f0")
+;;     )
 
-  (beacon-mode 1))
+;;   (beacon-mode 1))
 
 (use-package highlight-indent-guides
   :ensure t
