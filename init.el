@@ -1658,9 +1658,12 @@ translation it is possible to get suggestion."
   (git-gutter:added-sign "☀")
   (git-gutter:deleted-sign "☂")
   :custom-face
-  (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
-  (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
-  (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
+  ;; (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
+  ;; (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
+  ;; (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
+  (git-gutter:modified ((t (:foreground "gray" :background "black"))))
+  (git-gutter:added    ((t (:foreground "orange" :background "black"))))
+  (git-gutter:deleted  ((t (:foreground "cyan" :background "black"))))
   ;; NOTE 2020-04-01: To get the theme color, try `describe-face RET default`
   :config
   (message ":config git-gutter")
