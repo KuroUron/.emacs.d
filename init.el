@@ -207,18 +207,18 @@
 ;;   (message ":config dashboard")
 ;;   (dashboard-setup-startup-hook))
 
-;; ヤンクした場合などに編集箇所を強調表示してわかりやすくする
-(use-package volatile-highlights
-  :ensure t
-  ;; :custom-face
-  ;; (vhl/default-face ((nil (:foreground "#FF3333" :background "#FFCDCD"))))
-  :config
-  (message ":config volatile-highlights")
-  (volatile-highlights-mode t)
-  (vhl/define-extension 'evil 'evil-paste-after 'evil-paste-before
-                        'evil-paste-pop 'evil-move)
-  (vhl/install-extension 'evil)
-  )
+;; ;; ヤンクした場合などに編集箇所を強調表示してわかりやすくする
+;; (use-package volatile-highlights
+;;   :ensure t
+;;   ;; :custom-face
+;;   ;; (vhl/default-face ((nil (:foreground "#FF3333" :background "#FFCDCD"))))
+;;   :config
+;;   (message ":config volatile-highlights")
+;;   (volatile-highlights-mode t)
+;;   (vhl/define-extension 'evil 'evil-paste-after 'evil-paste-before
+;;                         'evil-paste-pop 'evil-move)
+;;   (vhl/install-extension 'evil)
+;;   )
 
 ;; (use-package fill-column-indicator
 ;;   :ensure t
@@ -287,11 +287,14 @@
   ;; ((python-mode c++-mode lisp-mode emacs-lisp-mode yaml-mode) . highlight-indent-guides-mode)
   :custom
   ;; (highlight-indent-guides-method 'fill)
-  ;; (highlight-indent-guides-method 'column)
-  (highlight-indent-guides-method 'character)
+
+  (highlight-indent-guides-method 'column)
+
+  ;; (highlight-indent-guides-method 'character)
+  ;; (highlight-indent-guides-character ?\|)
+
   (highlight-indent-guides-responsive t)
   (highlight-indent-guides-auto-enabled t)
-  (highlight-indent-guides-character ?\|)
   :config
   (message ":config highlight-indent-guides")
   (setq highlight-indent-guides-auto-odd-face-perc 3)
@@ -880,26 +883,53 @@ acceptable."
           ((eq my-cursor-last-position 'bottom) (evil-window-bottom))
           (t (message "Unreachable"))))
 
-  (defhydra hydra-space (evil-normal-state-map "SPC")
+  ;; (define-key evil-normal-state-map
+  ;;   (kbd "SPC")
+  ;;   (defhydra hydra-space (:color pink)
+  ;;     ("j" (lambda () (interactive) (evil-next-line 5)))
+  ;;     ("g" nil "leave")
+  ;;     )
+  ;;   )
+
+;;   (defhydra hydra-space (evil-normal-state-map "SPC")
+;;     "
+;; %s(get-stars (- (/ (frame-total-cols) 2) 1) 0)
+;; "
+;;     ;; ("j" (lambda () (interactive) (evil-next-line 5)))
+;;     ;; ("SPC" (lambda () (interactive) ()))
+;;     ("j" (lambda () (interactive) (evil-next-line 5)))
+;;     ;; ("j" (lambda () (interactive) (next-line 5)))
+;;     ("k" (lambda () (interactive) (evil-previous-line 5)))
+;;     ;; ("k" (lambda () (interactive) (previous-line 5)))
+;;     ;; ("h" (lambda () (interactive) (evil-backward-char 5)))
+;;     ;; ("l" (lambda () (interactive) (evil-forward-char 5)))
+;;     ("l" (lambda () (interactive) (recenter-top-bottom)))
+;;     ;; ("h" (lambda () (interactive) (my-recenter-cursor)))
+;;     ;; ("o" (lambda () (interactive) (other-window 1) (evil-force-normal-state) ))
+;;     ;; ("g" nil "leave")
+;;     ;; ("g" (lambda () (interactive) (redraw-display)) :exit t)
+;;     ("h" (lambda () (interactive) (redraw-frame)) :exit t)
+;;     ;; ("SPC" nil "leave")
+;;     )
+
+  (defun hydra-space-j () (interactive) (evil-next-line 5))
+  (defun hydra-space-k () (interactive) (evil-previous-line 5))
+  (defun hydra-space-l () (interactive) (recenter-top-bottom))
+  (defhydra hydra-space (:post (progn
+                                 (redraw-frame)
+                                 (message "Thank you, come again.")
+                                 ))
     "
 %s(get-stars (- (/ (frame-total-cols) 2) 1) 0)
 "
-    ;; ("j" (lambda () (interactive) (evil-next-line 5)))
-    ;; ("SPC" (lambda () (interactive) ()))
-    ("j" (lambda () (interactive) (evil-next-line 5)))
-    ;; ("j" (lambda () (interactive) (next-line 5)))
-    ("k" (lambda () (interactive) (evil-previous-line 5)))
-    ;; ("k" (lambda () (interactive) (previous-line 5)))
-    ;; ("h" (lambda () (interactive) (evil-backward-char 5)))
-    ;; ("l" (lambda () (interactive) (evil-forward-char 5)))
-    ("l" (lambda () (interactive) (recenter-top-bottom)))
-    ;; ("h" (lambda () (interactive) (my-recenter-cursor)))
-    ;; ("o" (lambda () (interactive) (other-window 1) (evil-force-normal-state) ))
-    ;; ("g" nil "leave")
-    ;; ("g" (lambda () (interactive) (redraw-display)) :exit t)
-    ("h" (lambda () (interactive) (redraw-frame)) :exit t)
-    ;; ("SPC" nil "leave")
+    ("j" hydra-space-j)
+    ("k" hydra-space-k)
+    ("l" hydra-space-l)
+    ("g" nil "leave")
     )
+  (define-key my-space-map (kbd "j") 'hydra-space/hydra-space-j)
+  (define-key my-space-map (kbd "k") 'hydra-space/hydra-space-k)
+  (define-key my-space-map (kbd "l") 'hydra-space/hydra-space-l)
 
   ;; (defhydra hydra-u (evil-normal-state-map "u")
   ;;   ("SPC" (lambda () (interactive) (my-mark-move)))
