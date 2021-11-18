@@ -1967,7 +1967,8 @@ translation it is possible to get suggestion."
     ;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
     ;; (add-to-list 'default-frame-alist '(ns-appearance . red))
 
-    (set-frame-parameter nil 'alpha 99)
+    ;; (set-frame-parameter nil 'alpha 99)
+    (set-frame-parameter nil 'alpha 90)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
     (save-place-mode 1)
