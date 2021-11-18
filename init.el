@@ -1778,6 +1778,8 @@ translation it is possible to get suggestion."
   :config
   (message ":config rainbow-delimiters")
   (rainbow-delimiters-mode t)
+
+  ;; ;; Default?
   ;; (set-face-foreground 'rainbow-delimiters-depth-1-face "#9a4040")
   ;; (set-face-foreground 'rainbow-delimiters-depth-2-face "#ff5e5e")
   ;; (set-face-foreground 'rainbow-delimiters-depth-3-face "#ffaa77")
@@ -1787,6 +1789,50 @@ translation it is possible to get suggestion."
   ;; (set-face-foreground 'rainbow-delimiters-depth-7-face "#da6bda")
   ;; (set-face-foreground 'rainbow-delimiters-depth-8-face "#afafaf")
   ;; (set-face-foreground 'rainbow-delimiters-depth-9-face "#f0f0f0")
+
+  ;; ;; From doom-dracula
+  ;; (set-face-foreground 'rainbow-delimiters-depth-1-face "#61bfff")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-2-face "#ff79c6")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-3-face "#50fa7b")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-4-face "#ffb86c")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-5-face "#bd93f9")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-6-face "#f1fa8c")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-7-face "#0189cc")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-8-face "#a2b6da")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-9-face "#9cb6ad")
+
+  ;; ;; From doom-one
+  ;; (set-face-foreground 'rainbow-delimiters-depth-1-face "#51afef")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-2-face "#c678dd")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-3-face "#98be65")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-4-face "#da8548")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-5-face "#a9a1e1")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-6-face "#ECBE7B")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-7-face "#4db5bd")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-8-face "#a2b6da")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-9-face "#9cb6ad")
+
+  ;; ;; From modus-themes
+  ;; (set-face-foreground 'rainbow-delimiters-depth-1-face "#ffffff")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-2-face "#ff62d4")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-3-face "#3fdfd0")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-4-face "#fba849")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-5-face "#9f80ff")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-6-face "#4fe42f")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-7-face "#fe6060")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-8-face "#4fafff")
+  ;; (set-face-foreground 'rainbow-delimiters-depth-9-face "#f0dd60")
+
+  ;; My custom (based on modus-themes)
+  (set-face-foreground 'rainbow-delimiters-depth-1-face "#4fafff")
+  (set-face-foreground 'rainbow-delimiters-depth-2-face "#ff62d4")
+  (set-face-foreground 'rainbow-delimiters-depth-3-face "#4fe42f")
+  (set-face-foreground 'rainbow-delimiters-depth-4-face "#fba849")
+  (set-face-foreground 'rainbow-delimiters-depth-5-face "#9f80ff")
+  (set-face-foreground 'rainbow-delimiters-depth-6-face "#f0dd60")
+  (set-face-foreground 'rainbow-delimiters-depth-7-face "#fe6060")
+  (set-face-foreground 'rainbow-delimiters-depth-8-face "#3fdfd0")
+  (set-face-foreground 'rainbow-delimiters-depth-9-face "#ffffff")
   )
 
 (use-package rainbow-mode
@@ -1968,7 +2014,7 @@ translation it is possible to get suggestion."
     ;; (add-to-list 'default-frame-alist '(ns-appearance . red))
 
     ;; (set-frame-parameter nil 'alpha 99)
-    (set-frame-parameter nil 'alpha 90)
+    (set-frame-parameter nil 'alpha 92)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
     (save-place-mode 1)
