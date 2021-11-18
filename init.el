@@ -2090,8 +2090,9 @@ translation it is possible to get suggestion."
         (unicode-fonts-setup)
         )
 
-      ;; ;; デフォルトフォント
-      (set-frame-font "Migu 1M-12:antialias=standard")
+      ;; デフォルトフォント
+      ;; (set-frame-font "Migu 1M-12:antialias=standard")
+      (set-frame-font "Migu 1M-13:antialias=standard")
 
       ;; 日本語フォント：あいうえお ... 日本語
       (set-fontset-font
