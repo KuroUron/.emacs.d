@@ -1456,6 +1456,42 @@ translation it is possible to get suggestion."
           (message "\"markdownfmt-format-buffer\" and \"save-buffer\"")
           ))
      ))
+
+  ;; ;; From doom-one
+  ;; (set-face-foreground 'markdown-header-face "#ff6c6b")
+  ;; (set-face-foreground 'markdown-header-face-1 "#ff6c6b")
+  ;; (set-face-foreground 'markdown-header-face-2 "#ff6c6b")
+  ;; (set-face-foreground 'markdown-header-face-3 "#ff6c6b")
+  ;; (set-face-foreground 'markdown-header-face-4 "#ff6c6b")
+  ;; (set-face-foreground 'markdown-header-face-5 "#ff6c6b")
+  ;; (set-face-foreground 'markdown-header-face-6 "#ff6c6b")
+  ;; (set-face-foreground 'markdown-header-delimiter-face "#ff6c6b")
+
+  ;; My custom
+  (set-face-foreground 'markdown-header-face "#ff6040")
+  (set-face-foreground 'markdown-header-face-1 "#ff6040")
+  (set-face-foreground 'markdown-header-face-2 "#ff6040")
+  (set-face-foreground 'markdown-header-face-3 "#ff6040")
+  (set-face-foreground 'markdown-header-face-4 "#ff6040")
+  (set-face-foreground 'markdown-header-face-5 "#ff6040")
+  (set-face-foreground 'markdown-header-face-6 "#ff6040")
+  (set-face-foreground 'markdown-header-delimiter-face "#ff6040")
+
+  ;; From doom-theme
+  ;; markdown-inline-code-face -> markdown-code-face, markdown-pre-face
+  ;; markdown-code-face: Background: #2e3138
+  ;; markdown-pre-face: Foreground: #98be65
+
+  ;; From modus-themes
+  ;; markdown-inline-code-face: Foreground: #fbd6f4, Background: #191a1b
+  ;; markdown-code-face: Background: #100f10
+  ;; markdown-pre-face: Foreground: #bfebe0
+
+  ;; My custom
+  (set-face-background 'markdown-code-face "#2e3138")
+  (set-face-background 'markdown-inline-code-face "#2e3138")
+  (set-face-foreground 'markdown-inline-code-face "#bfebe0")
+  (set-face-foreground 'markdown-pre-face "#bfebe0")
   )
 
 ;; (use-package markdown-mode
@@ -2014,7 +2050,7 @@ translation it is possible to get suggestion."
     ;; (add-to-list 'default-frame-alist '(ns-appearance . red))
 
     ;; (set-frame-parameter nil 'alpha 99)
-    (set-frame-parameter nil 'alpha 92)
+    (set-frame-parameter nil 'alpha 98)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
     (save-place-mode 1)
