@@ -559,6 +559,7 @@
 (use-package evil-magit
   :after magit
   :ensure t
+  :disabled
   :config
   (message ":config evil-magit")
   )
