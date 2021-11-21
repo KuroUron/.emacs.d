@@ -437,10 +437,10 @@
     '(lambda () (interactive) (backward-char 5)))
   (define-key evil-insert-state-map (kbd "C-S-f")
     '(lambda () (interactive) (forward-char 5)))
-  (define-key evil-insert-state-map (kbd "M-p")
-    '(lambda () (interactive) (evil-scroll-line-down 5)))
-  (define-key evil-insert-state-map (kbd "M-n")
-    '(lambda () (interactive) (evil-scroll-line-up 5)))
+  ;; (define-key evil-insert-state-map (kbd "M-p")
+  ;;   '(lambda () (interactive) (evil-scroll-line-down 5)))
+  ;; (define-key evil-insert-state-map (kbd "M-n")
+  ;;   '(lambda () (interactive) (evil-scroll-line-up 5)))
 
   ;; evil-motion-state-map
   (define-key evil-motion-state-map (kbd "SPC") 'my-space-map)
@@ -573,7 +573,7 @@
 ;;   ;; :disabled
 ;;   :config
 ;;   (message ":config evil-magit")
-;;   )
+;;
 
 ;; (use-package modalka
 ;;   :ensure t
