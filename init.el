@@ -85,7 +85,39 @@
 
   (setq modus-themes-italic-constructs t
         modus-themes-bold-constructs nil
-        modus-themes-region '(bg-only no-extend))
+        modus-themes-region '(bg-only no-extend)
+
+        ;; Options for `modus-themes-syntax' are either nil (the default),
+        ;; or a list of properties that may include any of those symbols:
+        ;; `faint', `yellow-comments', `green-strings', `alt-syntax'
+        modus-themes-syntax '(faint green-strings)
+
+        ;; Options for `modus-themes-mode-line' are either nil, or a list
+        ;; that can combine any of `3d' OR `moody', `borderless',
+        ;; `accented'.  The variable's doc string shows all possible
+        ;; combinations.
+        modus-themes-mode-line '(borderless moody)
+
+        ;; Options for `modus-themes-paren-match' are either nil (the
+        ;; default), or a list of properties that may include any of those
+        ;; symbols: `bold', `intense', `underline'
+        modus-themes-paren-match '(bold intense)
+
+        ;; Options for `modus-themes-links' are either nil (the default),
+        ;; or a list of properties that may include any of those symbols:
+        ;; `neutral-underline' OR `no-underline', `faint' OR `no-color',
+        ;; `bold', `italic', `background'
+        modus-themes-links '(neutral-underline background)
+
+        modus-themes-variable-pitch-ui t
+        modus-themes-variable-pitch-headings t
+        modus-themes-scale-headings t
+        modus-themes-scale-1 1.00       ; 1.10
+        modus-themes-scale-2 1.05       ; 1.15
+        modus-themes-scale-3 1.10       ; 1.21
+        modus-themes-scale-4 1.15       ; 1.27
+        modus-themes-scale-title 1.20   ; 1.33
+  )
 
   (modus-themes-load-themes)
   ;; (modus-themes-load-operandi) ; ライト
