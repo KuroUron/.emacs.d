@@ -561,7 +561,7 @@
 (use-package evil-magit
   :after magit
   :ensure t
-  :disabled
+  ;; :disabled
   :config
   (message ":config evil-magit")
   )
