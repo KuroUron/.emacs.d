@@ -358,6 +358,13 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Interface
 
+(use-package undo-tree
+  :ensure t
+  :config
+  (message ":config undo-tree")
+  (global-undo-tree-mode)
+  )
+
 (use-package evil
   :ensure t
   :init
