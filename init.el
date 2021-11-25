@@ -1278,7 +1278,7 @@ translation it is possible to get suggestion."
                         (setq comment-end ""))))
 
   (use-package clang-format
-    ;; :ensure t
+    :ensure t
     :config
     (message ":config clang-format")
     (define-key evil-normal-state-map (kbd "f")
