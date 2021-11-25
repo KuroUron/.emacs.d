@@ -1,12 +1,17 @@
 ;; TODO set-mark-command-repeat-pop の振る舞いを変更 (my-space-map ?)
 
-;; cf.
+;; カスタマイズの参考ページ
+;;
 ;; - [A Life Configuring Emacs](https://alhassy.github.io/init/)
 ;; - [Emacsモダン化計画 -かわEmacs編-](https://qiita.com/Ladicle/items/feb5f9dce9adf89652caf)
 ;; - [無名 λ](https://zenn.dev/lambdagonbei)
 ;; - [ぐるっとぐりっど: My Emacs Config](https://www.grugrut.net/posts/my-emacs-init-el/)
 ;; - [Org-Roam-UI On GNU/Emacs](https://www.youtube.com/watch?v=e-SjhYZjIO8)
 ;; - [suprhst/dotfiles](https://github.com/suprhst/dotfiles/tree/main/dotfiles-ext/emacs.d)
+
+;; Elisp の勉強
+;;
+;; - [Adding A New Language to Emacs](https://www.wilfred.me.uk/blog/2015/03/19/adding-a-new-language-to-emacs/)
 
 ;; NOTE 2020-04-02: When the migemo fails, reinstall the evil package.
 
@@ -98,7 +103,7 @@
         ;; that can combine any of `3d' OR `moody', `borderless',
         ;; `accented'.  The variable's doc string shows all possible
         ;; combinations.
-        modus-themes-mode-line '(borderless moody)
+        modus-themes-mode-line '(moody)
 
         ;; Options for `modus-themes-paren-match' are either nil (the
         ;; default), or a list of properties that may include any of those
