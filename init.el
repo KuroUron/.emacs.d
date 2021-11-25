@@ -34,6 +34,10 @@
   (package-install 'use-package)
   )
 
+;; NOTE: `Failed to verify signature archive-contents.sig:` というエラーが
+;; でるときには msys2 の gpg が悪さをしている可能性があるので，
+;; 一旦 msys2 へのパスを無くしてからサイド長選すると良い．
+
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (toggle-scroll-bar 0)
