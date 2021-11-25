@@ -18,6 +18,10 @@
 ;; NOTE 2020-07-09: Linux 環境で cmigemo を用いる際には
 ;; `nora/migemo/bin/libmigemo.so.1` を `/usr/lib` にコピーすること．
 
+;; NOTE 2021-11-25: `Failed to verify signature archive-contents.sig:` というエラーが
+;; でるときには msys2 の gpg が悪さをしている可能性があるので，
+;; 一旦 msys2 へのパスを無くしてからサイド長選すると良い．
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
 
@@ -33,10 +37,6 @@
   (package-refresh-contents)
   (package-install 'use-package)
   )
-
-;; NOTE: `Failed to verify signature archive-contents.sig:` というエラーが
-;; でるときには msys2 の gpg が悪さをしている可能性があるので，
-;; 一旦 msys2 へのパスを無くしてからサイド長選すると良い．
 
 (menu-bar-mode 0)
 (tool-bar-mode 0)
