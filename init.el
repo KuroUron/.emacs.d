@@ -2215,7 +2215,8 @@ translation it is possible to get suggestion."
 
       ;; デフォルトフォント
       ;; (set-frame-font "Migu 1M-12:antialias=standard")
-      (set-frame-font "Migu 1M-13:antialias=standard")
+      ;; (set-frame-font "Migu 1M-13:antialias=standard")
+      (set-frame-font "Migu 1M-14:antialias=standard")
 
       ;; 日本語フォント：あいうえお ... 日本語
       (set-fontset-font
