@@ -763,6 +763,12 @@
 ;;   (ivy-posframe-mode 1)
 ;;   )
 
+(use-package all-the-icons-ivy
+  :ensure t
+  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
+  (message ":config ivy-posframe")
+  )
+
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia
   :ensure t
@@ -2275,6 +2281,7 @@ translation it is possible to get suggestion."
    '("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default))
  '(fci-rule-color "#6272a4")
  '(git-gutter:handled-backends '(git hg))
+ '(helm-minibuffer-history-key "M-p")
  '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
