@@ -763,11 +763,41 @@
 ;;   (ivy-posframe-mode 1)
 ;;   )
 
-(use-package all-the-icons-ivy
+(use-package all-the-icons-ivy-rich
   :ensure t
-  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
-  (message ":config ivy-posframe")
+  :init (all-the-icons-ivy-rich-mode 1)
+  :config
+  (message ":config all-the-icons-ivy-rich")
+
+  ;; Whether display the icons
+  (setq all-the-icons-ivy-rich-icon t)
+
+  ;; Whether display the colorful icons.
+  ;; It respects `all-the-icons-color-icons'.
+  (setq all-the-icons-ivy-rich-color-icon t)
+
+  ;; The icon size
+  (setq all-the-icons-ivy-rich-icon-size 1.0)
+
+  ;; Whether support project root
+  (setq all-the-icons-ivy-rich-project t)
+
+  ;; Definitions for ivy-rich transformers.
+  ;; See `ivy-rich-display-transformers-list' for details."
+  all-the-icons-ivy-rich-display-transformers-list
+
+  ;; Slow Rendering
+  ;; If you experience a slow down in performance when rendering multiple icons simultaneously,
+  ;; you can try setting the following variable
+  (setq inhibit-compacting-font-caches t)
   )
+
+;; (use-package all-the-icons-ivy
+;;   :ensure t
+;;   :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
+;;   :config
+;;   (message ":config all-the-icons-ivy")
+;;   )
 
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia
@@ -2286,7 +2316,7 @@ translation it is possible to get suggestion."
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
