@@ -2243,7 +2243,8 @@ translation it is possible to get suggestion."
                         'japanese-jisx0208
                         '("Noto Sans CJK JP Medium" . "iso10646-1")) ; For WSL
       ;; (set-frame-font "Migu 1M-12:antialias=standard")
-      (set-frame-font "Migu 1M-13:antialias=standard")
+      ;; (set-frame-font "Migu 1M-13:antialias=standard")
+      (set-frame-font "Migu 1M-14:antialias=standard")
       )
 
     ;; Distinguish "C-i" and "TAB"
