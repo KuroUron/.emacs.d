@@ -1802,7 +1802,8 @@ translation it is possible to get suggestion."
 
 ;; Windows IME (27~)
 ;; cf. https://github.com/trueroad/tr-emacs-ime-module
-(if (>= emacs-major-version 27)
+(if (and (>= emacs-major-version 27)
+         (eq system-type 'windows-nt))
     (use-package tr-ime
       :ensure t
       :config
