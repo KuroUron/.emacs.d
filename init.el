@@ -8,6 +8,7 @@
 ;; - [ぐるっとぐりっど: My Emacs Config](https://www.grugrut.net/posts/my-emacs-init-el/)
 ;; - [Org-Roam-UI On GNU/Emacs](https://www.youtube.com/watch?v=e-SjhYZjIO8)
 ;; - [suprhst/dotfiles](https://github.com/suprhst/dotfiles/tree/main/dotfiles-ext/emacs.d)
+;; - [日々、とんは語る。](https://blog.tomoya.dev/)
 
 ;; Elisp の勉強
 ;;
