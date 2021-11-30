@@ -1227,6 +1227,8 @@ translation it is possible to get suggestion."
         centaur-tabs-height 32
         centaur-tabs-set-modified-marker t
         )
+  (centaur-tabs-change-fonts "Migu 1M" 120)
+  (centaur-tabs-headline-match)
   (centaur-tabs-mode t)
   )
 
