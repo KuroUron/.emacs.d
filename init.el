@@ -802,24 +802,24 @@
 ;;   (message ":config all-the-icons-ivy")
 ;;   )
 
-;; Enable richer annotations using the Marginalia package
-(use-package marginalia
-  :ensure t
-  ;; Either bind `marginalia-cycle` globally or only in the minibuffer
-  :bind (("M-A" . marginalia-cycle)
-         :map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
+;; ;; Enable richer annotations using the Marginalia package
+;; (use-package marginalia
+;;   :ensure t
+;;   ;; Either bind `marginalia-cycle` globally or only in the minibuffer
+;;   :bind (("M-A" . marginalia-cycle)
+;;          :map minibuffer-local-map
+;;          ("M-A" . marginalia-cycle))
 
-  ;; The :init configuration is always executed (Not lazy!)
-  :init
+;;   ;; The :init configuration is always executed (Not lazy!)
+;;   :init
 
-  ;; Must be in the :init section of use-package such that the mode gets
-  ;; enabled right away. Note that this forces loading the package.
-  (marginalia-mode)
+;;   ;; Must be in the :init section of use-package such that the mode gets
+;;   ;; enabled right away. Note that this forces loading the package.
+;;   (marginalia-mode)
 
-  :config
-  (message ":config marginalia")
-  )
+;;   :config
+;;   (message ":config marginalia")
+;;   )
 
 (use-package counsel
   :ensure t
