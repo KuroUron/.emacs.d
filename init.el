@@ -1220,9 +1220,11 @@ translation it is possible to get suggestion."
   :config
   (message ":config centaur-tabs")
   (setq centaur-tabs-set-icons t
-        centaur-tabs-set-bar 'over
+        centaur-tabs-set-bar 'left
+        ;; centaur-tabs-set-bar 'over
         centaur-tabs-gray-out-icons 'buffer
-        centaur-tabs-height 22
+        ;; centaur-tabs-height 22
+        centaur-tabs-height 32
         centaur-tabs-set-modified-marker t
         )
   (centaur-tabs-mode t)
