@@ -8,6 +8,7 @@
 ;; - [ぐるっとぐりっど: My Emacs Config](https://www.grugrut.net/posts/my-emacs-init-el/)
 ;; - [Org-Roam-UI On GNU/Emacs](https://www.youtube.com/watch?v=e-SjhYZjIO8)
 ;; - [suprhst/dotfiles](https://github.com/suprhst/dotfiles/tree/main/dotfiles-ext/emacs.d)
+;; - [日々、とんは語る。](https://blog.tomoya.dev/)
 
 ;; Elisp の勉強
 ;;
@@ -223,8 +224,10 @@
     :ensure t
     :config
     (message ":config minions")
-    (minions-mode)
+    ;; (setq minions-mode-line-lighter "⚙"
+    ;;       minions-mode-line-delimiters (cons "" ""))
     (setq minions-mode-line-lighter "[+]")
+    (minions-mode)
     )
   )
 
@@ -763,6 +766,42 @@
 ;;   (ivy-posframe-mode 1)
 ;;   )
 
+(use-package all-the-icons-ivy-rich
+  :ensure t
+  :init (all-the-icons-ivy-rich-mode 1)
+  :config
+  (message ":config all-the-icons-ivy-rich")
+
+  ;; Whether display the icons
+  (setq all-the-icons-ivy-rich-icon t)
+
+  ;; Whether display the colorful icons.
+  ;; It respects `all-the-icons-color-icons'.
+  (setq all-the-icons-ivy-rich-color-icon t)
+
+  ;; The icon size
+  (setq all-the-icons-ivy-rich-icon-size 1.0)
+
+  ;; Whether support project root
+  (setq all-the-icons-ivy-rich-project t)
+
+  ;; Definitions for ivy-rich transformers.
+  ;; See `ivy-rich-display-transformers-list' for details."
+  all-the-icons-ivy-rich-display-transformers-list
+
+  ;; Slow Rendering
+  ;; If you experience a slow down in performance when rendering multiple icons simultaneously,
+  ;; you can try setting the following variable
+  (setq inhibit-compacting-font-caches t)
+  )
+
+;; (use-package all-the-icons-ivy
+;;   :ensure t
+;;   :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
+;;   :config
+;;   (message ":config all-the-icons-ivy")
+;;   )
+
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia
   :ensure t
@@ -953,7 +992,7 @@ acceptable."
   (defun get-stars (n offset)
     (let ((stars "★☆＊＊・＊＊☆★★")
           (res ""))
-      (do ((i 0 (+ i 1))) ((not (< i n)))
+      (cl-do ((i 0 (+ i 1))) ((not (< i n)))
         (let* ((current-idx (mod (+ i offset) (length stars)))
                (current-str (string (elt stars current-idx))))
           (setq res (concat res current-str))))
@@ -1175,6 +1214,21 @@ translation it is possible to get suggestion."
 ;;     ;; Emacs 27.1 or more => OK
 ;;     (tab-bar-mode 1)
 ;;    )
+
+(use-package centaur-tabs
+  :ensure t
+  :config
+  (message ":config centaur-tabs")
+  (setq centaur-tabs-set-icons t
+        ;; centaur-tabs-set-bar 'left
+        centaur-tabs-set-bar 'over
+        centaur-tabs-gray-out-icons 'buffer
+        ;; centaur-tabs-height 22
+        centaur-tabs-height 32
+        centaur-tabs-set-modified-marker t
+        )
+  (centaur-tabs-mode t)
+  )
 
 (use-package popwin
   :ensure t
@@ -1766,7 +1820,8 @@ translation it is possible to get suggestion."
 
 ;; Windows IME (27~)
 ;; cf. https://github.com/trueroad/tr-emacs-ime-module
-(if (>= emacs-major-version 27)
+(if (and (>= emacs-major-version 27)
+         (eq system-type 'windows-nt))
     (use-package tr-ime
       :ensure t
       :config
@@ -2179,7 +2234,8 @@ translation it is possible to get suggestion."
 
       ;; デフォルトフォント
       ;; (set-frame-font "Migu 1M-12:antialias=standard")
-      (set-frame-font "Migu 1M-13:antialias=standard")
+      ;; (set-frame-font "Migu 1M-13:antialias=standard")
+      (set-frame-font "Migu 1M-14:antialias=standard")
 
       ;; 日本語フォント：あいうえお ... 日本語
       (set-fontset-font
@@ -2205,7 +2261,8 @@ translation it is possible to get suggestion."
                         'japanese-jisx0208
                         '("Noto Sans CJK JP Medium" . "iso10646-1")) ; For WSL
       ;; (set-frame-font "Migu 1M-12:antialias=standard")
-      (set-frame-font "Migu 1M-13:antialias=standard")
+      ;; (set-frame-font "Migu 1M-13:antialias=standard")
+      (set-frame-font "Migu 1M-14:antialias=standard")
       )
 
     ;; Distinguish "C-i" and "TAB"
@@ -2275,11 +2332,12 @@ translation it is possible to get suggestion."
    '("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default))
  '(fci-rule-color "#6272a4")
  '(git-gutter:handled-backends '(git hg))
+ '(helm-minibuffer-history-key "M-p")
  '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
