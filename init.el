@@ -1224,7 +1224,8 @@ translation it is possible to get suggestion."
         centaur-tabs-set-bar 'over
         centaur-tabs-gray-out-icons 'buffer
         ;; centaur-tabs-height 22
-        centaur-tabs-height 32
+        centaur-tabs-height 26
+        ;; centaur-tabs-height 32
         centaur-tabs-set-modified-marker t
         )
   (centaur-tabs-change-fonts "Migu 1M" 140)
