@@ -1221,7 +1221,7 @@ translation it is possible to get suggestion."
   (message ":config centaur-tabs")
   (setq centaur-tabs-set-icons t
         ;; centaur-tabs-set-bar 'left
-        centaur-tabs-set-bar 'over
+        ;; centaur-tabs-set-bar 'over
         centaur-tabs-gray-out-icons 'buffer
         ;; centaur-tabs-height 22
         centaur-tabs-height 26
