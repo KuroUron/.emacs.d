@@ -1215,23 +1215,23 @@ translation it is possible to get suggestion."
 ;;     (tab-bar-mode 1)
 ;;    )
 
-(use-package centaur-tabs
-  :ensure t
-  :config
-  (message ":config centaur-tabs")
-  (setq centaur-tabs-set-icons t
-        ;; centaur-tabs-set-bar 'left
-        centaur-tabs-set-bar 'over
-        centaur-tabs-gray-out-icons 'buffer
-        ;; centaur-tabs-height 22
-        centaur-tabs-height 26
-        ;; centaur-tabs-height 32
-        centaur-tabs-set-modified-marker t
-        )
-  (centaur-tabs-change-fonts "Migu 1M" 140)
-  (centaur-tabs-headline-match)
-  (centaur-tabs-mode t)
-  )
+;; (use-package centaur-tabs
+;;   :ensure t
+;;   :config
+;;   (message ":config centaur-tabs")
+;;   (setq centaur-tabs-set-icons t
+;;         ;; centaur-tabs-set-bar 'left
+;;         centaur-tabs-set-bar 'over
+;;         centaur-tabs-gray-out-icons 'buffer
+;;         ;; centaur-tabs-height 22
+;;         centaur-tabs-height 26
+;;         ;; centaur-tabs-height 32
+;;         centaur-tabs-set-modified-marker t
+;;         )
+;;   (centaur-tabs-change-fonts "Migu 1M" 140)
+;;   (centaur-tabs-headline-match)
+;;   (centaur-tabs-mode t)
+;;   )
 
 (use-package popwin
   :ensure t
