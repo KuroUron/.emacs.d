@@ -1772,6 +1772,7 @@ translation it is possible to get suggestion."
 ;;   :ensure t
 ;;   :hook
 ;;   (c++-mode . lsp)
+;;   (python-mode . lsp)
 ;;   :config
 ;;   (message ":config lsp-mode")
 ;;   ;; (require 'lsp-clients)
