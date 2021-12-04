@@ -2194,8 +2194,8 @@ translation it is possible to get suggestion."
     ;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
     ;; (add-to-list 'default-frame-alist '(ns-appearance . red))
 
-    ;; (set-frame-parameter nil 'alpha 99)
-    (set-frame-parameter nil 'alpha 93)
+    (set-frame-parameter nil 'alpha 99)
+    ;; (set-frame-parameter nil 'alpha 93)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
     (save-place-mode 1)
@@ -2369,9 +2369,6 @@ translation it is possible to get suggestion."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ;; '(git-gutter:added ((t (:foreground "orange" :background "black"))))
- ;; '(git-gutter:deleted ((t (:foreground "cyan" :background "black"))))
- ;; '(git-gutter:modified ((t (:foreground "gray" :background "black"))))
  '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :weight bold))))
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
 (put 'upcase-region 'disabled nil)
