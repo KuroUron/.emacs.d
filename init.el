@@ -2209,7 +2209,7 @@ translation it is possible to get suggestion."
     ;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
     ;; (add-to-list 'default-frame-alist '(ns-appearance . red))
 
-    (set-frame-parameter nil 'alpha 99)
+    (set-frame-parameter nil 'alpha 98)
     ;; (set-frame-parameter nil 'alpha 93)
     (electric-pair-mode 1)
     ;; (setq scroll-step 1)
