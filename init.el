@@ -66,77 +66,77 @@
 ;;                       )
 ;;   )
 
-;; (use-package doom-themes
-;;   :ensure t
-;;   :config
-;;   (message ":config doom-themes")
-
-;;   (when (eq system-type 'windows-nt)
-;;     (load-theme 'doom-one t)
-;;     )
-;;   (when (eq system-type 'gnu/linux)
-;;     (load-theme 'doom-dracula t)
-;;     )
-
-;;   ;; Enable flashing mode-line on errors
-;;   (doom-themes-visual-bell-config)
-
-;;   ;; Enable custom neotree theme (all-the-icons must be installed!)
-;;   (doom-themes-neotree-config)
-;;   ;; or for treemacs users
-;;   (doom-themes-treemacs-config)
-
-;;   ;; Corrects (and improves) org-mode's native fontification.
-;;   (doom-themes-org-config)
-;;   )
-
-(use-package modus-themes
+(use-package doom-themes
   :ensure t
   :config
-  (message ":config modus-themes")
+  (message ":config doom-themes")
 
-  (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs nil
-        modus-themes-region '(bg-only no-extend)
+  (when (eq system-type 'windows-nt)
+    (load-theme 'doom-one t)
+    )
+  (when (eq system-type 'gnu/linux)
+    (load-theme 'doom-dracula t)
+    )
 
-        ;; Options for `modus-themes-syntax' are either nil (the default),
-        ;; or a list of properties that may include any of those symbols:
-        ;; `faint', `yellow-comments', `green-strings', `alt-syntax'
-        modus-themes-syntax '(green-strings)
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
 
-        ;; Options for `modus-themes-mode-line' are either nil, or a list
-        ;; that can combine any of `3d' OR `moody', `borderless',
-        ;; `accented'.  The variable's doc string shows all possible
-        ;; combinations.
-        modus-themes-mode-line '(moody)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (doom-themes-treemacs-config)
 
-        ;; Options for `modus-themes-paren-match' are either nil (the
-        ;; default), or a list of properties that may include any of those
-        ;; symbols: `bold', `intense', `underline'
-        modus-themes-paren-match '(bold intense)
-
-        ;; Options for `modus-themes-links' are either nil (the default),
-        ;; or a list of properties that may include any of those symbols:
-        ;; `neutral-underline' OR `no-underline', `faint' OR `no-color',
-        ;; `bold', `italic', `background'
-        modus-themes-links '(neutral-underline background)
-
-        modus-themes-variable-pitch-ui t
-        modus-themes-variable-pitch-headings t
-        modus-themes-scale-headings t
-        modus-themes-scale-1 1.00       ; 1.10
-        modus-themes-scale-2 1.05       ; 1.15
-        modus-themes-scale-3 1.10       ; 1.21
-        modus-themes-scale-4 1.15       ; 1.27
-        modus-themes-scale-title 1.20   ; 1.33
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config)
   )
 
-  (modus-themes-load-themes)
-  ;; (modus-themes-load-operandi) ; ライト
-  (modus-themes-load-vivendi) ; ダーク
+;; (use-package modus-themes
+;;   :ensure t
+;;   :config
+;;   (message ":config modus-themes")
 
-  ;; (global-set-key (kbd "<f5>") 'modus-themes-toggle) ; テーマの切り替え
-  )
+;;   (setq modus-themes-italic-constructs t
+;;         modus-themes-bold-constructs nil
+;;         modus-themes-region '(bg-only no-extend)
+
+;;         ;; Options for `modus-themes-syntax' are either nil (the default),
+;;         ;; or a list of properties that may include any of those symbols:
+;;         ;; `faint', `yellow-comments', `green-strings', `alt-syntax'
+;;         modus-themes-syntax '(green-strings)
+
+;;         ;; Options for `modus-themes-mode-line' are either nil, or a list
+;;         ;; that can combine any of `3d' OR `moody', `borderless',
+;;         ;; `accented'.  The variable's doc string shows all possible
+;;         ;; combinations.
+;;         modus-themes-mode-line '(moody)
+
+;;         ;; Options for `modus-themes-paren-match' are either nil (the
+;;         ;; default), or a list of properties that may include any of those
+;;         ;; symbols: `bold', `intense', `underline'
+;;         modus-themes-paren-match '(bold intense)
+
+;;         ;; Options for `modus-themes-links' are either nil (the default),
+;;         ;; or a list of properties that may include any of those symbols:
+;;         ;; `neutral-underline' OR `no-underline', `faint' OR `no-color',
+;;         ;; `bold', `italic', `background'
+;;         modus-themes-links '(neutral-underline background)
+
+;;         modus-themes-variable-pitch-ui t
+;;         modus-themes-variable-pitch-headings t
+;;         modus-themes-scale-headings t
+;;         modus-themes-scale-1 1.00       ; 1.10
+;;         modus-themes-scale-2 1.05       ; 1.15
+;;         modus-themes-scale-3 1.10       ; 1.21
+;;         modus-themes-scale-4 1.15       ; 1.27
+;;         modus-themes-scale-title 1.20   ; 1.33
+;;   )
+
+;;   (modus-themes-load-themes)
+;;   ;; (modus-themes-load-operandi) ; ライト
+;;   (modus-themes-load-vivendi) ; ダーク
+
+;;   ;; (global-set-key (kbd "<f5>") 'modus-themes-toggle) ; テーマの切り替え
+;;   )
 
 ;; (use-package powerline
 ;;   :ensure t
@@ -195,41 +195,41 @@
   (message ":config all-the-icons")
   )
 
-;; (use-package doom-modeline
-;;   :ensure t
-;;   :defer t
-;;   :hook (after-init . doom-modeline-mode)
-;;   :config
-;;   (message ":config doom-modeline")
-;;   (setq doom-modeline-height 30)
-;;   (setq doom-modeline-bar-width 8)
-;;   ;; (setq doom-modeline-major-mode-color-icon t)
-;;   ;; (set-face-attribute 'error nil
-;;   ;;                     :foreground "dark red"
-;;   ;;                     )
-;;   ;; (set-face-attribute 'success nil
-;;   ;;                     :foreground "dark green"
-;;   ;;                     )
-;;   )
-
-(use-package moody
+(use-package doom-modeline
   :ensure t
+  :defer t
+  :hook (after-init . doom-modeline-mode)
   :config
-  (message ":config moody")
-  (setq x-underline-at-descent-line t)
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode)
-
-  (use-package minions
-    :ensure t
-    :config
-    (message ":config minions")
-    ;; (setq minions-mode-line-lighter "⚙"
-    ;;       minions-mode-line-delimiters (cons "" ""))
-    (setq minions-mode-line-lighter "[+]")
-    (minions-mode)
-    )
+  (message ":config doom-modeline")
+  (setq doom-modeline-height 30)
+  (setq doom-modeline-bar-width 8)
+  ;; (setq doom-modeline-major-mode-color-icon t)
+  ;; (set-face-attribute 'error nil
+  ;;                     :foreground "dark red"
+  ;;                     )
+  ;; (set-face-attribute 'success nil
+  ;;                     :foreground "dark green"
+  ;;                     )
   )
+
+;; (use-package moody
+;;   :ensure t
+;;   :config
+;;   (message ":config moody")
+;;   (setq x-underline-at-descent-line t)
+;;   (moody-replace-mode-line-buffer-identification)
+;;   (moody-replace-vc-mode)
+
+;;   (use-package minions
+;;     :ensure t
+;;     :config
+;;     (message ":config minions")
+;;     ;; (setq minions-mode-line-lighter "⚙"
+;;     ;;       minions-mode-line-delimiters (cons "" ""))
+;;     (setq minions-mode-line-lighter "[+]")
+;;     (minions-mode)
+;;     )
+;;   )
 
 (use-package hide-mode-line
   :ensure t
@@ -1215,23 +1215,23 @@ translation it is possible to get suggestion."
 ;;     (tab-bar-mode 1)
 ;;    )
 
-(use-package centaur-tabs
-  :ensure t
-  :config
-  (message ":config centaur-tabs")
-  (setq centaur-tabs-set-icons t
-        ;; centaur-tabs-set-bar 'left
-        ;; centaur-tabs-set-bar 'over
-        centaur-tabs-gray-out-icons 'buffer
-        ;; centaur-tabs-height 22
-        centaur-tabs-height 26
-        ;; centaur-tabs-height 32
-        centaur-tabs-set-modified-marker t
-        )
-  (centaur-tabs-change-fonts "Migu 1M" 140)
-  (centaur-tabs-headline-match)
-  (centaur-tabs-mode t)
-  )
+;; (use-package centaur-tabs
+;;   :ensure t
+;;   :config
+;;   (message ":config centaur-tabs")
+;;   (setq centaur-tabs-set-icons t
+;;         ;; centaur-tabs-set-bar 'left
+;;         centaur-tabs-set-bar 'over
+;;         centaur-tabs-gray-out-icons 'buffer
+;;         ;; centaur-tabs-height 22
+;;         centaur-tabs-height 26
+;;         ;; centaur-tabs-height 32
+;;         centaur-tabs-set-modified-marker t
+;;         )
+;;   (centaur-tabs-change-fonts "Migu 1M" 140)
+;;   (centaur-tabs-headline-match)
+;;   (centaur-tabs-mode t)
+;;   )
 
 (use-package popwin
   :ensure t
@@ -1611,15 +1611,15 @@ translation it is possible to get suggestion."
   ;; (set-face-foreground 'markdown-header-face-6 "#ff6c6b")
   ;; (set-face-foreground 'markdown-header-delimiter-face "#ff6c6b")
 
-  ;; My custom
-  (set-face-foreground 'markdown-header-face "#ff6040")
-  (set-face-foreground 'markdown-header-face-1 "#ff6040")
-  (set-face-foreground 'markdown-header-face-2 "#ff6040")
-  (set-face-foreground 'markdown-header-face-3 "#ff6040")
-  (set-face-foreground 'markdown-header-face-4 "#ff6040")
-  (set-face-foreground 'markdown-header-face-5 "#ff6040")
-  (set-face-foreground 'markdown-header-face-6 "#ff6040")
-  (set-face-foreground 'markdown-header-delimiter-face "#ff6040")
+  ;; ;; My custom
+  ;; (set-face-foreground 'markdown-header-face "#ff6040")
+  ;; (set-face-foreground 'markdown-header-face-1 "#ff6040")
+  ;; (set-face-foreground 'markdown-header-face-2 "#ff6040")
+  ;; (set-face-foreground 'markdown-header-face-3 "#ff6040")
+  ;; (set-face-foreground 'markdown-header-face-4 "#ff6040")
+  ;; (set-face-foreground 'markdown-header-face-5 "#ff6040")
+  ;; (set-face-foreground 'markdown-header-face-6 "#ff6040")
+  ;; (set-face-foreground 'markdown-header-delimiter-face "#ff6040")
 
   ;; From doom-theme
   ;; markdown-inline-code-face -> markdown-code-face, markdown-pre-face
@@ -1631,11 +1631,11 @@ translation it is possible to get suggestion."
   ;; markdown-code-face: Background: #100f10
   ;; markdown-pre-face: Foreground: #bfebe0
 
-  ;; My custom
-  (set-face-background 'markdown-code-face "#2e3138")
-  (set-face-background 'markdown-inline-code-face "#2e3138")
-  (set-face-foreground 'markdown-inline-code-face "#bfebe0")
-  (set-face-foreground 'markdown-pre-face "#bfebe0")
+  ;; ;; My custom
+  ;; (set-face-background 'markdown-code-face "#2e3138")
+  ;; (set-face-background 'markdown-inline-code-face "#2e3138")
+  ;; (set-face-foreground 'markdown-inline-code-face "#bfebe0")
+  ;; (set-face-foreground 'markdown-pre-face "#bfebe0")
   )
 
 ;; (use-package markdown-mode
@@ -1899,12 +1899,12 @@ translation it is possible to get suggestion."
   (git-gutter:added-sign "☀")
   (git-gutter:deleted-sign "☂")
   :custom-face
-  ;; (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
-  ;; (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
-  ;; (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
-  (git-gutter:modified ((t (:foreground "gray" :background "black"))))
-  (git-gutter:added    ((t (:foreground "orange" :background "black"))))
-  (git-gutter:deleted  ((t (:foreground "cyan" :background "black"))))
+  (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
+  (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
+  (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
+  ;; (git-gutter:modified ((t (:foreground "gray" :background "black"))))
+  ;; (git-gutter:added    ((t (:foreground "orange" :background "black"))))
+  ;; (git-gutter:deleted  ((t (:foreground "cyan" :background "black"))))
   ;; NOTE 2020-04-01: To get the theme color, try `describe-face RET default`
   :config
   (message ":config git-gutter")
@@ -2369,9 +2369,9 @@ translation it is possible to get suggestion."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(git-gutter:added ((t (:foreground "orange" :background "black"))))
- '(git-gutter:deleted ((t (:foreground "cyan" :background "black"))))
- '(git-gutter:modified ((t (:foreground "gray" :background "black"))))
+ ;; '(git-gutter:added ((t (:foreground "orange" :background "black"))))
+ ;; '(git-gutter:deleted ((t (:foreground "cyan" :background "black"))))
+ ;; '(git-gutter:modified ((t (:foreground "gray" :background "black"))))
  '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :weight bold))))
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
 (put 'upcase-region 'disabled nil)
