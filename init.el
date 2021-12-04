@@ -72,7 +72,22 @@
   (message ":config doom-themes")
 
   (when (eq system-type 'windows-nt)
-    (load-theme 'doom-one t)
+    ;; (load-theme 'doom-one t)
+    ;; (load-theme 'doom-vibrant t)
+    (load-theme 'doom-dracula t)
+    ;; (load-theme 'doom-ayu-mirage t)
+    ;; (load-theme 'doom-challenger-deep t)
+    ;; (load-theme 'doom-dark+ t)
+    ;; (load-theme 'doom-ephemeral t)
+    ;; (load-theme 'doom-gruvbox t)
+    ;; (load-theme 'doom-homage-black t)
+    ;; (load-theme 'doom-monokai-pro t)
+    ;; (load-theme 'doom-moonlight t)
+    ;; (load-theme 'doom-nord t)
+    ;; (load-theme 'doom-snazzy t)
+    ;; (load-theme 'doom-zenburn t)
+    ;; (load-theme 'doom-xcode t)
+    ;; (load-theme ' t)
     )
   (when (eq system-type 'gnu/linux)
     (load-theme 'doom-dracula t)
@@ -2369,6 +2384,9 @@ translation it is possible to get suggestion."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(git-gutter:added ((t (:foreground "orange" :background "#282a36"))))
+ '(git-gutter:deleted ((t (:foreground "cyan" :background "#282a36"))))
+ '(git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
  '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :weight bold))))
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
 (put 'upcase-region 'disabled nil)
