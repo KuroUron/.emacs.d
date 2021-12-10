@@ -73,8 +73,8 @@
 
   (when (eq system-type 'windows-nt)
     ;; (load-theme 'doom-one t)
-    ;; (load-theme 'doom-vibrant t)
-    (load-theme 'doom-dracula t)
+    (load-theme 'doom-vibrant t)
+    ;; (load-theme 'doom-dracula t)
     ;; (load-theme 'doom-ayu-mirage t)
     ;; (load-theme 'doom-challenger-deep t)
     ;; (load-theme 'doom-dark+ t)
