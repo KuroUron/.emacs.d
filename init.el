@@ -212,13 +212,40 @@
 
 (use-package doom-modeline
   :ensure t
-  :defer t
+  ;; :defer t
   :hook (after-init . doom-modeline-mode)
   :config
   (message ":config doom-modeline")
-  (setq doom-modeline-height 30)
-  (setq doom-modeline-bar-width 8)
-  ;; (setq doom-modeline-major-mode-color-icon t)
+  (setq doom-modeline-height 30)        ; default: 25
+  (setq doom-modeline-bar-width 8)      ; default: 4
+
+  ;; Whether display icons in the mode-line.
+  ;; While using the server mode in GUI, should set the value explicitly.
+  (setq doom-modeline-icon (display-graphic-p))
+
+  ;; Whether display the icon for `major-mode'. It respects `doom-modeline-icon'.
+  (setq doom-modeline-major-mode-icon t)
+
+  ;; Whether display the colorful icon for `major-mode'.
+  ;; It respects `all-the-icons-color-icons'.
+  (setq doom-modeline-major-mode-color-icon t)
+
+  ;; Whether display the buffer encoding.
+  (setq doom-modeline-buffer-encoding t)
+
+  ;; ;; The maximum displayed length of the branch name of version control.
+  ;; (setq doom-modeline-vcs-max-length 12)
+
+  ;; Whether display the modal state icon.
+  ;; Including `evil', `overwrite', `god', `ryo' and `xah-fly-keys', etc.
+  (setq doom-modeline-modal-icon t)
+
+  ;; ;; 右端に空白を入れる
+  ;; (doom-modeline-def-modeline 'main
+  ;;   '(bar matches buffer-info remote-host buffer-position parrot selection-info)
+  ;;   '(misc-info minor-modes checker input-method buffer-encoding major-mode process vcs "    "))
+  ;;                                       ; <-- added padding here
+
   ;; (set-face-attribute 'error nil
   ;;                     :foreground "dark red"
   ;;                     )
@@ -2385,9 +2412,6 @@ translation it is possible to get suggestion."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(git-gutter:added ((t (:foreground "orange" :background "#282a36"))))
- '(git-gutter:deleted ((t (:foreground "cyan" :background "#282a36"))))
- '(git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
  '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :weight bold))))
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
 (put 'upcase-region 'disabled nil)
