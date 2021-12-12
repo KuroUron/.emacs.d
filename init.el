@@ -66,92 +66,92 @@
 ;;                       )
 ;;   )
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (message ":config doom-themes")
-
-  (when (eq system-type 'windows-nt)
-    ;; (load-theme 'doom-one t)
-    ;; (load-theme 'doom-vibrant t)
-    (load-theme 'doom-dracula t)
-    ;; (load-theme 'doom-ayu-mirage t)
-    ;; (load-theme 'doom-challenger-deep t)
-    ;; (load-theme 'doom-dark+ t)
-    ;; (load-theme 'doom-ephemeral t)
-    ;; (load-theme 'doom-gruvbox t)
-    ;; (load-theme 'doom-homage-black t)
-    ;; (load-theme 'doom-monokai-pro t)
-    ;; (load-theme 'doom-moonlight t)
-    ;; (load-theme 'doom-nord t)
-    ;; (load-theme 'doom-snazzy t)
-    ;; (load-theme 'doom-zenburn t)
-    ;; (load-theme 'doom-xcode t)
-    ;; (load-theme ' t)
-    )
-  (when (eq system-type 'gnu/linux)
-    (load-theme 'doom-dracula t)
-    )
-
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;; or for treemacs users
-  (doom-themes-treemacs-config)
-
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config)
-  )
-
-;; (use-package modus-themes
+;; (use-package doom-themes
 ;;   :ensure t
 ;;   :config
-;;   (message ":config modus-themes")
+;;   (message ":config doom-themes")
 
-;;   (setq modus-themes-italic-constructs t
-;;         modus-themes-bold-constructs nil
-;;         modus-themes-region '(bg-only no-extend)
+;;   (when (eq system-type 'windows-nt)
+;;     ;; (load-theme 'doom-one t)
+;;     ;; (load-theme 'doom-vibrant t)
+;;     (load-theme 'doom-dracula t)
+;;     ;; (load-theme 'doom-ayu-mirage t)
+;;     ;; (load-theme 'doom-challenger-deep t)
+;;     ;; (load-theme 'doom-dark+ t)
+;;     ;; (load-theme 'doom-ephemeral t)
+;;     ;; (load-theme 'doom-gruvbox t)
+;;     ;; (load-theme 'doom-homage-black t)
+;;     ;; (load-theme 'doom-monokai-pro t)
+;;     ;; (load-theme 'doom-moonlight t)
+;;     ;; (load-theme 'doom-nord t)
+;;     ;; (load-theme 'doom-snazzy t)
+;;     ;; (load-theme 'doom-zenburn t)
+;;     ;; (load-theme 'doom-xcode t)
+;;     ;; (load-theme ' t)
+;;     )
+;;   (when (eq system-type 'gnu/linux)
+;;     (load-theme 'doom-dracula t)
+;;     )
 
-;;         ;; Options for `modus-themes-syntax' are either nil (the default),
-;;         ;; or a list of properties that may include any of those symbols:
-;;         ;; `faint', `yellow-comments', `green-strings', `alt-syntax'
-;;         modus-themes-syntax '(green-strings)
+;;   ;; Enable flashing mode-line on errors
+;;   (doom-themes-visual-bell-config)
 
-;;         ;; Options for `modus-themes-mode-line' are either nil, or a list
-;;         ;; that can combine any of `3d' OR `moody', `borderless',
-;;         ;; `accented'.  The variable's doc string shows all possible
-;;         ;; combinations.
-;;         modus-themes-mode-line '(moody)
+;;   ;; Enable custom neotree theme (all-the-icons must be installed!)
+;;   (doom-themes-neotree-config)
+;;   ;; or for treemacs users
+;;   (doom-themes-treemacs-config)
 
-;;         ;; Options for `modus-themes-paren-match' are either nil (the
-;;         ;; default), or a list of properties that may include any of those
-;;         ;; symbols: `bold', `intense', `underline'
-;;         modus-themes-paren-match '(bold intense)
-
-;;         ;; Options for `modus-themes-links' are either nil (the default),
-;;         ;; or a list of properties that may include any of those symbols:
-;;         ;; `neutral-underline' OR `no-underline', `faint' OR `no-color',
-;;         ;; `bold', `italic', `background'
-;;         modus-themes-links '(neutral-underline background)
-
-;;         modus-themes-variable-pitch-ui t
-;;         modus-themes-variable-pitch-headings t
-;;         modus-themes-scale-headings t
-;;         modus-themes-scale-1 1.00       ; 1.10
-;;         modus-themes-scale-2 1.05       ; 1.15
-;;         modus-themes-scale-3 1.10       ; 1.21
-;;         modus-themes-scale-4 1.15       ; 1.27
-;;         modus-themes-scale-title 1.20   ; 1.33
+;;   ;; Corrects (and improves) org-mode's native fontification.
+;;   (doom-themes-org-config)
 ;;   )
 
-;;   (modus-themes-load-themes)
-;;   ;; (modus-themes-load-operandi) ; ライト
-;;   (modus-themes-load-vivendi) ; ダーク
+(use-package modus-themes
+  :ensure t
+  :config
+  (message ":config modus-themes")
 
-;;   ;; (global-set-key (kbd "<f5>") 'modus-themes-toggle) ; テーマの切り替え
-;;   )
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil
+        modus-themes-region '(bg-only no-extend)
+
+        ;; Options for `modus-themes-syntax' are either nil (the default),
+        ;; or a list of properties that may include any of those symbols:
+        ;; `faint', `yellow-comments', `green-strings', `alt-syntax'
+        modus-themes-syntax '(green-strings)
+
+        ;; Options for `modus-themes-mode-line' are either nil, or a list
+        ;; that can combine any of `3d' OR `moody', `borderless',
+        ;; `accented'.  The variable's doc string shows all possible
+        ;; combinations.
+        modus-themes-mode-line '(borderless)
+
+        ;; Options for `modus-themes-paren-match' are either nil (the
+        ;; default), or a list of properties that may include any of those
+        ;; symbols: `bold', `intense', `underline'
+        modus-themes-paren-match '(bold intense)
+
+        ;; Options for `modus-themes-links' are either nil (the default),
+        ;; or a list of properties that may include any of those symbols:
+        ;; `neutral-underline' OR `no-underline', `faint' OR `no-color',
+        ;; `bold', `italic', `background'
+        modus-themes-links '(neutral-underline background)
+
+        modus-themes-variable-pitch-ui t
+        modus-themes-variable-pitch-headings t
+        modus-themes-scale-headings t
+        modus-themes-scale-1 1.00       ; 1.10
+        modus-themes-scale-2 1.05       ; 1.15
+        modus-themes-scale-3 1.10       ; 1.21
+        modus-themes-scale-4 1.15       ; 1.27
+        modus-themes-scale-title 1.20   ; 1.33
+  )
+
+  (modus-themes-load-themes)
+  ;; (modus-themes-load-operandi) ; ライト
+  (modus-themes-load-vivendi) ; ダーク
+
+  ;; (global-set-key (kbd "<f5>") 'modus-themes-toggle) ; テーマの切り替え
+  )
 
 ;; (use-package powerline
 ;;   :ensure t
@@ -1915,12 +1915,12 @@ translation it is possible to get suggestion."
   (git-gutter:added-sign "☀")
   (git-gutter:deleted-sign "☂")
   :custom-face
-  (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
-  (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
-  (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
-  ;; (git-gutter:modified ((t (:foreground "gray" :background "black"))))
-  ;; (git-gutter:added    ((t (:foreground "orange" :background "black"))))
-  ;; (git-gutter:deleted  ((t (:foreground "cyan" :background "black"))))
+  ;; (git-gutter:modified ((t (:foreground "gray" :background "#282a36"))))
+  ;; (git-gutter:added    ((t (:foreground "orange" :background "#282a36"))))
+  ;; (git-gutter:deleted  ((t (:foreground "cyan" :background "#282a36"))))
+  (git-gutter:modified ((t (:foreground "gray" :background "black"))))
+  (git-gutter:added    ((t (:foreground "orange" :background "black"))))
+  (git-gutter:deleted  ((t (:foreground "cyan" :background "black"))))
   ;; NOTE 2020-04-01: To get the theme color, try `describe-face RET default`
   :config
   (message ":config git-gutter")
@@ -2357,7 +2357,7 @@ translation it is possible to get suggestion."
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(eaf centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
