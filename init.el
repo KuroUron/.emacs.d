@@ -1626,15 +1626,15 @@ translation it is possible to get suggestion."
   ;; (set-face-foreground 'markdown-header-face-6 "#ff6c6b")
   ;; (set-face-foreground 'markdown-header-delimiter-face "#ff6c6b")
 
-  ;; ;; My custom
-  ;; (set-face-foreground 'markdown-header-face "#ff6040")
-  ;; (set-face-foreground 'markdown-header-face-1 "#ff6040")
-  ;; (set-face-foreground 'markdown-header-face-2 "#ff6040")
-  ;; (set-face-foreground 'markdown-header-face-3 "#ff6040")
-  ;; (set-face-foreground 'markdown-header-face-4 "#ff6040")
-  ;; (set-face-foreground 'markdown-header-face-5 "#ff6040")
-  ;; (set-face-foreground 'markdown-header-face-6 "#ff6040")
-  ;; (set-face-foreground 'markdown-header-delimiter-face "#ff6040")
+  ;; My custom
+  (set-face-foreground 'markdown-header-face "#ff6040")
+  (set-face-foreground 'markdown-header-face-1 "#ff6040")
+  (set-face-foreground 'markdown-header-face-2 "#ff6040")
+  (set-face-foreground 'markdown-header-face-3 "#ff6040")
+  (set-face-foreground 'markdown-header-face-4 "#ff6040")
+  (set-face-foreground 'markdown-header-face-5 "#ff6040")
+  (set-face-foreground 'markdown-header-face-6 "#ff6040")
+  (set-face-foreground 'markdown-header-delimiter-face "#ff6040")
 
   ;; From doom-theme
   ;; markdown-inline-code-face -> markdown-code-face, markdown-pre-face
@@ -1646,11 +1646,11 @@ translation it is possible to get suggestion."
   ;; markdown-code-face: Background: #100f10
   ;; markdown-pre-face: Foreground: #bfebe0
 
-  ;; ;; My custom
-  ;; (set-face-background 'markdown-code-face "#2e3138")
-  ;; (set-face-background 'markdown-inline-code-face "#2e3138")
-  ;; (set-face-foreground 'markdown-inline-code-face "#bfebe0")
-  ;; (set-face-foreground 'markdown-pre-face "#bfebe0")
+  ;; My custom
+  (set-face-background 'markdown-code-face "#2e3138")
+  (set-face-background 'markdown-inline-code-face "#2e3138")
+  (set-face-foreground 'markdown-inline-code-face "#bfebe0")
+  (set-face-foreground 'markdown-pre-face "#bfebe0")
   )
 
 ;; (use-package markdown-mode
