@@ -1667,6 +1667,10 @@ translation it is possible to get suggestion."
   ;; markdown-inline-code-face -> markdown-code-face, markdown-pre-face
   ;; markdown-code-face: Background: #2e3138
   ;; markdown-pre-face: Foreground: #98be65
+  ;; markdown-bold-face: Foreground: #ffb86c Inherit: bold
+  ;; markdown-italic-face: Foreground: #bd93f9 Inherit: italic
+  ;; bold: Weight: bold
+  ;; italic: Slant: italic
 
   ;; From modus-themes
   ;; markdown-inline-code-face: Foreground: #fbd6f4, Background: #191a1b
@@ -1678,6 +1682,8 @@ translation it is possible to get suggestion."
   (set-face-background 'markdown-inline-code-face "#2e3138")
   (set-face-foreground 'markdown-inline-code-face "#bfebe0")
   (set-face-foreground 'markdown-pre-face "#bfebe0")
+  (set-face-foreground 'markdown-bold-face "#ffb86c")
+  (set-face-foreground 'markdown-italic-face "#bd93f9")
   )
 
 ;; (use-package markdown-mode
