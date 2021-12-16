@@ -1018,6 +1018,48 @@ acceptable."
   (define-key company-search-map (kbd "<tab>") 'yas-expand)
   )
 
+;; ;; Enable vertico
+;; (use-package vertico
+;;   :ensure t
+;;   :init
+;;   (vertico-mode)
+
+;;   ;; Different scroll margin
+;;   ;; (setq vertico-scroll-margin 0)
+
+;;   ;; Show more candidates
+;;   ;; (setq vertico-count 20)
+
+;;   ;; Grow and shrink the Vertico minibuffer
+;;   ;; (setq vertico-resize t)
+
+;;   ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+;;   ;; (setq vertico-cycle t)
+
+;;   :config
+;;   (message ":config vertico")
+;;   )
+
+;; ;; Optionally use the `orderless' completion style. See
+;; ;; `+orderless-dispatch' in the Consult wiki for an advanced Orderless style
+;; ;; dispatcher. Additionally enable `partial-completion' for file path
+;; ;; expansion. `partial-completion' is important for wildcard support.
+;; ;; Multiple files can be opened at once with `find-file' if you enter a
+;; ;; wildcard. You may also give the `initials' completion style a try.
+;; (use-package orderless
+;;   :ensure t
+;;   :init
+;;   ;; Configure a custom style dispatcher (see the Consult wiki)
+;;   ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+;;   ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+;;   (setq completion-styles '(orderless)
+;;         completion-category-defaults nil
+;;         completion-category-overrides '((file (styles partial-completion))))
+
+;;   :config
+;;   (message ":config orderless")
+;;   )
+
 ;; (use-package hydra-posframe
 ;;   :ensure t
 ;;   :hook (after-init . hydra-posframe-enable)
@@ -2390,7 +2432,7 @@ translation it is possible to get suggestion."
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(eaf centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(orderless vertico eaf centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
