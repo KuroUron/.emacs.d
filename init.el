@@ -2371,7 +2371,7 @@ translation it is possible to get suggestion."
     (define-key input-decode-map "\C-i" [C-i])
 
     ;; Json indent for json-pretty-print-buffer
-    (setq json-encoding-default-indentation "    ")
+    (setq json-encoding-default-indentation "  ")
 
     ;; Spell check
     (setq-default ispell-program-name "aspell")
