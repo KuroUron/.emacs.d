@@ -2370,6 +2370,9 @@ translation it is possible to get suggestion."
     ;; Distinguish "C-i" and "TAB"
     (define-key input-decode-map "\C-i" [C-i])
 
+    ;; Json indent for json-pretty-print-buffer
+    (setq json-encoding-default-indentation "    ")
+
     ;; Spell check
     (setq-default ispell-program-name "aspell")
     (with-eval-after-load "ispell"
