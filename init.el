@@ -1502,7 +1502,7 @@ translation it is possible to get suggestion."
 
   (defun my-python-run ()
     (interactive)
-    (let ((command (concat "python " (file-name-base) ".py")))
+    (let ((command (concat "python -u " (file-name-base) ".py")))
       (save-buffer)
       (async-shell-command command)
       ))
@@ -1512,7 +1512,7 @@ translation it is possible to get suggestion."
       (command &optional output-buffer error-buffer)
     (interactive
      (list (read-shell-command "Async shell command: "
-                               (concat "python " (file-name-base) ".py ")
+                               (concat "python -u " (file-name-base) ".py ")
                                nil
                                (let ((filename
                                       (cond
