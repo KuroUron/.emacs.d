@@ -417,7 +417,18 @@
   :config
   (message ":config undo-tree")
   (global-undo-tree-mode)
-  )
+
+  ;; ヒストリーファイルの保存有無 ( .<file-name>.~undo-tree~  というファイルに保存される)
+  (setq undo-tree-auto-save-history t)
+
+  ;; ヒストリーファイルの保存先 (cf. https://emacs.stackexchange.com/questions/26993/saving-persistent-undo-to-a-single-directory-alist-format)
+  (let ((bak-dir (concat (file-name-directory user-init-file) "backup/undo/")))
+    (unless (file-exists-p bak-dir)
+      (make-directory bak-dir :parents)
+      )
+    ;; (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/backup/undo")))
+    (setq undo-tree-history-directory-alist (cons (cons "." bak-dir) nil))
+    ))
 
 (use-package evil
   :ensure t
