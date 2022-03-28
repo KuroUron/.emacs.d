@@ -1854,7 +1854,7 @@ translation it is possible to get suggestion."
   :ensure t
   :hook
   ;; (c++-mode . lsp)
-  ;; (python-mode . lsp)
+  (python-mode . lsp)
   (go-mode . lsp)
   :config
   (message ":config lsp-mode")
