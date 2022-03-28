@@ -1344,47 +1344,47 @@ translation it is possible to get suggestion."
   (message ":config sr-speedbar")
   )
 
-(use-package eaf
-  ;; :defer
-  :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
-  ;; :custom
-  ;; ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
-  ;; (eaf-browser-continue-where-left-off t)
-  ;; (eaf-browser-enable-adblocker t)
-  ;; (browse-url-browser-function 'eaf-open-browser)
-  :config
-  (message ":config eaf")
-  ;; (defalias 'browse-web #'eaf-open-browser)
-  ;; (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
-  ;; (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
-  ;; (eaf-bind-key take_photo "p" eaf-camera-keybinding)
-  ;; (eaf-bind-key nil "M-q" eaf-browser-keybinding)
+;; (use-package eaf
+;;   ;; :defer
+;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
+;;   ;; :custom
+;;   ;; ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
+;;   ;; (eaf-browser-continue-where-left-off t)
+;;   ;; (eaf-browser-enable-adblocker t)
+;;   ;; (browse-url-browser-function 'eaf-open-browser)
+;;   :config
+;;   (message ":config eaf")
+;;   ;; (defalias 'browse-web #'eaf-open-browser)
+;;   ;; (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+;;   ;; (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+;;   ;; (eaf-bind-key take_photo "p" eaf-camera-keybinding)
+;;   ;; (eaf-bind-key nil "M-q" eaf-browser-keybinding)
 
-  (require 'eaf)
-  ;; (require 'eaf-airshare)
-  (require 'eaf-browser)
-  ;; (require 'eaf-camera)
-  (require 'eaf-demo)
-  (require 'eaf-file-browser)
-  (require 'eaf-file-manager)
-  ;; (require 'eaf-file-sender)
-  ;; (require 'eaf-git)
-  ;; (require 'eaf-image-viewer)
-  ;; (require 'eaf-jupyter)
-  (require 'eaf-markdown-previewer)
-  ;; (require 'eaf-mermaid)
-  ;; (require 'eaf-mindmap)
-  ;; (require 'eaf-music-player)
-  ;; (require 'eaf-netease-cloud-music)
-  ;; (require 'eaf-org-previewer)
-  (require 'eaf-pdf-viewer)
-  ;; (require 'eaf-rss-reader)
-  ;; (require 'eaf-system-monitor)
-  (require 'eaf-terminal)
-  ;; (require 'eaf-video-player)
-  ;; (require 'eaf-vue-demo)
+;;   (require 'eaf)
+;;   ;; (require 'eaf-airshare)
+;;   (require 'eaf-browser)
+;;   ;; (require 'eaf-camera)
+;;   (require 'eaf-demo)
+;;   (require 'eaf-file-browser)
+;;   (require 'eaf-file-manager)
+;;   ;; (require 'eaf-file-sender)
+;;   ;; (require 'eaf-git)
+;;   ;; (require 'eaf-image-viewer)
+;;   ;; (require 'eaf-jupyter)
+;;   (require 'eaf-markdown-previewer)
+;;   ;; (require 'eaf-mermaid)
+;;   ;; (require 'eaf-mindmap)
+;;   ;; (require 'eaf-music-player)
+;;   ;; (require 'eaf-netease-cloud-music)
+;;   ;; (require 'eaf-org-previewer)
+;;   (require 'eaf-pdf-viewer)
+;;   ;; (require 'eaf-rss-reader)
+;;   ;; (require 'eaf-system-monitor)
+;;   (require 'eaf-terminal)
+;;   ;; (require 'eaf-video-player)
+;;   ;; (require 'eaf-vue-demo)
 
-  )
+;;   )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
