@@ -1345,6 +1345,7 @@ translation it is possible to get suggestion."
   )
 
 (use-package eaf
+  ;; :defer
   :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
   ;; :custom
   ;; ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
@@ -2328,6 +2329,12 @@ translation it is possible to get suggestion."
   ;; You cannot see this message forever!!
   )
 
+(use-package esup
+  :ensure t
+  :config
+  (message ":config esup")
+  )
+
 ;; (use-package golden-ratio
 ;;   :ensure t
 ;;   :diminish golden-ratio-mode
@@ -2518,7 +2525,7 @@ translation it is possible to get suggestion."
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(yaml-mode swift-mode orderless vertico eaf centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(esup ddskk yaml-mode swift-mode orderless vertico eaf centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
@@ -2550,5 +2557,6 @@ translation it is possible to get suggestion."
  '(git-gutter:deleted ((t (:foreground "cyan" :background "black"))))
  '(git-gutter:modified ((t (:foreground "gray" :background "black"))))
  '(hl-todo ((t (:inherit nil :foreground "#ff6c6b" :weight bold))))
+ '(minimap-active-region-background ((((background dark)) (:background "#555555555555")) (t (:background "#C847D8FEFFFF"))) nil 'minimap)
  '(realgud-bp-line-enabled-face ((t (:underline "red")))))
 (put 'upcase-region 'disabled nil)
