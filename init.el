@@ -21,7 +21,7 @@
 
 ;; NOTE 2021-11-25: `Failed to verify signature archive-contents.sig:` というエラーが
 ;; でるときには msys2 の gpg が悪さをしている可能性があるので，
-;; 一旦 msys2 へのパスを無くしてからサイド長選すると良い．
+;; 一旦 msys2 へのパスを無くしてから再度挑戦すると良い．
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Init
@@ -417,7 +417,18 @@
   :config
   (message ":config undo-tree")
   (global-undo-tree-mode)
-  )
+
+  ;; ヒストリーファイルの保存有無 ( .<file-name>.~undo-tree~  というファイルに保存される)
+  (setq undo-tree-auto-save-history t)
+
+  ;; ヒストリーファイルの保存先 (cf. https://emacs.stackexchange.com/questions/26993/saving-persistent-undo-to-a-single-directory-alist-format)
+  (let ((bak-dir (concat (file-name-directory user-init-file) "backup/undo/")))
+    (unless (file-exists-p bak-dir)
+      (make-directory bak-dir :parents)
+      )
+    ;; (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/backup/undo")))
+    (setq undo-tree-history-directory-alist (cons (cons "." bak-dir) nil))
+    ))
 
 (use-package evil
   :ensure t
@@ -758,36 +769,37 @@
   (ivy-mode 1)
   )
 
+;; ;; NOTE: Switch to buffer の画面が重くなることがあるので注意する
 ;; (use-package ivy-rich
 ;;   :ensure t
 ;;   :after ivy
 ;;   :config
 ;;   (message ":config ivy-rich")
 
-;;   (defun ivy-rich-switch-buffer-icon (candidate)
-;;     (with-current-buffer
-;;    	(get-buffer candidate)
-;;       (let ((icon (all-the-icons-icon-for-mode major-mode)))
-;;         (if (symbolp icon)
-;;             (all-the-icons-icon-for-mode 'fundamental-mode)
-;;           icon))))
+;;   ;; (defun ivy-rich-switch-buffer-icon (candidate)
+;;   ;;   (with-current-buffer
+;;   ;;  	(get-buffer candidate)
+;;   ;;     (let ((icon (all-the-icons-icon-for-mode major-mode)))
+;;   ;;       (if (symbolp icon)
+;;   ;;           (all-the-icons-icon-for-mode 'fundamental-mode)
+;;   ;;         icon))))
 
-;;   (setq ivy-rich--display-transformers-list
-;;         '(ivy-switch-buffer
-;;           (:columns
-;;            ((ivy-rich-switch-buffer-icon :width 2)
-;;             (ivy-rich-candidate (:width 30))
-;;             (ivy-rich-switch-buffer-size (:width 7))
-;;             (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-;;             (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-;;             (ivy-rich-switch-buffer-project (:width 15 :face success))
-;;             (ivy-rich-switch-buffer-path
-;;              (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path
-;;                                   x (ivy-rich-minibuffer-width 0.3))))))
-;;            :predicate
-;;            (lambda (cand) (get-buffer cand)))))
+;;   ;; (setq ivy-rich--display-transformers-list
+;;   ;;       '(ivy-switch-buffer
+;;   ;;         (:columns
+;;   ;;          ((ivy-rich-switch-buffer-icon :width 2)
+;;   ;;           (ivy-rich-candidate (:width 30))
+;;   ;;           (ivy-rich-switch-buffer-size (:width 7))
+;;   ;;           (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+;;   ;;           (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
+;;   ;;           (ivy-rich-switch-buffer-project (:width 15 :face success))
+;;   ;;           (ivy-rich-switch-buffer-path
+;;   ;;            (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path
+;;   ;;                                 x (ivy-rich-minibuffer-width 0.3))))))
+;;   ;;          :predicate
+;;   ;;          (lambda (cand) (get-buffer cand)))))
 
-;;   (setq ivy-format-function #'ivy-format-function-line)
+;;   ;; (setq ivy-format-function #'ivy-format-function-line)
 ;;   (ivy-rich-mode t)
 ;;   )
 
@@ -1332,6 +1344,47 @@ translation it is possible to get suggestion."
   (message ":config sr-speedbar")
   )
 
+(use-package eaf
+  :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
+  ;; :custom
+  ;; ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
+  ;; (eaf-browser-continue-where-left-off t)
+  ;; (eaf-browser-enable-adblocker t)
+  ;; (browse-url-browser-function 'eaf-open-browser)
+  :config
+  (message ":config eaf")
+  ;; (defalias 'browse-web #'eaf-open-browser)
+  ;; (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+  ;; (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+  ;; (eaf-bind-key take_photo "p" eaf-camera-keybinding)
+  ;; (eaf-bind-key nil "M-q" eaf-browser-keybinding)
+
+  (require 'eaf)
+  ;; (require 'eaf-airshare)
+  (require 'eaf-browser)
+  ;; (require 'eaf-camera)
+  (require 'eaf-demo)
+  (require 'eaf-file-browser)
+  (require 'eaf-file-manager)
+  ;; (require 'eaf-file-sender)
+  ;; (require 'eaf-git)
+  ;; (require 'eaf-image-viewer)
+  ;; (require 'eaf-jupyter)
+  (require 'eaf-markdown-previewer)
+  ;; (require 'eaf-mermaid)
+  ;; (require 'eaf-mindmap)
+  ;; (require 'eaf-music-player)
+  ;; (require 'eaf-netease-cloud-music)
+  ;; (require 'eaf-org-previewer)
+  (require 'eaf-pdf-viewer)
+  ;; (require 'eaf-rss-reader)
+  ;; (require 'eaf-system-monitor)
+  (require 'eaf-terminal)
+  ;; (require 'eaf-video-player)
+  ;; (require 'eaf-vue-demo)
+
+  )
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Programming
 
@@ -1485,6 +1538,13 @@ translation it is possible to get suggestion."
     )
   )
 
+(use-package yaml-mode
+  :ensure t
+  :mode (("\\.yml" . yaml-mode))
+  :config
+  (message ":config yaml-mode")
+  )
+
 (use-package python
   :defer t
   :mode (("\\.py" . python-mode))
@@ -1502,7 +1562,7 @@ translation it is possible to get suggestion."
 
   (defun my-python-run ()
     (interactive)
-    (let ((command (concat "python " (file-name-base) ".py")))
+    (let ((command (concat "python -u " (file-name-base) ".py")))
       (save-buffer)
       (async-shell-command command)
       ))
@@ -1512,7 +1572,7 @@ translation it is possible to get suggestion."
       (command &optional output-buffer error-buffer)
     (interactive
      (list (read-shell-command "Async shell command: "
-                               (concat "python " (file-name-base) ".py ")
+                               (concat "python -u " (file-name-base) ".py ")
                                nil
                                (let ((filename
                                       (cond
@@ -1638,6 +1698,21 @@ translation it is possible to get suggestion."
   (evil-define-key 'normal go-mode-map (kbd "C-S-j")
     'my-go-async-shell-command)
 
+  )
+
+(use-package swift-mode
+  :ensure t
+  :mode ("\\.swift" . swift-mode)
+  :config
+  (message ":config swift-mode-mode")
+
+  ;; Run command
+  (defun my-swift-run ()
+    (interactive)
+    (let ((cmd (concat "swift " (file-name-base) ".swift")))
+      (save-buffer)
+      (async-shell-command cmd)))
+  (evil-define-key 'normal swift-mode-map (kbd "C-j") 'my-swift-run)
   )
 
 (use-package elisp-format
@@ -2443,7 +2518,7 @@ translation it is possible to get suggestion."
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(orderless vertico eaf centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(yaml-mode swift-mode orderless vertico eaf centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
