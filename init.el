@@ -196,7 +196,8 @@
              (set-face-attribute 'line-number-current-line nil
                                  :background "#504945"
                                  :foreground "#fe8019"
-                                 :height 0.8
+                                 ;; :height 0.8
+                                 :height 1.0 ; for emacs28
                                  )
              ))
 
