@@ -197,7 +197,9 @@
                                  :background "#504945"
                                  :foreground "#fe8019"
                                  ;; :height 0.8
-                                 :height 1.0 ; for emacs28
+                                 :height (if (eq emacs-major-version 28)
+                                             1.0 ; emacs28 ではサイズが小さくなってしまうので
+                                           0.8)
                                  )
              ))
 
@@ -1940,7 +1942,7 @@ translation it is possible to get suggestion."
 (use-package lsp-mode
   :ensure t
   :hook
-  ;; (c++-mode . lsp)
+  (c++-mode . lsp)
   (python-mode . lsp)
   (go-mode . lsp)
   :config
@@ -1949,6 +1951,13 @@ translation it is possible to get suggestion."
   ;; (setq lsp-auto-guess-root t)
   ;; (setq lsp-prefer-flymake 'flymake)
   ;; (lsp-prefer-flymake 'flymake)
+
+  ;; ccls を利用するには ccls をビルドする必要がある．
+  (use-package ccls
+    :ensure t
+    :config
+    (message ":config ccls")
+    )
 
   ;; lsp-pyright を利用するには pyright をインストールする必要がある．
   ;;
@@ -2015,6 +2024,8 @@ translation it is possible to get suggestion."
       (w32-ime-initialize)
       )
   )
+
+(if (eq emacs-major-version 28) 1.0 0.8)
 
 ;; Windows IME (27~)
 ;; cf. https://github.com/trueroad/tr-emacs-ime-module
@@ -2516,6 +2527,11 @@ translation it is possible to get suggestion."
     ;; Suppress warning: ad-handle-definition: ‘~’ got redefined
     (setq ad-redefinition-action 'accept)
 
+    ;; スクロール
+    (if (>= emacs-major-version 29)
+        (pixel-scroll-precision-mode 1)
+        )
+
     ))
 
 ;; (add-hook
@@ -2551,7 +2567,7 @@ translation it is possible to get suggestion."
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(lsp-pyright py-isort mwim esup ddskk yaml-mode swift-mode orderless vertico eaf centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
+   '(cland ccls lsp-pyright py-isort mwim esup ddskk yaml-mode swift-mode orderless vertico eaf centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
