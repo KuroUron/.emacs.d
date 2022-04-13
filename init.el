@@ -292,11 +292,11 @@
 ;;   :config
 ;;   (message ":config nyan-mode"))
 
-;; (use-package dashboard
-;;   :ensure t
-;;   :config
-;;   (message ":config dashboard")
-;;   (dashboard-setup-startup-hook))
+(use-package dashboard
+  :ensure t
+  :config
+  (message ":config dashboard")
+  (dashboard-setup-startup-hook))
 
 ;; ;; ヤンクした場合などに編集箇所を強調表示してわかりやすくする
 ;; (use-package volatile-highlights
