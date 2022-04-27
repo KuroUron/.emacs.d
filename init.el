@@ -451,6 +451,11 @@
   (add-to-list 'evil-normal-state-modes 'package-menu-mode)
   (add-to-list 'evil-normal-state-modes 'help-mode)
 
+  ;; (define-key evil-normal-state-map (kbd "C-;") 'text-scale-increase)
+  ;; (define-key evil-normal-state-map (kbd "C--") 'text-scale-decrease)
+  ;; (define-key evil-insert-state-map (kbd "C-;") 'text-scale-increase)
+  ;; (define-key evil-insert-state-map (kbd "C--") 'text-scale-decrease)
+
   ;; (setq evil-normal-state-cursor "dark green")
   ;; (setq evil-insert-state-cursor ("dark red" . 2))
 
@@ -633,6 +638,8 @@
   (define-key my-space-map (kbd "dt") 'describe-theme)
   ;; (define-key my-sapce-map (kbd "crg") 'realgud:gdb)
   ;; (define-key my-sapce-map (kbd "crp") 'realgud:pdb)
+  (define-key my-space-map (kbd ";") 'text-scale-increase)
+  (define-key my-space-map (kbd "-") 'text-scale-decrease)
 
   ;; cf. https://suzuki.tdiary.net/20140806.html
   (defun swap-buffers ()
@@ -2538,6 +2545,12 @@ translation it is possible to get suggestion."
     (if (>= emacs-major-version 29)
         (pixel-scroll-precision-mode 1)
         )
+
+    ;; 警告音の代わりに画面フラッシュ
+    ;; (setq visible-bell t)
+
+    ;; 警告音もフラッシュも全て無効(警告音が完全に鳴らなくなるので注意)
+    (setq ring-bell-function 'ignore)
 
     ))
 
