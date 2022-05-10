@@ -197,9 +197,14 @@
                                  :background "#504945"
                                  :foreground "#fe8019"
                                  ;; :height 0.8
-                                 :height (if (eq emacs-major-version 28)
-                                             1.0 ; emacs28 ではサイズが小さくなってしまうので
+                                 :height (cond
+                                          ((eq emacs-major-version 28)
+                                           1.0) ; emacs28 ではサイズが小さくなってしまう
+                                          ((string= (system-name) "antman")
+                                           1.0)
+                                          (t
                                            0.8)
+                                          )
                                  )
              ))
 
@@ -788,7 +793,7 @@
 
 ;;   ;; (defun ivy-rich-switch-buffer-icon (candidate)
 ;;   ;;   (with-current-buffer
-;;   ;;  	(get-buffer candidate)
+;;   ;;          (get-buffer candidate)
 ;;   ;;     (let ((icon (all-the-icons-icon-for-mode major-mode)))
 ;;   ;;       (if (symbolp icon)
 ;;   ;;           (all-the-icons-icon-for-mode 'fundamental-mode)
