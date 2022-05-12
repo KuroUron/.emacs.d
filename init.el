@@ -510,6 +510,7 @@
            (file-path (file-name-directory file-name)))
       (message (concat "Get file path: " file-path))
       (kill-new file-path)
+      file-path
       ))
   (define-key evil-normal-state-map (kbd "@") 'my-get-file-path)
   (defun my-cd-current-file-directory ()
