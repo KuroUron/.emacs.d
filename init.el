@@ -1340,14 +1340,14 @@ translation it is possible to get suggestion."
 ;;   (centaur-tabs-mode t)
 ;;   )
 
-(use-package popwin
-  :ensure t
-  :custom
-  (popwin:popup-window-position 'bottom)
-  :config
-  (message ":config popwin")
-  (popwin-mode 1)
-  )
+;; (use-package popwin
+;;   :ensure t
+;;   :custom
+;;   (popwin:popup-window-position 'bottom)
+;;   :config
+;;   (message ":config popwin")
+;;   (popwin-mode 1)
+;;   )
 
 (use-package sr-speedbar
   :ensure t
@@ -1957,8 +1957,8 @@ translation it is possible to get suggestion."
 (use-package lsp-mode
   :ensure t
   :hook
-  (c++-mode . lsp)
-  (python-mode . lsp)
+  ;; (c++-mode . lsp)
+  ;; (python-mode . lsp)
   (go-mode . lsp)
   :config
   (message ":config lsp-mode")
@@ -1967,12 +1967,12 @@ translation it is possible to get suggestion."
   ;; (setq lsp-prefer-flymake 'flymake)
   ;; (lsp-prefer-flymake 'flymake)
 
-  ;; ccls を利用するには ccls をビルドする必要がある．
-  (use-package ccls
-    :ensure t
-    :config
-    (message ":config ccls")
-    )
+  ;; ;; ccls を利用するには ccls をビルドする必要がある．
+  ;; (use-package ccls
+  ;;   :ensure t
+  ;;   :config
+  ;;   (message ":config ccls")
+  ;;   )
 
   ;; lsp-pyright を利用するには pyright をインストールする必要がある．
   ;;
