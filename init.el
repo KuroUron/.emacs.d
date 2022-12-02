@@ -301,7 +301,8 @@
   :ensure t
   :config
   (message ":config dashboard")
-  (dashboard-setup-startup-hook))
+  (dashboard-setup-startup-hook)
+  )
 
 ;; ;; ヤンクした場合などに編集箇所を強調表示してわかりやすくする
 ;; (use-package volatile-highlights
@@ -515,6 +516,7 @@
            (file-path (file-name-directory file-name)))
       (message (concat "Get file path: " file-path))
       (kill-new file-path)
+      file-path
       ))
   (define-key evil-normal-state-map (kbd "@") 'my-get-file-path)
   (defun my-cd-current-file-directory ()
@@ -1344,14 +1346,14 @@ translation it is possible to get suggestion."
 ;;   (centaur-tabs-mode t)
 ;;   )
 
-(use-package popwin
-  :ensure t
-  :custom
-  (popwin:popup-window-position 'bottom)
-  :config
-  (message ":config popwin")
-  (popwin-mode 1)
-  )
+;; (use-package popwin
+;;   :ensure t
+;;   :custom
+;;   (popwin:popup-window-position 'bottom)
+;;   :config
+;;   (message ":config popwin")
+;;   (popwin-mode 1)
+;;   )
 
 (use-package sr-speedbar
   :ensure t
@@ -1961,8 +1963,8 @@ translation it is possible to get suggestion."
 (use-package lsp-mode
   :ensure t
   :hook
-  (c++-mode . lsp)
-  (python-mode . lsp)
+  ;; (c++-mode . lsp)
+  ;; (python-mode . lsp)
   (go-mode . lsp)
   :config
   (message ":config lsp-mode")
@@ -1971,12 +1973,12 @@ translation it is possible to get suggestion."
   ;; (setq lsp-prefer-flymake 'flymake)
   ;; (lsp-prefer-flymake 'flymake)
 
-  ;; ccls を利用するには ccls をビルドする必要がある．
-  (use-package ccls
-    :ensure t
-    :config
-    (message ":config ccls")
-    )
+  ;; ;; ccls を利用するには ccls をビルドする必要がある．
+  ;; (use-package ccls
+  ;;   :ensure t
+  ;;   :config
+  ;;   (message ":config ccls")
+  ;;   )
 
   ;; lsp-pyright を利用するには pyright をインストールする必要がある．
   ;;

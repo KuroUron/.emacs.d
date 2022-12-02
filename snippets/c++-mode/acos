@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: acos
+# key: acos
+# --
+std::acos($0)

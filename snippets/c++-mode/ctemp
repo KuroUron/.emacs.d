@@ -8,13 +8,16 @@
 #include <functional>
 #include <iostream>
 #include <map>
-#include <stack>
+#include <numeric>
 #include <queue>
+#include <stack>
 #include <vector>
 
-static const int IINF = 1 << 30;
-static const long long LINF = 1LL << 60;
-static const long long MOD = 1.0e+9 + 7;
+const int IINF = 1 << 30;
+const long long LINF = 1LL << 60;
+const long long MOD = 1.0e+9 + 7;
+const double PI = std::acos(-1.0);
+const double EPS = 1.0e-8;
 
 template <typename T> std::vector<T> vectors(std::size_t n, T val) {
   return std::vector<T>(n, val);
