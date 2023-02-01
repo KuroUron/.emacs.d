@@ -1489,6 +1489,9 @@ translation it is possible to get suggestion."
                         (setq comment-start "// ")
                         (setq comment-end ""))))
 
+  ;; cf https://emacs.stackexchange.com/questions/55635/how-can-i-set-up-clang-format-in-emacs
+  (setq clang-format-style "file")
+  (setq clang-format-fallback-style "llvm")
   (use-package clang-format
     :ensure t
     :config
