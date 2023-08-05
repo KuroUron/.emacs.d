@@ -199,7 +199,9 @@
                                  ;; :height 0.8
                                  :height (if (eq emacs-major-version 28)
                                              1.0 ; emacs28 ではサイズが小さくなってしまうので
-                                           0.8)
+                                           (if (string= (system-name) "MYCOMPUTER")
+                                               1.0 ; Mouse PC ではサイズが小さくなってしまうので
+                                             0.8))
                                  )
              ))
 
