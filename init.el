@@ -146,9 +146,22 @@
         modus-themes-scale-title 1.20   ; 1.33
   )
 
-  (modus-themes-load-themes)
+  ;; (modus-themes-load-themes)
   ;; (modus-themes-load-operandi) ; ライト
-  (modus-themes-load-vivendi) ; ダーク
+  ;; (modus-themes-load-vivendi) ; ダーク
+
+  (cond
+   ((eq emacs-major-version 28)
+    (modus-themes-load-themes)
+    ;; (modus-themes-load-operandi) ; ライト
+    (modus-themes-load-vivendi) ; ダーク
+    )
+   ((eq emacs-major-version 29)
+    ;; (load-theme 'modus-vivendi)
+    ;; (load-theme 'modus-operandi :no-confirm)
+    (load-theme 'modus-vivendi :no-confirm)
+    )
+   )
 
   ;; (global-set-key (kbd "<f5>") 'modus-themes-toggle) ; テーマの切り替え
   )
@@ -2591,7 +2604,7 @@ translation it is possible to get suggestion."
      (ivy--regex-plus :around ivy--regex-plus-migemo-around)
      ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full))
  '(custom-safe-themes
-   '("f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default))
+   '("eb50f36ed5141c3f702f59baa1968494dc8e9bd22ed99d2aaa536c613c8782db" "f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default))
  '(fci-rule-color "#6272a4")
  '(git-gutter:handled-backends '(git hg))
  '(helm-minibuffer-history-key "M-p")
