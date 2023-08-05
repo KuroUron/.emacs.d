@@ -197,11 +197,16 @@
                                  :background "#504945"
                                  :foreground "#fe8019"
                                  ;; :height 0.8
-                                 :height (if (eq emacs-major-version 28)
-                                             1.0 ; emacs28 ではサイズが小さくなってしまうので
-                                           (if (string= (system-name) "MYCOMPUTER")
-                                               1.0 ; Mouse PC ではサイズが小さくなってしまうので
-                                             0.8))
+                                 :height (cond
+                                          ((eq emacs-major-version 28)
+                                           1.0) ; emacs28 ではサイズが小さくなってしまう
+                                          ((string= (system-name) "antman")
+                                           1.0)
+                                          ((string= (system-name) "MYCOMPUTER")
+                                           1.0) ; Mouse PC ではサイズが小さくなってしまうので
+                                          (t
+                                           0.8)
+                                          )
                                  )
              ))
 
@@ -792,7 +797,7 @@
 
 ;;   ;; (defun ivy-rich-switch-buffer-icon (candidate)
 ;;   ;;   (with-current-buffer
-;;   ;;  	(get-buffer candidate)
+;;   ;;          (get-buffer candidate)
 ;;   ;;     (let ((icon (all-the-icons-icon-for-mode major-mode)))
 ;;   ;;       (if (symbolp icon)
 ;;   ;;           (all-the-icons-icon-for-mode 'fundamental-mode)
@@ -1486,6 +1491,9 @@ translation it is possible to get suggestion."
                         (setq comment-start "// ")
                         (setq comment-end ""))))
 
+  ;; cf https://emacs.stackexchange.com/questions/55635/how-can-i-set-up-clang-format-in-emacs
+  (setq clang-format-style "file")
+  (setq clang-format-fallback-style "llvm")
   (use-package clang-format
     :ensure t
     :config
