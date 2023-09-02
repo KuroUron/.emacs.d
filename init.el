@@ -217,6 +217,8 @@
                                            1.0)
                                           ((string= (system-name) "MYCOMPUTER")
                                            1.0) ; Mouse PC ではサイズが小さくなってしまうので
+                                          ((string= (system-name) "DAMASCUS")
+                                           1.0) ; DAMASCUS PC ではサイズが小さくなってしまうので
                                           (t
                                            0.8)
                                           )
