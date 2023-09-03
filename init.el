@@ -216,9 +216,11 @@
                                           ((string= (system-name) "antman")
                                            1.0)
                                           ((string= (system-name) "MYCOMPUTER")
-                                           1.0) ; Mouse PC ではサイズが小さくなってしまうので
+                                           1.0) ; for Mouse PC
                                           ((string= (system-name) "DAMASCUS")
-                                           1.0) ; DAMASCUS PC ではサイズが小さくなってしまうので
+                                           1.0) ; for DAMASCUS
+                                          ((string= (system-name) "damascus")
+                                           1.0) ; for DAMASCUS-wsl
                                           (t
                                            0.8)
                                           )
@@ -2526,6 +2528,10 @@ translation it is possible to get suggestion."
       ;; (set-frame-font "Migu 1M-13:antialias=standard")
       (set-frame-font "Migu 1M-13.5:antialias=standard")
       ;; (set-frame-font "Migu 1M-14:antialias=standard")
+      )
+
+    (when (string= (system-name) "damascus")
+      (set-frame-font "Migu 1M-19:antialias=standard")
       )
 
     ;; Distinguish "C-i" and "TAB"
