@@ -236,7 +236,8 @@
 
 (use-package all-the-icons
   ;; NOTE For a new environment, call `M-x all-the-icons-install-fonts` and
-  ;; download fonts. Then intall those fonts **manually**.
+  ;; download fonts. Then install those fonts **manually**.
+  ;; 2023-09-04: see also the nerd-icons package
   :ensure t
   ;; :defer t
   :after ivy
