@@ -245,6 +245,14 @@
   (message ":config all-the-icons")
   )
 
+(use-package nerd-icons
+  ;; NOTE: call `M-x nerd-icons-install-fonts`
+  :ensure t
+  :after ivy
+  :config
+  (message ":config nerd-icons")
+  )
+
 (use-package doom-modeline
   :ensure t
   ;; :defer t
