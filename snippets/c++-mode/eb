@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: eb
+# key: eb
+# --
+emplace_back($0)
