@@ -230,6 +230,8 @@
                                            1.0) ; for DAMASCUS-wsl
                                           ((string= (system-name) "HARVEST")
                                            1.0) ; for HARVEST
+                                          ((string= (system-name) "harvest")
+                                           1.0) ; for HARVEST-wsl
                                           (t
                                            0.8)
                                           )
@@ -2549,6 +2551,10 @@ translation it is possible to get suggestion."
       )
 
     (when (string= (system-name) "damascus")
+      (set-frame-font "Migu 1M-19:antialias=standard")
+      )
+
+    (when (string= (system-name) "harvest")
       (set-frame-font "Migu 1M-19:antialias=standard")
       )
 
