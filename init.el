@@ -228,6 +228,8 @@
                                            1.0) ; for DAMASCUS
                                           ((string= (system-name) "damascus")
                                            1.0) ; for DAMASCUS-wsl
+                                          ((string= (system-name) "HARVEST")
+                                           1.0) ; for HARVEST
                                           (t
                                            0.8)
                                           )
