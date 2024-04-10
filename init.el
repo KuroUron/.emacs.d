@@ -234,6 +234,8 @@
                                            1.0) ; for HARVEST-wsl
                                           ((string= (system-name) "nanohana")
                                            1.0) ; for HARVEST-nanohana
+                                          ((string= (system-name) "bisco")
+                                           1.0) ; for bisco
                                           (t
                                            0.8)
                                           )
