@@ -1620,7 +1620,15 @@ translation it is possible to get suggestion."
 
   (defun my-python-run ()
     (interactive)
-    (let ((command (concat "python -u " (file-name-base) ".py")))
+    (let ((command (concat
+                    ;; "python -u "
+                    (cond
+                     ((string= (system-name) "HARVEST")
+                      "py -u ")
+                     (t
+                      "python -u ")
+                     )
+                    (file-name-base) ".py")))
       (save-buffer)
       (async-shell-command command)
       ))
