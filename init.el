@@ -1631,6 +1631,8 @@ translation it is possible to get suggestion."
                     (cond
                      ((string= (system-name) "HARVEST")
                       "py -u ")
+                     ((string= (system-name) "harvest")
+                      "py -u ")
                      (t
                       "python -u ")
                      )
