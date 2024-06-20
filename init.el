@@ -1624,6 +1624,16 @@ translation it is possible to get suggestion."
   ;;   ;; (blacken-mode t)
   ;;   )
 
+  ;; (custom-set-variables '(blacken-executable "py -m black"))
+
+  (defun my-blacken-buffer ()
+    (interactive)
+    (let ((command (concat "py -m black \"" (buffer-file-name) "\""))
+          )
+      (save-buffer)
+      (async-shell-command command)
+    ))
+
   (defun my-python-run ()
     (interactive)
     (let ((command (concat
