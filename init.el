@@ -2575,7 +2575,7 @@ translation it is possible to get suggestion."
       )
 
     (when (string= (system-name) "damascus")
-      (set-frame-font "Migu 1M-19:antialias=standard")
+      (set-frame-font "Migu 1M-13:antialias=standard")
       )
 
     (when (string= (system-name) "harvest")
