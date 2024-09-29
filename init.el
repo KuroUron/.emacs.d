@@ -2070,6 +2070,21 @@ translation it is possible to get suggestion."
     )
   )
 
+(use-package eglot
+  :ensure t
+
+  :hook
+  (c++-mode . eglot-ensure)
+  ;; (sh-mode . eglot-ensure)
+  (python-mode . eglot-ensure)
+  ;; (html-mode . eglot-ensure)
+  ;; (cmake-mode . eglot-ensure)
+  ;; (bitbake-mode . eglot-ensure)
+
+  :config
+  (message ":config eglot")
+  )
+
 (use-package helm-make
   :ensure t
   :commands (helm-make)
@@ -2361,9 +2376,10 @@ translation it is possible to get suggestion."
                         (file-name-directory buffer-file-name))))
       (list "pyflakes"  (list local-file))))
 
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pyflakes-init))
-
+  ;; (add-to-list 'flymake-allowed-file-name-masks
+  ;;              '("\\.py\\'" flymake-pyflakes-init))
+  ;; ↑ 2024-09-29: Emacs30 にて次のようなエラーとなるのでコメントアウト．
+  ;;  ■  Error (use-package): flymake/:config: Symbol’s value as variable is void: flymake-allowed-file-name-masks
   )
 
 (use-package flymake-diagnostic-at-point
