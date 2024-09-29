@@ -165,6 +165,9 @@
     ;; (load-theme 'modus-vivendi)
     ;; (load-theme 'modus-operandi :no-confirm)
     (load-theme 'modus-vivendi :no-confirm)
+    ;; (load-theme 'modus-vivendi-tinted :no-confirm)
+    ;; (load-theme 'modus-vivendi-deuteranopia :no-confirm)
+    ;; (load-theme 'modus-vivendi-tritanopia :no-confirm)
     )
    )
 
@@ -2686,7 +2689,18 @@ translation it is possible to get suggestion."
  '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(ag all-the-icons-ivy-rich anzu clang-format cmake-mode company
+        counsel csv-mode dashboard ddskk dockerfile-mode doom-modeline
+        dumb-jump elisp-format ess esup evil-collection
+        flymake-diagnostic-at-point gcmh git-gutter go-mode
+        google-translate graphviz-dot-mode groovy-mode helm-make
+        hide-mode-line highlight-indent-guides hl-todo hydra
+        imenu-list lsp-pyright lsp-ui magit markdown-toc markdownfmt
+        migemo minimap modus-themes monky neotree pt py-isort
+        rainbow-delimiters rainbow-mode realgud restart-emacs
+        rust-mode smooth-scroll sr-speedbar swift-mode undo-tree
+        yaml-mode yasnippet yatex))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list (cons 20 "#50fa7b") (cons 40 "#85fa80") (cons 60 "#bbf986")
