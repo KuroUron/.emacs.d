@@ -2083,6 +2083,8 @@ translation it is possible to get suggestion."
 
   :config
   (message ":config eglot")
+
+  (setq eldoc-echo-area-use-multiline-p nil)
   )
 
 (use-package helm-make
