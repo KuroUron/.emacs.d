@@ -151,6 +151,9 @@
   ;; (modus-themes-load-vivendi) ; ダーク
 
   (cond
+   ((eq emacs-major-version 27)
+    (modus-themes-load-theme 'modus-vivendi)
+    )
    ((eq emacs-major-version 28)
     (modus-themes-load-themes)
     ;; (modus-themes-load-operandi) ; ライト
@@ -2083,6 +2086,8 @@ translation it is possible to get suggestion."
 
   :config
   (message ":config eglot")
+
+  (setq eldoc-echo-area-use-multiline-p nil)
   )
 
 (use-package helm-make
