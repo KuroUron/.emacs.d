@@ -2603,8 +2603,11 @@ translation it is possible to get suggestion."
       ;; (set-frame-font "Migu 1M-14:antialias=standard")
       )
 
+    (when (string= (system-name) "DAMASCUS")
+      (set-frame-font "Migu 1M-12.5:antialias=standard")
+      )
     (when (string= (system-name) "damascus")
-      (set-frame-font "Migu 1M-13:antialias=standard")
+      (set-frame-font "Migu 1M-12.5:antialias=standard")
       )
 
     (when (string= (system-name) "harvest")
