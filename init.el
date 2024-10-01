@@ -247,6 +247,8 @@
                                            1.0) ; for HARVEST-nanohana
                                           ((string= (system-name) "bisco")
                                            1.0) ; for bisco
+                                          ((string= (system-name) "aquaman")
+                                           1.0) ; for aquaman
                                           (t
                                            0.8)
                                           )
@@ -2597,10 +2599,15 @@ translation it is possible to get suggestion."
       (set-fontset-font "fontset-default"
                         'japanese-jisx0208
                         '("Noto Sans CJK JP Medium" . "iso10646-1")) ; For WSL
-      ;; (set-frame-font "Migu 1M-12:antialias=standard")
-      ;; (set-frame-font "Migu 1M-13:antialias=standard")
-      (set-frame-font "Migu 1M-13.5:antialias=standard")
-      ;; (set-frame-font "Migu 1M-14:antialias=standard")
+
+      ;; cf. https://www.reddit.com/r/emacs/comments/xybrtw/what_is_the_most_appropriate_way_to_set_fonts_in/
+      (condition-case nil
+          ;; (set-frame-font "Migu 1M-12:antialias=standard")
+          ;; (set-frame-font "Migu 1M-13:antialias=standard")
+          (set-frame-font "Migu 1M-13.5:antialias=standard")
+          ;; (set-frame-font "Migu 1M-14:antialias=standard")
+        (error (set-frame-font "Monospace-13:antialias=standard")))
+
       )
 
     (when (string= (system-name) "DAMASCUS")
