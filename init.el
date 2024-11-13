@@ -2655,12 +2655,12 @@ translation it is possible to get suggestion."
     (setq set-mark-command-repeat-pop t)
     (setq mark-ring-max 64)             ; default: 16
 
-    ;; ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
-    ;; (defun set-whitespace-deleter ()
-    ;;   (unless (eq major-mode 'fundamental-mode)
-    ;;     (add-hook 'before-save-hook
-    ;;               'delete-trailing-whitespace nil t)))
-    ;; (add-hook 'after-change-major-mode-hook 'set-whitespace-deleter)
+    ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+    (defun set-whitespace-deleter ()
+      (unless (eq major-mode 'fundamental-mode)
+        (add-hook 'before-save-hook
+                  'delete-trailing-whitespace nil t)))
+    (add-hook 'after-change-major-mode-hook 'set-whitespace-deleter)
 
     ;; Suppress warning: ad-handle-definition: ‘~’ got redefined
     (setq ad-redefinition-action 'accept)
