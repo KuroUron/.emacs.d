@@ -249,6 +249,8 @@
                                            1.0) ; for bisco
                                           ((string= (system-name) "aquaman")
                                            1.0) ; for aquaman
+                                          ((string= (system-name) "dullahan")
+                                           1.0) ; for aquaman
                                           (t
                                            0.8)
                                           )
