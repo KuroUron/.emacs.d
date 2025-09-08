@@ -259,6 +259,10 @@
                                            1.0)
                                           ((string= (system-name) "INDUS2")
                                            1.0)
+                                          ((string= (system-name) "bisco2")
+                                           1.0)
+                                          ((string= (system-name) "BISCO2")
+                                           1.0)
                                           (t
                                            0.8)
                                           )
