@@ -255,6 +255,10 @@
                                            1.0) ; for chouchin2
                                           ((string= (system-name) "CHOUCHIN2")
                                            1.0) ; for chouchin2
+                                          ((string= (system-name) "indus2")
+                                           1.0)
+                                          ((string= (system-name) "INDUS2")
+                                           1.0)
                                           (t
                                            0.8)
                                           )
