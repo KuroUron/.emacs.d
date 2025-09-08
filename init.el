@@ -151,6 +151,9 @@
   ;; (modus-themes-load-vivendi) ; ダーク
 
   (cond
+   ((eq emacs-major-version 27)
+    (modus-themes-load-theme 'modus-vivendi)
+    )
    ((eq emacs-major-version 28)
     (modus-themes-load-themes)
     ;; (modus-themes-load-operandi) ; ライト
@@ -244,6 +247,14 @@
                                            1.0) ; for HARVEST-nanohana
                                           ((string= (system-name) "bisco")
                                            1.0) ; for bisco
+                                          ((string= (system-name) "aquaman")
+                                           1.0) ; for aquaman
+                                          ((string= (system-name) "dullahan")
+                                           1.0) ; for dullahan
+                                          ((string= (system-name) "chouchin2")
+                                           1.0) ; for chouchin2
+                                          ((string= (system-name) "CHOUCHIN2")
+                                           1.0) ; for chouchin2
                                           (t
                                            0.8)
                                           )
@@ -2594,14 +2605,22 @@ translation it is possible to get suggestion."
       (set-fontset-font "fontset-default"
                         'japanese-jisx0208
                         '("Noto Sans CJK JP Medium" . "iso10646-1")) ; For WSL
-      ;; (set-frame-font "Migu 1M-12:antialias=standard")
-      ;; (set-frame-font "Migu 1M-13:antialias=standard")
-      (set-frame-font "Migu 1M-13.5:antialias=standard")
-      ;; (set-frame-font "Migu 1M-14:antialias=standard")
+
+      ;; cf. https://www.reddit.com/r/emacs/comments/xybrtw/what_is_the_most_appropriate_way_to_set_fonts_in/
+      (condition-case nil
+          ;; (set-frame-font "Migu 1M-12:antialias=standard")
+          ;; (set-frame-font "Migu 1M-13:antialias=standard")
+          (set-frame-font "Migu 1M-13.5:antialias=standard")
+          ;; (set-frame-font "Migu 1M-14:antialias=standard")
+        (error (set-frame-font "Monospace-13:antialias=standard")))
+
       )
 
+    (when (string= (system-name) "DAMASCUS")
+      (set-frame-font "Migu 1M-12.5:antialias=standard")
+      )
     (when (string= (system-name) "damascus")
-      (set-frame-font "Migu 1M-19:antialias=standard")
+      (set-frame-font "Migu 1M-12.5:antialias=standard")
       )
 
     (when (string= (system-name) "harvest")
@@ -2708,17 +2727,7 @@ translation it is possible to get suggestion."
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(ag all-the-icons-ivy-rich anzu clang-format cmake-mode company
-        counsel csv-mode dashboard ddskk dockerfile-mode doom-modeline
-        dumb-jump elisp-format ess esup evil-collection
-        flymake-diagnostic-at-point gcmh git-gutter go-mode
-        google-translate graphviz-dot-mode groovy-mode helm-make
-        hide-mode-line highlight-indent-guides hl-todo hydra
-        imenu-list lsp-pyright lsp-ui magit markdown-toc markdownfmt
-        migemo minimap modus-themes monky neotree pt py-isort
-        rainbow-delimiters rainbow-mode realgud restart-emacs
-        rust-mode smooth-scroll sr-speedbar swift-mode undo-tree
-        yaml-mode yasnippet yatex))
+   '(gnu-elpa-keyring-update leuven-theme leuven-dark-theme groovy-mode cland ccls lsp-pyright py-isort mwim esup ddskk yaml-mode swift-mode orderless vertico eaf centaur-tabs all-the-icons-ivy-rich marginalia ivy-posframe gcmh minions moody modus-themes sr-speedbar tr-ime vterm markdownfmt ivy-prescient prescient unicode-fonts markdown-toc hydra-posframe highlight-symbol clang-format+ monky yasnippet which-key volatile-highlights use-package swiper-helm smooth-scroll realgud rainbow-mode rainbow-delimiters pt powerline origami nyan-mode neotree modalka minimap lsp-ui ivy-rich imenu-list hydra hl-todo highlight-indent-guides hide-mode-line hemisu-theme helm-make gruvbox-theme graphviz-dot-mode git-gutter ghub+ flymd flymake-diagnostic-at-point flycheck-posframe fill-column-indicator evil-magit evil-collection elisp-format doom-themes doom-modeline dashboard counsel company-box cmake-mode clang-format blacken beacon atom-dark-theme anzu amx all-the-icons-ivy ag))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list (cons 20 "#50fa7b") (cons 40 "#85fa80") (cons 60 "#bbf986")
