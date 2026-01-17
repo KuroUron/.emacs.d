@@ -247,6 +247,22 @@
                                            1.0) ; for HARVEST-nanohana
                                           ((string= (system-name) "bisco")
                                            1.0) ; for bisco
+                                          ((string= (system-name) "aquaman")
+                                           1.0) ; for aquaman
+                                          ((string= (system-name) "dullahan")
+                                           1.0) ; for dullahan
+                                          ((string= (system-name) "chouchin2")
+                                           1.0) ; for chouchin2
+                                          ((string= (system-name) "CHOUCHIN2")
+                                           1.0) ; for chouchin2
+                                          ((string= (system-name) "indus2")
+                                           1.0)
+                                          ((string= (system-name) "INDUS2")
+                                           1.0)
+                                          ((string= (system-name) "bisco2")
+                                           1.0)
+                                          ((string= (system-name) "BISCO2")
+                                           1.0)
                                           (t
                                            0.8)
                                           )
@@ -1620,6 +1636,13 @@ translation it is possible to get suggestion."
   (message ":config yaml-mode")
   )
 
+(use-package iss-mode
+  :ensure t
+  :mode (("\\.iss" . iss-mode))
+  :config
+  (message ":config iss-mode")
+  )
+
 (use-package python
   :defer t
   :mode (("\\.py" . python-mode))
@@ -2603,10 +2626,15 @@ translation it is possible to get suggestion."
       (set-fontset-font "fontset-default"
                         'japanese-jisx0208
                         '("Noto Sans CJK JP Medium" . "iso10646-1")) ; For WSL
-      ;; (set-frame-font "Migu 1M-12:antialias=standard")
-      ;; (set-frame-font "Migu 1M-13:antialias=standard")
-      (set-frame-font "Migu 1M-13.5:antialias=standard")
-      ;; (set-frame-font "Migu 1M-14:antialias=standard")
+
+      ;; cf. https://www.reddit.com/r/emacs/comments/xybrtw/what_is_the_most_appropriate_way_to_set_fonts_in/
+      (condition-case nil
+          ;; (set-frame-font "Migu 1M-12:antialias=standard")
+          ;; (set-frame-font "Migu 1M-13:antialias=standard")
+          (set-frame-font "Migu 1M-13.5:antialias=standard")
+          ;; (set-frame-font "Migu 1M-14:antialias=standard")
+        (error (set-frame-font "Monospace-13:antialias=standard")))
+
       )
 
     (when (string= (system-name) "DAMASCUS")
