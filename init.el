@@ -2708,10 +2708,21 @@ translation it is possible to get suggestion."
       (interactive)
       (insert (format-time-string "%Y-%m-%d")))
 
+    ;; (defun insert-dt ()
+    ;;   "Insert the current date and time in YYYY-MM-DD HH:MM format."
+    ;;   (interactive)
+    ;;   (insert (format-time-string "%Y-%m-%d %H:%M")))
+
+    ;; ;; Windows batch format e.g. 2026/08/21 14:30:22.51 (%date% %time%)
+    ;; (defun insert-dt ()
+    ;;   "Insert the current date and time."
+    ;;   (interactive)
+    ;;   (insert (format-time-string "%Y/%m/%d %H:%M:%S")))
+
     (defun insert-dt ()
-      "Insert the current date and time in YYYY-MM-DD HH:MM format."
+      "Insert the current date and time."
       (interactive)
-      (insert (format-time-string "%Y-%m-%d %H:%M")))
+      (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
 
     ;; (global-set-key (kbd "C-c d") #'insert-d)
 
