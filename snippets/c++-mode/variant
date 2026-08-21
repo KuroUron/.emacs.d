@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: var
-# key: var
+# name: variant
+# key: variant
 # --
 std::variant<$0>

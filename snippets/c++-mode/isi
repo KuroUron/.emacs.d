@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: isi
+# key: isi
+# --
+std::isinf($0)

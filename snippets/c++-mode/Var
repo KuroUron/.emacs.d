@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: var
-# key: var
+# name: Var
+# key: Var
 # --
-std::variant<$0>
+Variable$0
