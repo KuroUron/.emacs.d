@@ -2729,7 +2729,7 @@ translation it is possible to get suggestion."
     (defun insert-hdt ()
       "Insert a heading with the current date and time, followed by TODO."
       (interactive)
-      (insert (format-time-string "--- %Y-%m-%d %H:%M:%S\n    TODO ")))
+      (insert (format-time-string "--- %Y-%m-%d %H:%M:%S\n\n    TODO ")))
 
     ))
 
