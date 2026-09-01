@@ -2726,6 +2726,11 @@ translation it is possible to get suggestion."
 
     ;; (global-set-key (kbd "C-c d") #'insert-d)
 
+    (defun insert-hdt ()
+      "Insert a heading with the current date and time, followed by TODO."
+      (interactive)
+      (insert (format-time-string "--- %Y-%m-%d %H:%M:%S\n    TODO ")))
+
     ))
 
 ;; (add-hook
