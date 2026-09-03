@@ -2535,6 +2535,12 @@ translation it is possible to get suggestion."
 ;;   (message ":config mwim")
 ;;   )
 
+(use-package sis
+  :ensure t
+  :config
+  (message ":config sis")
+  )
+
 (add-hook
  'after-init-hook
  ;; 'emacs-startup-hook
@@ -2674,6 +2680,28 @@ translation it is possible to get suggestion."
     (global-set-key (kbd "C-;") 'text-scale-increase)
     (global-set-key (kbd "C--") 'text-scale-decrease)
 
+    ;; ;; for macOS
+    ;; (when (eq system-type 'darwin)
+    ;;   (setq default-input-method "japanese")
+    ;;   (global-set-key (kbd "C-_") 'toggle-input-method)
+    ;;   (with-eval-after-load 'undo-tree
+    ;;     (define-key undo-tree-map (kbd "C-_") 'toggle-input-method)))
+    (when (eq system-type 'darwin)
+      (require 'sis)
+      (sis-ism-lazyman-config
+       "com.apple.keylayout.ABC"
+       "com.apple.inputmethod.Kotoeri.RomajiTyping.Japanese")
+      ;; 現在の macOS の入力ソースを sis に認識させる
+      (sis-get)
+      (global-set-key (kbd "C-_") #'sis-switch)
+      (with-eval-after-load 'undo-tree
+        (define-key undo-tree-map (kbd "C-_") #'sis-switch)))
+
+    (when (eq system-type 'darwin)
+      ;; 右の command を meta キーに変更
+      (setq ns-right-command-modifier 'meta)
+      )
+
     (setq-default indent-tabs-mode nil)
     (setq-default tab-width 4)
 
@@ -2721,16 +2749,26 @@ translation it is possible to get suggestion."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
-   ["#282a36" "#ff5555" "#50fa7b" "#f1fa8c" "#61bfff" "#ff79c6" "#8be9fd" "#f8f8f2"])
+   ["#282a36" "#ff5555" "#50fa7b" "#f1fa8c" "#61bfff" "#ff79c6" "#8be9fd"
+    "#f8f8f2"])
  '(avy-migemo-function-names
    '(swiper--add-overlays-migemo
      (swiper--re-builder :around swiper--re-builder-migemo-around)
      (ivy--regex :around ivy--regex-migemo-around)
-     (ivy--regex-ignore-order :around ivy--regex-ignore-order-migemo-around)
+     (ivy--regex-ignore-order :around
+                              ivy--regex-ignore-order-migemo-around)
      (ivy--regex-plus :around ivy--regex-plus-migemo-around)
-     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo ivy-occur-press-migemo avy-migemo-goto-char avy-migemo-goto-char-2 avy-migemo-goto-char-in-line avy-migemo-goto-char-timer avy-migemo-goto-subword-1 avy-migemo-goto-word-1 avy-migemo-isearch avy-migemo-org-goto-heading-timer avy-migemo--overlay-at avy-migemo--overlay-at-full))
+     ivy--highlight-default-migemo ivy-occur-revert-buffer-migemo
+     ivy-occur-press-migemo avy-migemo-goto-char
+     avy-migemo-goto-char-2 avy-migemo-goto-char-in-line
+     avy-migemo-goto-char-timer avy-migemo-goto-subword-1
+     avy-migemo-goto-word-1 avy-migemo-isearch
+     avy-migemo-org-goto-heading-timer avy-migemo--overlay-at
+     avy-migemo--overlay-at-full))
  '(custom-safe-themes
-   '("34af44a659b79c9f92db13ac7776b875a8d7e1773448a8301f97c18437a822b6" "f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default))
+   '("34af44a659b79c9f92db13ac7776b875a8d7e1773448a8301f97c18437a822b6"
+     "f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024"
+     default))
  '(fci-rule-color "#6272a4")
  '(git-gutter:handled-backends '(git hg))
  '(helm-minibuffer-history-key "M-p")
@@ -2738,28 +2776,26 @@ translation it is possible to get suggestion."
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(package-selected-packages
-   '(ag all-the-icons-ivy-rich anzu clang-format cmake-mode company counsel csv-mode dashboard ddskk dockerfile-mode doom-modeline dumb-jump elisp-format ess esup evil-collection flymake-diagnostic-at-point gcmh git-gutter go-mode google-translate graphviz-dot-mode groovy-mode helm-make hide-mode-line highlight-indent-guides hl-todo hydra imenu-list lsp-pyright lsp-ui magit markdown-toc markdownfmt migemo minimap modus-themes monky neotree pt py-isort rainbow-delimiters rainbow-mode realgud restart-emacs rust-mode smooth-scroll sr-speedbar swift-mode undo-tree yaml-mode yasnippet yatex))
+   '(ag all-the-icons-ivy-rich anzu cmake-mode company counsel csv-mode
+        dashboard dockerfile-mode doom-modeline dumb-jump elisp-format
+        ess esup evil-collection flymake-diagnostic-at-point gcmh
+        git-gutter go-mode google-translate graphviz-dot-mode
+        groovy-mode helm-make hide-mode-line highlight-indent-guides
+        hl-todo hydra imenu-list iss-mode lsp-pyright lsp-ui magit
+        markdown-toc markdownfmt migemo minimap modus-themes monky
+        neotree pt py-isort rainbow-delimiters rainbow-mode realgud
+        restart-emacs rust-mode sis smooth-scroll sr-speedbar
+        swift-mode undo-tree yaml-mode yasnippet yatex))
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
-   (list
-    (cons 20 "#50fa7b")
-    (cons 40 "#85fa80")
-    (cons 60 "#bbf986")
-    (cons 80 "#f1fa8c")
-    (cons 100 "#f5e381")
-    (cons 120 "#face76")
-    (cons 140 "#ffb86c")
-    (cons 160 "#ffa38a")
-    (cons 180 "#ff8ea8")
-    (cons 200 "#ff79c6")
-    (cons 220 "#ff6da0")
-    (cons 240 "#ff617a")
-    (cons 260 "#ff5555")
-    (cons 280 "#d45558")
-    (cons 300 "#aa565a")
-    (cons 320 "#80565d")
-    (cons 340 "#6272a4")
-    (cons 360 "#6272a4")))
+   (list (cons 20 "#50fa7b") (cons 40 "#85fa80") (cons 60 "#bbf986")
+         (cons 80 "#f1fa8c") (cons 100 "#f5e381") (cons 120 "#face76")
+         (cons 140 "#ffb86c") (cons 160 "#ffa38a")
+         (cons 180 "#ff8ea8") (cons 200 "#ff79c6")
+         (cons 220 "#ff6da0") (cons 240 "#ff617a")
+         (cons 260 "#ff5555") (cons 280 "#d45558")
+         (cons 300 "#aa565a") (cons 320 "#80565d")
+         (cons 340 "#6272a4") (cons 360 "#6272a4")))
  '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
