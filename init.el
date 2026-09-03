@@ -2731,6 +2731,34 @@ translation it is possible to get suggestion."
     ;; 警告音もフラッシュも全て無効(警告音が完全に鳴らなくなるので注意)
     (setq ring-bell-function 'ignore)
 
+    (defun insert-d ()
+      "Insert the current date in YYYY-MM-DD format."
+      (interactive)
+      (insert (format-time-string "%Y-%m-%d")))
+
+    ;; (defun insert-dt ()
+    ;;   "Insert the current date and time in YYYY-MM-DD HH:MM format."
+    ;;   (interactive)
+    ;;   (insert (format-time-string "%Y-%m-%d %H:%M")))
+
+    ;; ;; Windows batch format e.g. 2026/08/21 14:30:22.51 (%date% %time%)
+    ;; (defun insert-dt ()
+    ;;   "Insert the current date and time."
+    ;;   (interactive)
+    ;;   (insert (format-time-string "%Y/%m/%d %H:%M:%S")))
+
+    (defun insert-dt ()
+      "Insert the current date and time."
+      (interactive)
+      (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
+
+    ;; (global-set-key (kbd "C-c d") #'insert-d)
+
+    (defun insert-hdt ()
+      "Insert a heading with the current date and time, followed by TODO."
+      (interactive)
+      (insert (format-time-string "--- %Y-%m-%d %H:%M:%S\n\n    TODO ")))
+
     ))
 
 ;; (add-hook
